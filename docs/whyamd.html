@@ -1,12 +1,12 @@
 <div id="directory" class="section">
-<h1>Ϊʲô��ҪAMD��</h1>
+<h1>为什么需要AMD？</h1>
 
 <ul class="index mono">
     <li class="hbox">
-        <a href="#purposes">ģ�黯��Ŀ��</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
+        <a href="#purposes">模块化的目的</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
     </li>
     <li class="hbox">
-        <a href="#today">Web����״</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
+        <a href="#today">Web的现状</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
     </li>
     <li class="hbox">
         <a href="#commonjs">CommonJS</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
@@ -15,41 +15,41 @@
         <a href="#amd">AMD</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4</span>
     </li>
     <li class="hbox">
-        <a href="#definition">ģ�鶨��</a><span class="spacer boxFlex"></span><span class="sect">&sect; 5</span>
+        <a href="#definition">模块定义</a><span class="spacer boxFlex"></span><span class="sect">&sect; 5</span>
     </li>
     <li class="hbox">
-        <a href="#namedmodules">ģ������</a><span class="spacer boxFlex"></span><span class="sect">&sect; 6</span>
+        <a href="#namedmodules">模块命名</a><span class="spacer boxFlex"></span><span class="sect">&sect; 6</span>
     </li>
     <li class="hbox">
-        <a href="#sugar">�﷨��</a><span class="spacer boxFlex"></span><span class="sect">&sect; 7</span>
+        <a href="#sugar">语法糖</a><span class="spacer boxFlex"></span><span class="sect">&sect; 7</span>
     </li>
     <li class="hbox">
-        <a href="#commonjscompat">��CommonJS����</a><span class="spacer boxFlex"></span><span class="sect">&sect; 8</span>
+        <a href="#commonjscompat">与CommonJS兼容</a><span class="spacer boxFlex"></span><span class="sect">&sect; 8</span>
     </li>
     <li class="hbox">
-        <a href="#amdtoday">AMDʹ���ֿ�</a><span class="spacer boxFlex"></span><span class="sect">&sect; 9</span>
+        <a href="#amdtoday">AMD使用现况</a><span class="spacer boxFlex"></span><span class="sect">&sect; 9</span>
     </li>
     <li class="hbox">
-        <a href="#youcando">������ʲô</a><span class="spacer boxFlex"></span><span class="sect">&sect; 10</span>
+        <a href="#youcando">你能做什么</a><span class="spacer boxFlex"></span><span class="sect">&sect; 10</span>
     </li>
 </ul>
 
-<p>��ƪ�����ֻ��й��������Ӱ���ʹ��<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">�첽ģ�鶨��AMD API</a>��ΪJavascript ģ�黯�� RequireJS֧��ģ��API, ����һƪ���� <a href="why.html">Web�ϵ�ģ�黯ͨ�÷���</a>��������¡�</p>
+<p>这篇文中讨化有关这种设计影响和使用<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">异步模块定义AMD API</a>作为Javascript 模块化， RequireJS支持模块API, 这是一篇讨论 <a href="why.html">Web上的模块化通用方案</a>的深度文章。</p>
 
 </div>
 
 
 <div class="section">
 <h2>
-<a name="purposes">ģ�黯��Ŀ��</a>
+<a name="purposes">模块化的目的</a>
 <span class="sectionMark">&sect; 1</span>
 </h2>
 
-<p>ʲôʱJavaScriptģ�飿������������ʲô�ģ�</p>
+<p>什么时JavaScript模块？它们是用来干什么的？</p>
 
 <ul>
-<li><strong>����</strong>�����ѹ��һ�δ��뵽һ�����õĵ�Ԫ���������Ϊģ��ע�Ṧ��/����һ��ֵ��</li>
-<li><strong>��������</strong>��������õ������Ĵ��뵥Ԫ��</li>
+<li><strong>定义</strong>：如何压缩一段代码到一个可用的单元，并且如何为模块注册功能/导出一个值。</li>
+<li><strong>依赖引用</strong>：如何引用到其它的代码单元。</li>
 </ul>
 
 </div>
@@ -57,7 +57,7 @@
 
 <div class="section">
 <h2>
-<a name="today">Web����״</a>
+<a name="today">Web的现状</a>
 <span class="sectionMark">&sect; 2</span>
 </h2>
 
@@ -68,16 +68,16 @@
 }());
 </code></pre>
 
-<p>���ڵ�Js���������α�����ģ�</p>
+<p>现在的Js代码块是如何被定义的？</p>
 
 <ul>
-    <li>ͨ������ִ�е�factory����.</li>
-    <li>ͨ����HTML script��ǩ�ж���ȫ�ֱ����������õ���������ɡ�</li>
-    <li>�������ǳ���������������Ҫ֪����ȷ��������ϵ��������˵��jQuery���ñ�ǩ�������Backbone֮ǰ��</li>
-    <li>Ϊ���Ż����ܣ��ڲ���ʱ��Ҫ��������������һ��script��ǩ�ϲ���һ����</li>
+    <li>通过立即执行的factory函数.</li>
+    <li>通过在HTML script标签中定义全局变量名，引用到依赖都完成。</li>
+    <li>依赖都非常的弱：开发者需要知道正确的依赖关系。举例来说，jQuery引用标签必须放在Backbone之前。</li>
+    <li>为了优化性能，在部署时需要第三方工具来将一组script标签合并成一个。</li>
 </ul>
 
-<p>�����һ��������Ŀ���ǳ����Թ������ر��ǵ�������ʼ�ظ���Ƕ��ʱ����дscript��ǩ�ܲ������һ�û�н��ű��İ�����ظ����ǽ�����</p>
+<p>这对于一个大型项目来非常难以管理，特别是当依赖开始重复和嵌套时。手写script标签很不灵活，并且还没有将脚本的按需加载给考虑进来。</p>
 
 </div>
 
@@ -91,23 +91,23 @@
 exports.myExample = function () {};
 </code></pre>
 
-<p>�����The original <a href="http://groups.google.com/group/commonjs">CommonJS (CJS) list</a> ����Ϊ���ڵ�JavaScript�����ƶ�һ��ģ��ĸ�ʽ�����ǲ�������������˵�JS���������Ȩ��֮�ư����� </p>
+<p>最初的The original <a href="http://groups.google.com/group/commonjs">CommonJS (CJS) list</a> 决定为现在的JavaScript语言制定一个模块的格式，但是不仅限于浏览器端的JS环境。这个权宜之计包括： </p>
 
 <ul>
 <li>Either use a server to translate CJS modules to something usable in the browser.</li>
 <li>Or use XMLHttpRequest (XHR) to load the text of modules and do text transforms/parsing in browser.</li>
 </ul>
 
-<p>CJSģ���ʽ������һ���ļ�����һ��ģ�飬����һ���������ʽ������ʹ�óɲ�ֹһ��ģ��Ϊ���ܺ͡�����;��</p>
+<p>CJS模块格式仅允许一个文件包括一个模块，所以一个“传输格式”将被使用成不止一个模块为性能和。。用途。</p>
 
-<p>Ϊ�����Ŀ�ģ�CommonJS�鿪ʼ�����ڽ���������ú���δ���ѭ�����õ����⣬�������Ϊ��ǰģ���ȡ�������ԡ�������Σ�����û����ȫ���һ��������������µ����⣬����Щ����һֱӰ����ģ�����ƣ�</p>
+<p>为了这个目的，CommonJS组开始致力于解决依赖引用和如何处理循环引用的问题，并且如何为当前模块获取更多属性。无论如何，它们没有完全解决一点在浏览器环境下的问题，而这些问题一直影响着模块的设计：</p>
 
 <ul>
-<li>������� </li>
+<li>网络加载 </li>
 <li>inherent asynchronicity</li>
 </ul>
 
-<p>����ζ�������÷���ǰ�˿�����Ա֧ʵ���Լ��ĸ�ʽ���������ַ����õ��Ա�ø����鷳���������Զ���ļ��ϲ���һ���ļ����Ѷȡ���Щ����Ҳ����һ��ᱻд����������ߣ������յĽ����ǣ�ʹ��CommonJS ģ���ڴ������JS������Ҳ����������У������ʺϡ�</p>
+<p>这意味着他们让放任前端开发人员支实现自己的格式，并且这种方案让调试变得更加麻烦。？？调试多个文件合并成一个文件有难度。这些难题也许有一天会被写入浏览器工具，但最终的结论是：使用CommonJS 模块在大多数的JS环境，也就是浏览器中，还不适合。</p>
 
 </div>
 
@@ -122,23 +122,23 @@ exports.myExample = function () {};
 });
 </code></pre>
 
-<p>AMD��ʽ��������Ҫһ��ģ���ʽ���ڵ���ġ�дһ������script��ǩ�������ò��Լ�������Щ���ô���һЩ������������кܷ���ֱ��ʹ�ã�һЩ�õĵ��Բ���Ҫ����������������Dojo's��ʵ�������飬ʹ��XHR+eval������</p>
+<p>AMD格式来自于想要一个模块格式优于当今的“写一长串的script标签，还不得不自己操心那些引用次序”一些东西在浏览器中很方便直接使用，一些好的调试不需要。。。。这来自于Dojo's现实世界体验，使用XHR+eval。。。</p>
 
-<p>�������Web���е�ȫ�ֺͽű������˵��һ����ߣ���Ϊ��</p>
+<p>这相对于Web现行的全局和脚本标答来说是一种提高，因为：</p>
 
 <ul>
-<li>ʹ��CommonJSʹ��ID��Ϊ������������������������������ʹ��ȫ�֡�</li>
-<li>IDӳ�䵽����·���ϡ��������滻ʵ�֡��⽫Ϊ��Ԫ���Դ���modks�ṩ�޴�ķ��㡣������Ĵ���ʾ����˵����δ����ʵ����jQuery ApI����Ϊ����һ��Ҫ����jQuery��</li>
-<li>��װģ�鶨�塣�ṩ���ߴӶ������ȫ�ֿռ������Ⱦ��</li>
-<li>���path֧����ģ��ֵ������ʹ��"return value;" ������CommonJS�� "exports"��ѧ��������ѭ�������кܴ�İ�����</li>
+<li>使用CommonJS使用ID作为依赖解决方案。清除依赖声明并避免使用全局。</li>
+<li>ID映射到其它路径上。这允许替换实现。这将为单元测试创建modks提供巨大的方便。对上面的代码示例来说，这段代码仅实现了jQuery ApI和行为，不一定要用有jQuery。</li>
+<li>包装模块定义。提供工具从而避免对全局空间进行污染。</li>
+<li>清除path支定义模块值。无论使用"return value;" 或者是CommonJS的 "exports"哲学，都将对循环引用有很大的帮助。</li>
 </ul>
 
-<p>���CommonJSģ����˵��һ�ָĽ���</p>
+<p>这对CommonJS模块来说是一种改进：</p>
 
 <ul>
-<li>��������Ϲ����ĸ��ã� it has the least amount of gotchas. Other approaches have problems with debugging, cross-domain/CDN usage, file:// usage and the need for server-specific tooling.</li>
+<li>在浏览器上工作的更好， it has the least amount of gotchas. Other approaches have problems with debugging, cross-domain/CDN usage, file:// usage and the need for server-specific tooling.</li>
 <li>Defines a way to include multiple modules in one file. In CommonJS terms, the term for this is a "transport format", and that group has not agreed on a transport format.</li>
-<li>��������һ��������Ϊ����ֵ����Թ��캯���ǳ����á���CommonJS�в���ã����ǲ��ò�֧����������Export�����ϡ� Node֧��module.exports = function() {}�����ⲻ����CommonJS spec�е�һ���֡�</li>
+<li>允许设置一个功能作为返回值。这对构造函数非常有用。在CommonJS中不大好，总是不得不支设置属性在Export对象上。 Node支持module.exports = function() {}，但这不属于CommonJS spec中的一部分。</li>
 </ul>
 
 </div>
@@ -149,7 +149,7 @@ exports.myExample = function () {};
 <span class="sectionMark">&sect; 5</span>
 </h2>
 
-<p>AMD�Ļ������ģ����ܣ���Ϊ��Ԫ�İ�װ�Ѿ��������ˣ�Ҳ���ĵ�����module pattern:��, the function, is already well understood as a unit of encapsulation. It has also been documented as the <a href="http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth">module pattern</a>:</p>
+<p>AMD的基本核心，功能，作为单元的包装已经被理解了，也被文当化在module pattern:中, the function, is already well understood as a unit of encapsulation. It has also been documented as the <a href="http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth">module pattern</a>:</p>
 
 <pre><code>(function () {
    this.myGlobal = function () {};
@@ -161,10 +161,10 @@ exports.myExample = function () {};
 <p>AMD addresses these issues by:</p>
 
 <ul>
-<li>ͨ������define()��ע��factory������������ֱ�ӵ�������</li>
-<li>Pass����һ���ַ����͵����飬��ȥ��ȫ����Ⱦ��</li>
-<li>�����е������������غ�ִ�к󣬹���factory������ִ�С�</li>
-<li>��������ģ����Ϊ�������ݸ�factory������</li>
+<li>通过调用define()来注册factory方法，而不是直接调用它。</li>
+<li>Pass依赖一个字符串型的数组，不去做全局污染。</li>
+<li>当所有的依赖都被加载和执行后，公有factory方法被执行。</li>
+<li>将依赖的模块作为参数传递给factory方法。</li>
 </ul>
 
 <pre><code>//Calling define with a dependency array and a factory function
@@ -183,7 +183,7 @@ define(['dep1', 'dep2'], function (dep1, dep2) {
 <span class="sectionMark">&sect; 6</span>
 </h2>
 
-<p>�����ʾ�����ļ�������һ������call ʱ�����ĺܺã� AMD���������㹻����Ϣ��ģ������/ID��֧���ؽű���������Σ�Ϊ����õ����ܣ��㻹��Ҫ��һЩģ���ļ��ϲ���һ�����ԣ�Ϊ��������Щ��define()��������һ���ַ�����Ϊ��һ����ȥָ���ַ������ƣ�</p>
+<p>上面的示例在文件仅包含一个定义call 时工作的很好， AMD加载器有足够的信息（模块名称/ID）支加载脚本。无论如何，为了最好的性能，你还是要将一些模块文件合并在一起。所以，为了允许这些，define()允许传充一个字符串作为第一参数去指定字符串名称：</p>
 
 <pre><code>//Calling define with module ID, dependency array, and factory function
 define('myModule', ['dep1', 'dep2'], function (dep1, dep2) {
@@ -193,11 +193,11 @@ define('myModule', ['dep1', 'dep2'], function (dep1, dep2) {
 }});
 </code></pre>
 
-<p>��������һ���ļ��ж���һ��ģ�飬����Ժ�����ʹ������ģ�顣�������Ժܷ�����ƶ��ļ������߸��ļ�����</p>
+<p>如果你仅在一个文件中定义一个模块，则可以很灵活的使用匿名模块。这样可以很方便的移动文件，或者改文件名。</p>
 
 <p>However, for some popular JS libraries in use on the web now, defining an anonymous module might be hazardous since they could be loaded on a page, without using an AMD loader. If there happens to be an AMD loader on the page, the AMD loader will not have enough information to give the module a name. jQuery and underscore are examples of scripts that fall in this category.</p>
 
-<p>ʹ����ЩWeb�����е�JS�⣬ʹ��������define() ��������õı������ķ�ʽ������ҳ��ʹ�ô����ĵ������ű���</p>
+<p>使用这些Web端流行的JS库，使用命名的define() 调用是最好的避免错误的方式，当网页上使用大量的第三方脚本。</p>
 
 </div>
 
@@ -207,7 +207,7 @@ define('myModule', ['dep1', 'dep2'], function (dep1, dep2) {
 <span class="sectionMark">&sect; 7</span>
 </h2>
 
-<p>�����AMDʾ�������е�������ж����������������ǣ�������һ�����գ�������ģ�����ͺ��������function������ƥ�䣬���ҿ��ܿ������е���֣�������ģ����̫�������Ļ���</p>
+<p>上面的AMD示例在所有的浏览器中都能正常工作，但是，这里有一个风险，如果你的模块名和后面的命名function参数不匹配，并且可能看起来有点奇怪，如果这个模块有太多依赖的话：</p>
 
 <pre><code>define([ "require", "jquery", "blade/object", "blade/fn", "rdapi",
          "oauth", "blade/jig", "blade/url", "dispatch", "accounts",
@@ -222,7 +222,7 @@ function (require,   $,        object,         fn,         rdapi,
 });
 </code></pre>
 
-<p>����Щ��ü�Щ����������CommonJSģ������һ�����򵥵İ�װ��ʹ����ø��Ӽ򵥣����ֶ�ʽ��������Ҳ�������ˡ�</p>
+<p>让这些变得简单些，让我们在CommonJS模块上做一个“简单的包装”使它变得更加简单，这种定式表单现在也被技持了。</p>
 
 <pre><code>define(function (require) {
     var dependency1 = require('dependency1'),
@@ -232,7 +232,7 @@ function (require,   $,        object,         fn,         rdapi,
 });
 </code></pre>
 
-<p>AMD��������ʹ��Fuction.prototype.toString()����require('')���ý���ת����Ȼ�����ڲ��������defaine callתΪ���棺</p>
+<p>AMD加载器将使用Fuction.prototype.toString()来对require('')调用进行转换，然后在内部将上面的defaine call转为下面：</p>
 
 <pre><code>define(['require', 'dependency1', 'dependency2'], function (require) {
     var dependency1 = require('dependency1'),
@@ -242,11 +242,11 @@ function (require,   $,        object,         fn,         rdapi,
 });
 </code></pre>
 
-<p>�⽫����������֧����dependency1,2�첽��ִ����Щ������Ȼ��ִ��function������</p>
+<p>这将允许加载器支加载dependency1,2异步，执行这些依赖，然后执行function方法。</p>
 
-<p>�������е������ʹ��һ�����õ�Function.prototype.toString()�����������2011��10�£�ps3���ϵ�Opera�ƶ�������Ͳ�����Щ���������Ҫһ��Ϊ���硢�豸�Ż��Ĺ������ߣ�����������һ���������Ĺ��ߣ����񡣡���<a href="optimization.html">RequireJS optimizer</a>.</p>
+<p>并非所有的浏览器使用一个可用的Function.prototype.toString()结果。就像在2011年10月，ps3和老的Opera移动浏览器就不。这些浏览器更需要一个为网络、设备优化的构建工具，所以又做了一个。。。的工具，就像。。。<a href="optimization.html">RequireJS optimizer</a>.</p>
 
-<p>��֧��toString()ɨ�����������Ǻ��ٵģ����Է��ĵ���sugared�ɡ�</p>
+<p>不支持toString()扫描的浏览器还是很少的，所以放心的用sugared吧。</p>
 
 </div>
 
@@ -256,11 +256,11 @@ function (require,   $,        object,         fn,         rdapi,
 <span class="sectionMark">&sect; 8</span>
 </h2>
 
-<p>���������﷨�Ǹ�ʽ�ο�"SCW"�������Ǿ��Եļ���CommonJs ģ�顣������Σ����ְ�����֧�֣��������ǳ��ü����첽�������ء�</p>
+<p>尽管这种语法糖格式参考"SCW"，它不是绝对的兼容CommonJs 模块。无论如何，这种案例不支持，尽管它们常用假设异步依赖加载。</p>
 
-<p>�������CommonJSģ�飬�ݶྭ��95%������ȫsimplified wrapping��</p>
+<p>大多数的CommonJS模块，据多经验95%，都适全simplified wrapping。</p>
 
-<p>ģ�����һ������̬�������㣬������һ���ַ�����Ϊrequire()���ã� ����û���κΣ�</p>
+<p>模块打破一个做动态依赖计算，都不用一个字符串作为require()调用， 并且没有任何：</p>
 
 <pre><code>//BAD
 var mod = require(someCondition ? 'a' : 'b');
@@ -273,9 +273,9 @@ if (someCondition) {
 }
 </code></pre>
 
-<p>����������<a href="https://github.com/amdjs/amdjs-api/wiki/require">callback-require</a>��������<code>require([moduleName], function (){})</code>ֻ�����������ļ��ء�</p>
+<p>这种例子由<a href="https://github.com/amdjs/amdjs-api/wiki/require">callback-require</a>来处理，<code>require([moduleName], function (){})</code>只是来做正常的加载。</p>
 
-<p>AMD ִ��model���ʺϡ�CommonJSģ�鲻֧��AMD wrapperͬʱҲ��֧�ֺ�гģ�顣AMD�Ĵ���ִ�з�ʽ��δ�������ݡ�</p>
+<p>AMD 执行model更适合。CommonJS模块不支持AMD wrapper同时也不支持和谐模块。AMD的代码执行方式与未来更加容。</p>
 
 <h2>Verbosity vs. Usefulness</h2>
 

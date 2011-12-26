@@ -2,61 +2,61 @@
 <h1>RequireJS API</h1>
 
 <ul class="index mono">
-    <li class="hbox"><a href="#usage">ÓÃ·¨</a><span class="spacer boxFlex"></span><span class="sect">&sect;&sect; 1-1.7</span></li>
+    <li class="hbox"><a href="#usage">ç”¨æ³•</a><span class="spacer boxFlex"></span><span class="sect">&sect;&sect; 1-1.7</span></li>
         <ul>
-            <li class="hbox"><a href="#jsfiles">¼ÓÔØJavaScriptÎÄ¼ş</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.1</span></li>
-            <li class="hbox"><a href="#define">¶¨ÒåÒ»¸öÄ£¿é</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2</span></li>
+            <li class="hbox"><a href="#jsfiles">åŠ è½½JavaScriptæ–‡ä»¶</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.1</span></li>
+            <li class="hbox"><a href="#define">å®šä¹‰ä¸€ä¸ªæ¨¡å—</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2</span></li>
             <ul>
-                <li class="hbox"><a href="#defsimple">¼òµ¥µÄName/Value¼üÖµ¶Ô</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.1</span></li>
-                <li class="hbox"><a href="#deffunc">º¯Êı¶¨Òå</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.2</span></li>
-                <li class="hbox"><a href="#defdep">ÒÀÀµº¯Êı¶¨Òå</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.3</span></li>
-                <li class="hbox"><a href="#funcmodule">½«Ä£¿é¶¨Òå³Éº¯Êı</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.4</span></li>
-                <li class="hbox"><a href="#cjsmodule">Ê¹ÓÃSimplified CommonJS WrapperÀ´¶¨ÒåÄ£¿é</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.5</span></li>
-                <li class="hbox"><a href="#modulename">¶¨ÒåÒ»¸öÓĞÃû×ÖµÄÄ£¿é</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.6</span></li>
-                <li class="hbox"><a href="#modulenotes">ÆäËüÓĞ¹ØÄ£¿éµÄÄÚÈİ</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.7</span></li>
-                <li class="hbox"><a href="#circular">Ñ­»·ÒÀÀµ</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.8</span></li>
+                <li class="hbox"><a href="#defsimple">ç®€å•çš„Name/Valueé”®å€¼å¯¹</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.1</span></li>
+                <li class="hbox"><a href="#deffunc">å‡½æ•°å®šä¹‰</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.2</span></li>
+                <li class="hbox"><a href="#defdep">ä¾èµ–å‡½æ•°å®šä¹‰</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.3</span></li>
+                <li class="hbox"><a href="#funcmodule">å°†æ¨¡å—å®šä¹‰æˆå‡½æ•°</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.4</span></li>
+                <li class="hbox"><a href="#cjsmodule">ä½¿ç”¨Simplified CommonJS Wrapperæ¥å®šä¹‰æ¨¡å—</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.5</span></li>
+                <li class="hbox"><a href="#modulename">å®šä¹‰ä¸€ä¸ªæœ‰åå­—çš„æ¨¡å—</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.6</span></li>
+                <li class="hbox"><a href="#modulenotes">å…¶å®ƒæœ‰å…³æ¨¡å—çš„å†…å®¹</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.7</span></li>
+                <li class="hbox"><a href="#circular">å¾ªç¯ä¾èµ–</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.8</span></li>
             </ul>
-            <li class="hbox"><a href="#i18n">¶¨ÒåÒ»¸öI18NµÄ°ü</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.3</span></li>
-            <li class="hbox"><a href="#text">Ê¹ÓÃÎÄ±¾ÎÄ¼ş×÷ÎªÒÀÀµ</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.4</span></li>
-            <li class="hbox"><a href="#jsonp">Ê¹ÓÃJSONP·şÎñ×÷ÎªÒÀÀµ</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.5</span></li>
-            <li class="hbox"><a href="#order">°´Ö¸¶¨Ë³Ğò¼ÓÔØ½Å±¾ÎÄ¼ş</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.6</span></li>
-            <li class="hbox"><a href="#pageload">Ò³Ãæ¼ÓÔØÊÂ¼şÖ§³Ö/DOM Ready</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.7</span></li>
+            <li class="hbox"><a href="#i18n">å®šä¹‰ä¸€ä¸ªI18Nçš„åŒ…</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.3</span></li>
+            <li class="hbox"><a href="#text">ä½¿ç”¨æ–‡æœ¬æ–‡ä»¶ä½œä¸ºä¾èµ–</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.4</span></li>
+            <li class="hbox"><a href="#jsonp">ä½¿ç”¨JSONPæœåŠ¡ä½œä¸ºä¾èµ–</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.5</span></li>
+            <li class="hbox"><a href="#order">æŒ‰æŒ‡å®šé¡ºåºåŠ è½½è„šæœ¬æ–‡ä»¶</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.6</span></li>
+            <li class="hbox"><a href="#pageload">é¡µé¢åŠ è½½äº‹ä»¶æ”¯æŒ/DOM Ready</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.7</span></li>
         </ul>
     <li class="hbox"><a href="#mechanics">Mechanics</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span></li>
-    <li class="hbox"><a href="#config">ÅäÖÃ²ÎÊı</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span></li>
-    <li class="hbox"><a href="#advanced">¸ß¼¶ÓÃ·¨</a><span class="spacer boxFlex"></span><span class="sect">&sect;&sect; 4-4.5</span></li>
+    <li class="hbox"><a href="#config">é…ç½®å‚æ•°</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span></li>
+    <li class="hbox"><a href="#advanced">é«˜çº§ç”¨æ³•</a><span class="spacer boxFlex"></span><span class="sect">&sect;&sect; 4-4.5</span></li>
     <ul>
-        <li class="hbox"><a href="#packages">´Ó°üÖĞ¼ÓÔØÄ£¿é</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.1</span></li>
-        <li class="hbox"><a href="#multiversion">¶à°æ±¾Ö§³Ö</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.2</span></li>
-        <li class="hbox"><a href="#afterload">Ò³ÃæÍê³Éºó¼ÓÔØ´úÂë</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.3</span></li>
-        <li class="hbox"><a href="#webworker">Web WorkerÖ§³Ö</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.4</span></li>
-        <li class="hbox"><a href="#rhino">RhinoÖ§³Ö</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.5</span></li>
+        <li class="hbox"><a href="#packages">ä»åŒ…ä¸­åŠ è½½æ¨¡å—</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.1</span></li>
+        <li class="hbox"><a href="#multiversion">å¤šç‰ˆæœ¬æ”¯æŒ</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.2</span></li>
+        <li class="hbox"><a href="#afterload">é¡µé¢å®ŒæˆååŠ è½½ä»£ç </a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.3</span></li>
+        <li class="hbox"><a href="#webworker">Web Workeræ”¯æŒ</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.4</span></li>
+        <li class="hbox"><a href="#rhino">Rhinoæ”¯æŒ</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.5</span></li>
     </ul>
 </ul>
 </div>
 
 <div class="section">
 <h2>
-<a name="usage">ÓÃ·¨</a>
+<a name="usage">ç”¨æ³•</a>
 <span class="sectionMark">&sect; 1</span>
 </h2>
 
-<p>ÏÂÃæÊÇÎåÖÖÊ¹ÓÃrequire.jsµÄ»ù±¾·½Ê½¡£</p>
+<p>ä¸‹é¢æ˜¯äº”ç§ä½¿ç”¨require.jsçš„åŸºæœ¬æ–¹å¼ã€‚</p>
 
 <ol>
-<li>¼ÓÔØJavascriptÎÄ¼ş¡£</li>
-<li>¶¨ÒåÒ»¸öÓĞ×ÅÆäËüÒÀÀµÏîµÄÄ£¿é¡£</li>
-<li>¶¨ÒåÒ»¸öÈ«Çò»¯ (i18n) µÄ°ü¡£</li>
-<li>Ö¸¶¨Ò»¸öÎÄ±¾ÒÀÀµ¡£</li>
-<li>Ö¸¶¨Ò»¸öJSONP·şÎñÒÀÀµ¡£</li>
+<li>åŠ è½½Javascriptæ–‡ä»¶ã€‚</li>
+<li>å®šä¹‰ä¸€ä¸ªæœ‰ç€å…¶å®ƒä¾èµ–é¡¹çš„æ¨¡å—ã€‚</li>
+<li>å®šä¹‰ä¸€ä¸ªå…¨çƒåŒ– (i18n) çš„åŒ…ã€‚</li>
+<li>æŒ‡å®šä¸€ä¸ªæ–‡æœ¬ä¾èµ–ã€‚</li>
+<li>æŒ‡å®šä¸€ä¸ªJSONPæœåŠ¡ä¾èµ–ã€‚</li>
 </ol>
 
 <h3>
-<a name="jsfiles">¼ÓÔØJavaScriptÎÄ¼ş</a>
+<a name="jsfiles">åŠ è½½JavaScriptæ–‡ä»¶</a>
 <span class="sectionMark">&sect; 1.1</span>
 </h3>
 
-<p>Èç¹ûÄã½öÏë¼ÓÔØÒ»Ğ©JSÎÄ¼ş£¬ÔÚHTMLÎÄµµµÄÍ·²¿¼ÓÈëÒÔÏÂ´úÂë£º</p>
+<p>å¦‚æœä½ ä»…æƒ³åŠ è½½ä¸€äº›JSæ–‡ä»¶ï¼Œåœ¨HTMLæ–‡æ¡£çš„å¤´éƒ¨åŠ å…¥ä»¥ä¸‹ä»£ç ï¼š</p>
 
 <pre><code>&lt;script src="scripts/require.js"&gt;&lt;/script&gt;
 &lt;script&gt;
@@ -69,34 +69,34 @@
 &lt;/script&gt;
 </code></pre>
 
-<p>ÔÚÉÏÃæµÄÒÀÀµÖĞ£¬["some/module", "a.js", "b.js"], »áÍ¨¹ıÏÂÃæµÄscrÖµÔÚscript±êÇ©ÖĞ±»¼ÓÔØ£º</p>
+<p>åœ¨ä¸Šé¢çš„ä¾èµ–ä¸­ï¼Œ["some/module", "a.js", "b.js"], ä¼šé€šè¿‡ä¸‹é¢çš„scrå€¼åœ¨scriptæ ‡ç­¾ä¸­è¢«åŠ è½½ï¼š</p>
 
 <ul>
 <li>some/module.js</li>
-<li>a.js (ÔÚ°üº¬ÉÏÃæÒ»¶ÎHTML´úÂëµÄÒ³ÃæÏàÍ¬µÄÂ·¾¶ÏÂ)</li>
-<li>b.js (ÔÚ°üº¬ÉÏÃæÒ»¶ÎHTML´úÂëµÄÒ³ÃæÏàÍ¬µÄÂ·¾¶ÏÂ)</li>
+<li>a.js (åœ¨åŒ…å«ä¸Šé¢ä¸€æ®µHTMLä»£ç çš„é¡µé¢ç›¸åŒçš„è·¯å¾„ä¸‹)</li>
+<li>b.js (åœ¨åŒ…å«ä¸Šé¢ä¸€æ®µHTMLä»£ç çš„é¡µé¢ç›¸åŒçš„è·¯å¾„ä¸‹)</li>
 </ul>
 
-<p>RequireJSÍ¨³£Ê¹ÓÃ<a href="#config-baseUrl">baseUrl</a> ºÍ <a href="#config-paths">paths</a> ÅäÖÃÀ´×ª»»"some/module"ÕâÑùµÄÃû×Öµ½Ò»¸öÕæÕıµÄÎÄ¼şÂ·¾¶¡£</p>
+<p>RequireJSé€šå¸¸ä½¿ç”¨<a href="#config-baseUrl">baseUrl</a> å’Œ <a href="#config-paths">paths</a> é…ç½®æ¥è½¬æ¢"some/module"è¿™æ ·çš„åå­—åˆ°ä¸€ä¸ªçœŸæ­£çš„æ–‡ä»¶è·¯å¾„ã€‚</p>
 
-<p>µ«ÊÇ£¬Èç¹ûÒÀÀµÃû×ÖÖĞº¬ÓĞÏÂÃæÊôĞÔ£¬½«»á±»¿´×÷Ò»°ãÎÄ¼şÂ·¾¶£¬¾ÍÏñÊ¹ÓÃ<script src>±êÇ©Ò»Ñù£º &lt;script src=""&gt; ±êÇ©Ò»Ñù£º</p>
+<p>ä½†æ˜¯ï¼Œå¦‚æœä¾èµ–åå­—ä¸­å«æœ‰ä¸‹é¢å±æ€§ï¼Œå°†ä¼šè¢«çœ‹ä½œä¸€èˆ¬æ–‡ä»¶è·¯å¾„ï¼Œå°±åƒä½¿ç”¨<script src>æ ‡ç­¾ä¸€æ ·ï¼š &lt;script src=""&gt; æ ‡ç­¾ä¸€æ ·ï¼š</p>
 
 <ul>
-<li>ÒÔ".js"½áÎ²¡£</li>
-<li>ÒÔ"/"¿ªÍ·¡£</li>
-<li>°üº¬Ò»¸öURLĞ­Òå£¬Ïñhttp:, https:¡£</li>
+<li>ä»¥".js"ç»“å°¾ã€‚</li>
+<li>ä»¥"/"å¼€å¤´ã€‚</li>
+<li>åŒ…å«ä¸€ä¸ªURLåä¹‰ï¼Œåƒhttp:, https:ã€‚</li>
 </ul>
 
-<p>²é¿´<a href="#config">ÅäÖÃ²ÎÊı</a>Ò»½Ú»ñµÃ¸ü¶àÒÀÀµ²éÕÒÂ·¾¶µÄĞÅÏ¢¡£</p>
+<p>æŸ¥çœ‹<a href="#config">é…ç½®å‚æ•°</a>ä¸€èŠ‚è·å¾—æ›´å¤šä¾èµ–æŸ¥æ‰¾è·¯å¾„çš„ä¿¡æ¯ã€‚</p>
 
-<p>Äã¿ÉÒÔÔÚHTMLÎÄ¼şÖĞÊ¹ÓÃrequire() ×÷ÎªÒ»¸ö±êÇ©£¬ËüºÜÇ¿´óµÄ¿ÉÒÔ±»requirejsÀ´¼ÓÔØ¡£ÕâÔÊĞíÓÅ»¯¹¤¾ßºÜÈİÒ×ÓÅ»¯£¬²¢ÇÒÕâÀïÓĞÒ»¸öËÙ¼Ç×÷ÎªÕâÖÖÄ£Ê½ ±»ÓÃÔÚHTMLÖĞ¡£ÕâĞ©¾ÈÃü¿ÉÒÔÏñÏÂÃæÒ»ÑùÊ¹ÓÃ£º</p>
+<p>ä½ å¯ä»¥åœ¨HTMLæ–‡ä»¶ä¸­ä½¿ç”¨require() ä½œä¸ºä¸€ä¸ªæ ‡ç­¾ï¼Œå®ƒå¾ˆå¼ºå¤§çš„å¯ä»¥è¢«requirejsæ¥åŠ è½½ã€‚è¿™å…è®¸ä¼˜åŒ–å·¥å…·å¾ˆå®¹æ˜“ä¼˜åŒ–ï¼Œå¹¶ä¸”è¿™é‡Œæœ‰ä¸€ä¸ªé€Ÿè®°ä½œä¸ºè¿™ç§æ¨¡å¼ è¢«ç”¨åœ¨HTMLä¸­ã€‚è¿™äº›æ•‘å‘½å¯ä»¥åƒä¸‹é¢ä¸€æ ·ä½¿ç”¨ï¼š</p>
 
 <pre><code>&lt;script data-main="scripts/main" src="scripts/require.js"&gt;&lt;/script&gt;
 </code></pre>
 
-<span class="note">data-mainµÄÂ·¾¶¹æÔòÔÚ0.2.3ÖĞ·¢ÉúÁË·¢±ä¡£ÔÚÕâÖ®Ç°µÄ°æ±¾£¬ÉÏÃæ´úÂëÊ¾Àı½«±äÎª£ºdata-main="main"¡£</span>
+<span class="note">data-mainçš„è·¯å¾„è§„åˆ™åœ¨0.2.3ä¸­å‘ç”Ÿäº†å‘å˜ã€‚åœ¨è¿™ä¹‹å‰çš„ç‰ˆæœ¬ï¼Œä¸Šé¢ä»£ç ç¤ºä¾‹å°†å˜ä¸ºï¼šdata-main="main"ã€‚</span>
 
-<p>data-mainÊôĞÔ¸æËßRequireJSÈ¥È¡data-mainµÄÊôĞÔÖµ²¢ÇÒÎªÎªrequire([])µ÷ÓÃ¡£ËùÒÔ£¬ÔÚÕâ¸öÊ¾ÀıÏÂ£¬Ëü½«¼ÓÔØscript/main.js£¬Õâ¸öÎÄ¼ş½«°üº¬Ò»¸ö¶¥¼¶requireµ÷ÓÃ£º</p>
+<p>data-mainå±æ€§å‘Šè¯‰RequireJSå»å–data-mainçš„å±æ€§å€¼å¹¶ä¸”ä¸ºä¸ºrequire([])è°ƒç”¨ã€‚æ‰€ä»¥ï¼Œåœ¨è¿™ä¸ªç¤ºä¾‹ä¸‹ï¼Œå®ƒå°†åŠ è½½script/main.jsï¼Œè¿™ä¸ªæ–‡ä»¶å°†åŒ…å«ä¸€ä¸ªé¡¶çº§requireè°ƒç”¨ï¼š</p>
 
 <pre><code>//Inside scripts/main.js
 require(["some/module", "a.js", "b.js"], function(someModule) {
@@ -104,34 +104,34 @@ require(["some/module", "a.js", "b.js"], function(someModule) {
 });
 </code></pre>
 
-<p>¸Ã°üº¬data-main½Å±¾µÄÄ¿Â¼Í¬Ê±Ò²ÊÇURLµÄ¸ù (ÔÚRequireJSÊõÓïÖĞ³Æ×÷<strong>baseUrl</strong>)È¥²éÕÒÆäËüscript that use the <strong>Ä£¿éÃüÃû·½°¸</strong>, ¸Ã·½°¸ÖĞjs²»ÒÔ.js½áÎ²¡£the scheme that does not end a ".js" extension. In this example "some/module" is using the module naming scheme, where "a.js" and "b.js" are not.</p>
+<p>è¯¥åŒ…å«data-mainè„šæœ¬çš„ç›®å½•åŒæ—¶ä¹Ÿæ˜¯URLçš„æ ¹ (åœ¨RequireJSæœ¯è¯­ä¸­ç§°ä½œ<strong>baseUrl</strong>)å»æŸ¥æ‰¾å…¶å®ƒscript that use the <strong>æ¨¡å—å‘½åæ–¹æ¡ˆ</strong>, è¯¥æ–¹æ¡ˆä¸­jsä¸ä»¥.jsç»“å°¾ã€‚the scheme that does not end a ".js" extension. In this example "some/module" is using the module naming scheme, where "a.js" and "b.js" are not.</p>
 
 <p>Since data-main was used, and main.js is in the scripts directory, the baseUrl for RequireJS becomes the <strong>scripts</strong> directory. The <strong>"some/module"</strong> script would map to a path relative to the scripts directory. So it would be found at <strong>scripts/some/module.js</strong>.</p>
 
-<p>¼ÇµÃÕâÓëµÚÒ»¸öÊ¾ÀıÖĞ¡®some/module¡¯µÄÄ¿Â¼;some/module.js;²»Í¬¡£Èç¹ûdata-main²»ÔÙÊ¹ÓÃ£¬²¢ÇÒÒ»¸öÖ¸¶¨µÄbaseURLÖµÎ´ÔÚ<a href="#config">RequireJSÅäÖÃ</a>ÖĞ±»´«Èë£¬È»ºóÄ¬ÈÏµÄbaseUrl¾ÍÊÇ¼ÓÔØRequireJSµÄHTMLËùÔÚÄ¿Â¼¡£</p>
+<p>è®°å¾—è¿™ä¸ç¬¬ä¸€ä¸ªç¤ºä¾‹ä¸­â€˜some/moduleâ€™çš„ç›®å½•;some/module.js;ä¸åŒã€‚å¦‚æœdata-mainä¸å†ä½¿ç”¨ï¼Œå¹¶ä¸”ä¸€ä¸ªæŒ‡å®šçš„baseURLå€¼æœªåœ¨<a href="#config">RequireJSé…ç½®</a>ä¸­è¢«ä¼ å…¥ï¼Œç„¶åé»˜è®¤çš„baseUrlå°±æ˜¯åŠ è½½RequireJSçš„HTMLæ‰€åœ¨ç›®å½•ã€‚</p>
 
-<p>½Å±¾Ãû³ÆÔòÊÇÒ»°ãµÄÂ·¾¶ÒÔ.js½áÎ²£¬ÒÔ/¿ªÊ¼£¬»òÒÔĞ­Òå¿ªÍ·±»Ìæ»»ÎªÏà¶ÔÓÚHTMLÒ³Ãæ¶ø·ÇbaseUrl, just like HTML &lt;script&gt; src="" values. You can use the "module naming scheme" even if the script does not define a module, it is just means the path will be relative to baseUrl in that case.</p>
+<p>è„šæœ¬åç§°åˆ™æ˜¯ä¸€èˆ¬çš„è·¯å¾„ä»¥.jsç»“å°¾ï¼Œä»¥/å¼€å§‹ï¼Œæˆ–ä»¥åä¹‰å¼€å¤´è¢«æ›¿æ¢ä¸ºç›¸å¯¹äºHTMLé¡µé¢è€ŒébaseUrl, just like HTML &lt;script&gt; src="" values. You can use the "module naming scheme" even if the script does not define a module, it is just means the path will be relative to baseUrl in that case.</p>
 
 <h3>
-<a name="define">¶¨ÒåÒ»¸öÄ£¿é</a>
+<a name="define">å®šä¹‰ä¸€ä¸ªæ¨¡å—</a>
 <span class="sectionMark">&sect; 1.2</span>
 </h3>
 
-<p>Ä£¿éºÍ´«Í³µÄ±»¶¨ÒåÎªºÜºÃ°ü×°µÄ¶ÔÏó´Ó¶ø±ÜÃâÎÛÈ¾È«¾ÖÃüÃû¿Õ¼äµÄ½Å±¾ÎÄ¼şÓĞ×ÅºÜ´ó²»Í¬¡£ËüÄÜËüÄÜÖªµÀ×Ô¼ºµÄÒÀÀµ²¢ÇÒµÃµ½Ò»¸ö´¦ÀíÔÚÕâĞ©ÒÀÀµ¶ø²»ĞèÒªÒÀÀµÈ«¾Ö¶ÔÏó£¬³ıÁËÌæ»»reciveÒÀÀµ×÷Îª²ÎÊı¡£¡£¡£Ä£¿éÔÚrequireJSÖĞ×÷Îª <a href="http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth">Module Pattern</a>µÄÀ©Õ¹£¬ÓĞ×Å²»ÓÃÆäËüÈ«¾ÖÒÀÀµÆäËüÄ£¿éµÄÓÅµã¡£</p>
+<p>æ¨¡å—å’Œä¼ ç»Ÿçš„è¢«å®šä¹‰ä¸ºå¾ˆå¥½åŒ…è£…çš„å¯¹è±¡ä»è€Œé¿å…æ±¡æŸ“å…¨å±€å‘½åç©ºé—´çš„è„šæœ¬æ–‡ä»¶æœ‰ç€å¾ˆå¤§ä¸åŒã€‚å®ƒèƒ½å®ƒèƒ½çŸ¥é“è‡ªå·±çš„ä¾èµ–å¹¶ä¸”å¾—åˆ°ä¸€ä¸ªå¤„ç†åœ¨è¿™äº›ä¾èµ–è€Œä¸éœ€è¦ä¾èµ–å…¨å±€å¯¹è±¡ï¼Œé™¤äº†æ›¿æ¢reciveä¾èµ–ä½œä¸ºå‚æ•°ã€‚ã€‚ã€‚æ¨¡å—åœ¨requireJSä¸­ä½œä¸º <a href="http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth">Module Pattern</a>çš„æ‰©å±•ï¼Œæœ‰ç€ä¸ç”¨å…¶å®ƒå…¨å±€ä¾èµ–å…¶å®ƒæ¨¡å—çš„ä¼˜ç‚¹ã€‚</p>
 
-<p>RequireJSÓï·¨ÔÊĞíËûÃÇ¾¡¿ÉÄÜ¿ìµÄ±»¼ÓÔØ£¬¾¡¹ÜÓÃ×÷Ë³Ğò£¬µ«ÊÇÒ²»á¿¼ÂÇÕıË³µÄÒÀÀµË³Ğò£¬¾¡¹ÜÈ«¾Ö±äÁ¿Î´±»´´½¨£¬ËüÊ¹µÃ<a href="#multiversion">¼ÓÔØ¶àÍ¬Ò»Ä£¿éµÄ¶à°æ±¾</a>³ÉÎª¿ÉÄÜ¡£</p>
+<p>RequireJSè¯­æ³•å…è®¸ä»–ä»¬å°½å¯èƒ½å¿«çš„è¢«åŠ è½½ï¼Œå°½ç®¡ç”¨ä½œé¡ºåºï¼Œä½†æ˜¯ä¹Ÿä¼šè€ƒè™‘æ­£é¡ºçš„ä¾èµ–é¡ºåºï¼Œå°½ç®¡å…¨å±€å˜é‡æœªè¢«åˆ›å»ºï¼Œå®ƒä½¿å¾—<a href="#multiversion">åŠ è½½å¤šåŒä¸€æ¨¡å—çš„å¤šç‰ˆæœ¬</a>æˆä¸ºå¯èƒ½ã€‚</p>
 
-<p>£¨Èç¹ûÄãÊìÏ¤»òÕıÔÚÊ¹ÓÃCommonJSÄ£¿é£¬Çë¿´ÏÂÕâÒ»½Ú<a href="commonjs.html">CommonJS Notes</a>£¬¹ØÓÚÈçºÎ½«RequireJSÄ£¿é¸ñÊ½Ó³ÉäÎªCommonJSÄ£¿é¡££©</p>
+<p>ï¼ˆå¦‚æœä½ ç†Ÿæ‚‰æˆ–æ­£åœ¨ä½¿ç”¨CommonJSæ¨¡å—ï¼Œè¯·çœ‹ä¸‹è¿™ä¸€èŠ‚<a href="commonjs.html">CommonJS Notes</a>ï¼Œå…³äºå¦‚ä½•å°†RequireJSæ¨¡å—æ ¼å¼æ˜ å°„ä¸ºCommonJSæ¨¡å—ã€‚ï¼‰</p>
 
 <p>There should only be <strong>one</strong> module definition per file on disk. The modules can be grouped into optimized bundles by the <a href="optimization.html">optimization tool</a>.</p>
 
 <div class="subSection">
 <h4>
-<a name="defsimple">¼òµ¥ Name/Value ¼üÖµ¶Ô</a>
+<a name="defsimple">ç®€å• Name/Value é”®å€¼å¯¹</a>
 <span class="sectionMark">&sect; 1.2.1</span>
 </h4>
 
-<p>Èç¹ûÄ£¿éÃ»ÓĞÆäËüÈÎºÎÒÀÀµ£¬²¢ÇÒÖ»ÊÇÒ»¸öname/valueµÄ¼üÖµ¶Ô¼¯ºÏ£¬¾Í¿ÉÒÔ´«Ò»¸ö¶ÔÏóµ½define()ÖĞ£º</p>
+<p>å¦‚æœæ¨¡å—æ²¡æœ‰å…¶å®ƒä»»ä½•ä¾èµ–ï¼Œå¹¶ä¸”åªæ˜¯ä¸€ä¸ªname/valueçš„é”®å€¼å¯¹é›†åˆï¼Œå°±å¯ä»¥ä¼ ä¸€ä¸ªå¯¹è±¡åˆ°define()ä¸­ï¼š</p>
 
 <pre><code>//Inside file my/shirt.js:
 define({
@@ -143,11 +143,11 @@ define({
 
 <div class="subSection">
 <h4>
-<a name="deffunc">¶¨Òåº¯Êı</a>
+<a name="deffunc">å®šä¹‰å‡½æ•°</a>
 <span class="sectionMark">&sect; 1.2.2</span>
 </h4>
 
-<p>Èç¹ûÄ£¿éÃ»ÓĞÆäËüÒÀÀµ£¬µ«ĞèÒªÊ¹ÓÃÒ»¸öº¯ÊıÀ´Íê³ÉÒ»Ğ©³õÊ¼»¯¹¤×÷£¬È»ºó¶¨ÒåËü×ÔÒÑ£¬´«Ò»¸öº¯Êıµ½define()ÖĞ£º</p>
+<p>å¦‚æœæ¨¡å—æ²¡æœ‰å…¶å®ƒä¾èµ–ï¼Œä½†éœ€è¦ä½¿ç”¨ä¸€ä¸ªå‡½æ•°æ¥å®Œæˆä¸€äº›åˆå§‹åŒ–å·¥ä½œï¼Œç„¶åå®šä¹‰å®ƒè‡ªå·²ï¼Œä¼ ä¸€ä¸ªå‡½æ•°åˆ°define()ä¸­ï¼š</p>
 
 <pre><code>//my/shirt.js now does setup work
 //before returning its module definition.
@@ -163,9 +163,9 @@ define(function () {
 </div>
 
 <div class="subSection">
-<h4><a name="defdep">¶¨ÒåÒ»¸öÓĞÒÀÀµµÄº¯Êı</a><span class="sectionMark">&sect; 1.2.3</span></h4>
+<h4><a name="defdep">å®šä¹‰ä¸€ä¸ªæœ‰ä¾èµ–çš„å‡½æ•°</a><span class="sectionMark">&sect; 1.2.3</span></h4>
 
-<p>Èç¹û¸ÃÄ£¿éÓĞÆäËüÒÀÀµ£¬µÚÒ»¸ö²ÎÊıÓ¦¸ÃÊÇÒ»¸öÒÀÀµÃû³ÆµÄÊı×é£¬µÚ¶ş¸ö²ÎÊıÓ¦ÊÇÒ»¸ö¶¨Òåº¯Êı¡£¸Ã¹¢¹¢Êı»áµ÷ÓÃ¸ÃÄ£¿éµÄdefineÒ»´Î£¬µ±¼ÓÔØÍê³ÉÊ±¡£¸Ãº¯Êı»á·µ»ØÒ»¸ö¶ÔÏñ¡£¡£¡£¡£ÒÀÀµ»á×÷Îªº¯Êı²ÎÊı´«¸ø¶¨Òåº¯Êı£¬ºÍÒÀÀµÊı×éÓĞ×ÅÏàÍ¬µÄË³Ğò¡£</p>
+<p>å¦‚æœè¯¥æ¨¡å—æœ‰å…¶å®ƒä¾èµ–ï¼Œç¬¬ä¸€ä¸ªå‚æ•°åº”è¯¥æ˜¯ä¸€ä¸ªä¾èµ–åç§°çš„æ•°ç»„ï¼Œç¬¬äºŒä¸ªå‚æ•°åº”æ˜¯ä¸€ä¸ªå®šä¹‰å‡½æ•°ã€‚è¯¥è€¿è€¿æ•°ä¼šè°ƒç”¨è¯¥æ¨¡å—çš„defineä¸€æ¬¡ï¼Œå½“åŠ è½½å®Œæˆæ—¶ã€‚è¯¥å‡½æ•°ä¼šè¿”å›ä¸€ä¸ªå¯¹åƒã€‚ã€‚ã€‚ã€‚ä¾èµ–ä¼šä½œä¸ºå‡½æ•°å‚æ•°ä¼ ç»™å®šä¹‰å‡½æ•°ï¼Œå’Œä¾èµ–æ•°ç»„æœ‰ç€ç›¸åŒçš„é¡ºåºã€‚</p>
 
 <pre><code>//my/shirt.js now has some dependencies, a cart and inventory
 //module in the same directory as shirt.js
@@ -183,7 +183,7 @@ define(["./cart", "./inventory"], function(cart, inventory) {
 );
 </code></pre>
 
-<p>ÔÚÕâ¸öÊ¾ÀıÖĞ£¬Ò»¸ö my/shirtµÄÄ£¿é±»´´½¨¡£ËüÒÀÀµÓÚÒ»¸ö carºÍ inventory¡£ÔÚÓ²ÅÌÉÏ£¬ÕâĞ©ÎÄ¼şÓĞ×ÅÏÂÃæµÄ½á¹¹£º</p>
+<p>åœ¨è¿™ä¸ªç¤ºä¾‹ä¸­ï¼Œä¸€ä¸ª my/shirtçš„æ¨¡å—è¢«åˆ›å»ºã€‚å®ƒä¾èµ–äºä¸€ä¸ª carå’Œ inventoryã€‚åœ¨ç¡¬ç›˜ä¸Šï¼Œè¿™äº›æ–‡ä»¶æœ‰ç€ä¸‹é¢çš„ç»“æ„ï¼š</p>
 
 <ul>
 <li>my/cart.js</li>
@@ -191,19 +191,19 @@ define(["./cart", "./inventory"], function(cart, inventory) {
 <li>my/shirt.js</li>
 </ul>
 
-<p>Õâ¸ö·½·¨µ÷ÓÃÉÏÃæ¶¨ÒåµÄÁ½¸ö²ÎÊı¡£ cart ºÍ inventory¡£ ÕâÁ½¸öÄ£¿éÓÃ./ µÄÄ£¿éÃû¡£</p>
+<p>è¿™ä¸ªæ–¹æ³•è°ƒç”¨ä¸Šé¢å®šä¹‰çš„ä¸¤ä¸ªå‚æ•°ã€‚ cart å’Œ inventoryã€‚ è¿™ä¸¤ä¸ªæ¨¡å—ç”¨./ çš„æ¨¡å—åã€‚</p>
 
-<p>Õâ¸öº¯ÊıÖ±µ½cart¡­Ä£¿é±»¼ÓÔØÍêÖ®ºó²Å»á±»µ÷ÓÃ£¬º¯Êı½ÓÊÕcart inventory²ÎÊı×÷ÎªÄ£¿é¡£</p>
+<p>è¿™ä¸ªå‡½æ•°ç›´åˆ°cartâ€¦æ¨¡å—è¢«åŠ è½½å®Œä¹‹åæ‰ä¼šè¢«è°ƒç”¨ï¼Œå‡½æ•°æ¥æ”¶cart inventoryå‚æ•°ä½œä¸ºæ¨¡å—ã€‚</p>
 
-<p>Ä£¿é¶¨ÒåÈ«¾ÖÊÇ²»±»ÍÆ¼öµÄ£¬ËùÒÔÒ»¸öÄ£¿éµÄ¶à¸ö°æ±¾ÄÜÍ¬Ê±´æÔÚÒ»¸öÒ³Ãæ¡£ËùÒÔ£¬º¯Êı²ÎÊıºÍÅäÒÀÀµË³ĞòÓ¦Ò»ÖÂ¡£</p>
+<p>æ¨¡å—å®šä¹‰å…¨å±€æ˜¯ä¸è¢«æ¨èçš„ï¼Œæ‰€ä»¥ä¸€ä¸ªæ¨¡å—çš„å¤šä¸ªç‰ˆæœ¬èƒ½åŒæ—¶å­˜åœ¨ä¸€ä¸ªé¡µé¢ã€‚æ‰€ä»¥ï¼Œå‡½æ•°å‚æ•°å’Œé…ä¾èµ–é¡ºåºåº”ä¸€è‡´ã€‚</p>
 
-<p>return¶ÔÓ¦µ÷ÓÃshirt Ä£¿é¶¨Òå¡£Í¨¹ıÕâÖÖ·½Ê½µÄÄ£¿é¶¨Òå£¬shirt²»ÒÔÒ»ÖÖÈ«¾Ö¶ÔÏó´æÔÚ¡£</p>
+<p>returnå¯¹åº”è°ƒç”¨shirt æ¨¡å—å®šä¹‰ã€‚é€šè¿‡è¿™ç§æ–¹å¼çš„æ¨¡å—å®šä¹‰ï¼Œshirtä¸ä»¥ä¸€ç§å…¨å±€å¯¹è±¡å­˜åœ¨ã€‚</p>
 </div>
 
 <div class="subSection">
-<h4><a name="funcmodule">½«Ä£¿é¶¨Òå³ÉÒ»¸öº¯Êı</a><span class="sectionMark">&sect; 1.2.4</span></h4>
+<h4><a name="funcmodule">å°†æ¨¡å—å®šä¹‰æˆä¸€ä¸ªå‡½æ•°</a><span class="sectionMark">&sect; 1.2.4</span></h4>
 
-<p>Ä£¿é²»ÊÇ±ØĞëÒªÓĞÒ»¸öreturn¶ÔÏó¡£º¯ÊıÖĞÈÎÒâÓĞĞ§µÄ·µ»ØÖµ¶¼ÓĞĞ§¡£ÕâÀïÓĞÒ»¸öÄ£¿é·µ»ØÒ»¸öº¯Êı×÷ÎªÄ£¿é¶¨Òå£º</p>
+<p>æ¨¡å—ä¸æ˜¯å¿…é¡»è¦æœ‰ä¸€ä¸ªreturnå¯¹è±¡ã€‚å‡½æ•°ä¸­ä»»æ„æœ‰æ•ˆçš„è¿”å›å€¼éƒ½æœ‰æ•ˆã€‚è¿™é‡Œæœ‰ä¸€ä¸ªæ¨¡å—è¿”å›ä¸€ä¸ªå‡½æ•°ä½œä¸ºæ¨¡å—å®šä¹‰ï¼š</p>
 
 <pre><code>//A module definition inside foo/title.js. It uses
 //my/cart and my/inventory modules from before,
@@ -227,20 +227,20 @@ define(["my/cart", "my/inventory"],
 
 
 <div class="subSection">
-<h4><a name="cjsmodule">ÒÔSimplified CommonJS WrapperµÄ·½Ê½¶¨ÒåÄ£¿é</a><span class="sectionMark">&sect; 1.2.5</span></h4>
+<h4><a name="cjsmodule">ä»¥Simplified CommonJS Wrapperçš„æ–¹å¼å®šä¹‰æ¨¡å—</a><span class="sectionMark">&sect; 1.2.5</span></h4>
 
-<p>Èç¹ûÄãÏëÖØÓÃÖ®Ç°Ğ´¹ıµÄÒ»Ğ©´úÂë<a href="http://wiki.commonjs.org/wiki/Modules/1.1.1">CommonJS module format</a>£¬ÔÚÒÀÀµÊı×é·½Ãæ½«ÓĞºÜ´óÂé·³¡£ËùÒÔ£¬Node0.5½«Ö§³ÖÒ»¸öÓĞÏŞµÄdefin()º¯ÊıÖ§Ìá¹©CommonjsµÄ¼òµ¥°ü×°¡£ËùÒÔÄãÏë¹¹½¨Ò»¸öĞ¡ĞÍµÄ¹¦ÄÜ¿é²¢ÇÒÄãÏëÈÃËü¼´ÄÜ¹¤×÷ÔÚnode£¬Í¬Ê±Ò²ÄÜÔÚä¯ÀÀÆ÷ÉÏÅÜ£¬Äã¿ÉÒÔÊ¹ÓÃscw¡£If you wish to reuse some code that was written in the traditional <a href="http://wiki.commonjs.org/wiki/Modules/1.1.1">CommonJS module format</a> it may be difficult to re-work to the array of dependencies used above. Also, Node 0.5 will likely support a limited kind of define() function that provides a simple wrapper over CommonJS files. So if you are building a small utility and you wish it to be used in both Node (without using the <a href="node.html">RequireJS Node adapter</a>), and in the browser, you can use the <a href="commonjs.html">simplified CommonJS wrapper</a>.</p>
+<p>å¦‚æœä½ æƒ³é‡ç”¨ä¹‹å‰å†™è¿‡çš„ä¸€äº›ä»£ç <a href="http://wiki.commonjs.org/wiki/Modules/1.1.1">CommonJS module format</a>ï¼Œåœ¨ä¾èµ–æ•°ç»„æ–¹é¢å°†æœ‰å¾ˆå¤§éº»çƒ¦ã€‚æ‰€ä»¥ï¼ŒNode0.5å°†æ”¯æŒä¸€ä¸ªæœ‰é™çš„defin()å‡½æ•°æ”¯æä¾›Commonjsçš„ç®€å•åŒ…è£…ã€‚æ‰€ä»¥ä½ æƒ³æ„å»ºä¸€ä¸ªå°å‹çš„åŠŸèƒ½å—å¹¶ä¸”ä½ æƒ³è®©å®ƒå³èƒ½å·¥ä½œåœ¨nodeï¼ŒåŒæ—¶ä¹Ÿèƒ½åœ¨æµè§ˆå™¨ä¸Šè·‘ï¼Œä½ å¯ä»¥ä½¿ç”¨scwã€‚If you wish to reuse some code that was written in the traditional <a href="http://wiki.commonjs.org/wiki/Modules/1.1.1">CommonJS module format</a> it may be difficult to re-work to the array of dependencies used above. Also, Node 0.5 will likely support a limited kind of define() function that provides a simple wrapper over CommonJS files. So if you are building a small utility and you wish it to be used in both Node (without using the <a href="node.html">RequireJS Node adapter</a>), and in the browser, you can use the <a href="commonjs.html">simplified CommonJS wrapper</a>.</p>
 
-<p>Èç¹ûÄãÓĞºÜ¶àÒÀÀµ£¬Ëü»á·Ç³£ÓĞÓÃ£¬±£³ÖÒÀÀµÊı¾İÎ»ÖÃÍ¬²½£¬Èç¹ûfunction²ÎÊıÎ»ÖÃÎ´±»Ö¸¶¨¡£</p>
+<p>å¦‚æœä½ æœ‰å¾ˆå¤šä¾èµ–ï¼Œå®ƒä¼šéå¸¸æœ‰ç”¨ï¼Œä¿æŒä¾èµ–æ•°æ®ä½ç½®åŒæ­¥ï¼Œå¦‚æœfunctionå‚æ•°ä½ç½®æœªè¢«æŒ‡å®šã€‚</p>
 
-<p>Õâ¸ö°ü×°Æ÷ÒÀÀµÓÚFunction.prototype.toString()¸ø³öÒ»¸öÓĞĞ§functionÄÚÈİ×Ö·ûÖµ¡£ÕâÔÚÒ»Ğ©Éè±¸ÈçPS3ºÍ¶¼µÄä¯ÀÀÆ÷ÖĞ²»±»¼¼³Ö¡£¡£ÆäËüÉè±¸ÖĞÊ¹ÓÃ<a href="optimization.html">optimizer</a>È¥°´Êı×é¸ñÊ½È¥À­ÒÀÀµ¡£</p>
+<p>è¿™ä¸ªåŒ…è£…å™¨ä¾èµ–äºFunction.prototype.toString()ç»™å‡ºä¸€ä¸ªæœ‰æ•ˆfunctionå†…å®¹å­—ç¬¦å€¼ã€‚è¿™åœ¨ä¸€äº›è®¾å¤‡å¦‚PS3å’Œéƒ½çš„æµè§ˆå™¨ä¸­ä¸è¢«æŠ€æŒã€‚ã€‚å…¶å®ƒè®¾å¤‡ä¸­ä½¿ç”¨<a href="optimization.html">optimizer</a>å»æŒ‰æ•°ç»„æ ¼å¼å»æ‹‰ä¾èµ–ã€‚</p>
 </div>
 
 
 <div class="subSection">
-<h4><a name="modulename">¶¨ÒåÒ»¸öÓĞÃû×ÖµÄÄ£¿é</a><span class="sectionMark">&sect; 1.2.6</span></h4>
+<h4><a name="modulename">å®šä¹‰ä¸€ä¸ªæœ‰åå­—çš„æ¨¡å—</a><span class="sectionMark">&sect; 1.2.6</span></h4>
 
-<p>Äã»òĞíÓöµ½Ò»Ğ©define()ÖĞ°üº¬Ò»¸öÃû×Ö×÷ÎªÄ£¿éÔÚµÚÒ»¸ödefine²ÎÊıÖĞ£º</p>
+<p>ä½ æˆ–è®¸é‡åˆ°ä¸€äº›define()ä¸­åŒ…å«ä¸€ä¸ªåå­—ä½œä¸ºæ¨¡å—åœ¨ç¬¬ä¸€ä¸ªdefineå‚æ•°ä¸­ï¼š</p>
 
 <pre><code>    //Explicitly defines the "foo/title" module:
     define("foo/title",
@@ -251,7 +251,7 @@ define(["my/cart", "my/inventory"],
     );
 </code></pre>
 
-<p>ÕâÊÇ<a href="optimization.html">optimization tool</a>ÖĞËùÉú³ÉµÄ¡£Äã¿ÉÒÔÖ¸¶¨Ä£¿éÃû£¬µ«ËüÊ¹µÃÄ£¿éÈõ¡£¡£¡£Èç¹ûÄãÒÆ¶¯Õâ¸öÄ£¿é´ÓÒ»¸öÄ¿Â¼µ½ÁíÒ»¸öÄ¿Â¼£¬Äã²»µÃ²»·¢ËüµÄÃû×Ö¡£ÕâÀï×îºÃ±ÜÃâÎªÄ£¿éÆğÃû£¬¾ÍÈÃop toolÉú³ÉÄ£¿éÃû×ÖºÃÁË¡£op toolĞèÒªÌí¼ÓÃû×Ö´Ó¶ø²»Ö»Ò»¸öÄ£¿éÔÚÒ»¸öÎÄ¼şÖĞ£¬ÈÃä¯ÀÀÆ÷¸ü¿ìµÄ¼ÓÔØ¡£</p>
+<p>è¿™æ˜¯<a href="optimization.html">optimization tool</a>ä¸­æ‰€ç”Ÿæˆçš„ã€‚ä½ å¯ä»¥æŒ‡å®šæ¨¡å—åï¼Œä½†å®ƒä½¿å¾—æ¨¡å—å¼±ã€‚ã€‚ã€‚å¦‚æœä½ ç§»åŠ¨è¿™ä¸ªæ¨¡å—ä»ä¸€ä¸ªç›®å½•åˆ°å¦ä¸€ä¸ªç›®å½•ï¼Œä½ ä¸å¾—ä¸å‘å®ƒçš„åå­—ã€‚è¿™é‡Œæœ€å¥½é¿å…ä¸ºæ¨¡å—èµ·åï¼Œå°±è®©op toolç”Ÿæˆæ¨¡å—åå­—å¥½äº†ã€‚op tooléœ€è¦æ·»åŠ åå­—ä»è€Œä¸åªä¸€ä¸ªæ¨¡å—åœ¨ä¸€ä¸ªæ–‡ä»¶ä¸­ï¼Œè®©æµè§ˆå™¨æ›´å¿«çš„åŠ è½½ã€‚</p>
 </div>
 
 <div class="subSection">
@@ -292,9 +292,9 @@ define(["my/cart", "my/inventory"],
 </div>
 
 <div class="subSection">
-<h4><a name="circular">Ñ­»·ÒÀÀµ</a><span class="sectionMark">&sect; 1.2.8</span></h4>
+<h4><a name="circular">å¾ªç¯ä¾èµ–</a><span class="sectionMark">&sect; 1.2.8</span></h4>
 
-<p>Èç¹ûÄã¶¨ÒåÁËÒ»¸öÑ­»·ÒÀÀµ£¨AÒÀÀµBÈ»ºóB»Ø¹ıÀ´ÒÀÀµA£©£¬ÕâÖÖ³¡¾°ÏÂ£¬µ±BµÄÄ£¿éº¯Êı±»µ÷ÓÃ£¬Ëü½«µÃµ½Ò»¸öÎ´¶¨ÒåµÄA¡£BÄÜÈ¡µÃAÍíÒ»»áÍ¨¹ıÊ¹ÓÃrequire()·½·¨£¨È·±£Ö¸¶¨require×÷ÎªÒÀÀµ£¬ÕıÈ·µÄÉÏÏÂÎÄ±»ÓÃ×÷ÓÚÕÒµ½A£©£º</p>
+<p>å¦‚æœä½ å®šä¹‰äº†ä¸€ä¸ªå¾ªç¯ä¾èµ–ï¼ˆAä¾èµ–Bç„¶åBå›è¿‡æ¥ä¾èµ–Aï¼‰ï¼Œè¿™ç§åœºæ™¯ä¸‹ï¼Œå½“Bçš„æ¨¡å—å‡½æ•°è¢«è°ƒç”¨ï¼Œå®ƒå°†å¾—åˆ°ä¸€ä¸ªæœªå®šä¹‰çš„Aã€‚Bèƒ½å–å¾—Aæ™šä¸€ä¼šé€šè¿‡ä½¿ç”¨require()æ–¹æ³•ï¼ˆç¡®ä¿æŒ‡å®šrequireä½œä¸ºä¾èµ–ï¼Œæ­£ç¡®çš„ä¸Šä¸‹æ–‡è¢«ç”¨ä½œäºæ‰¾åˆ°Aï¼‰ï¼š</p>
 
 <pre><code>//Inside B.js:
 define(["require", "A"],
@@ -308,9 +308,9 @@ define(["require", "A"],
 );
 </code></pre>
 
-<p>Ò»°ãÇé¿öÏÂ£¬Äã²»ĞèÒªÊ¹ÓÃrequireÈ¥»ñÈ¡Ä£¿é£¬µ«ÊÇÒÀÀµÓÚÄ£¿é´«ÈëÒ»¸ö²ÎÊı£¬Ñ­»·ÒÀÀµÊÇÒ»¸öÌØÀı£¬ÕâÖÖÇé¿öÏÂrequire()Ôò¿ÉÒÔ½â¾öÎÊÌâ¡£</p>
+<p>ä¸€èˆ¬æƒ…å†µä¸‹ï¼Œä½ ä¸éœ€è¦ä½¿ç”¨requireå»è·å–æ¨¡å—ï¼Œä½†æ˜¯ä¾èµ–äºæ¨¡å—ä¼ å…¥ä¸€ä¸ªå‚æ•°ï¼Œå¾ªç¯ä¾èµ–æ˜¯ä¸€ä¸ªç‰¹ä¾‹ï¼Œè¿™ç§æƒ…å†µä¸‹require()åˆ™å¯ä»¥è§£å†³é—®é¢˜ã€‚</p>
 
-<p>Èç¹ûÄãÊìÏ¤CommonJSÄ£¿é£¬Äã¿ÉÒÔÊ¹ÓÃ<strong>exports</strong>×÷ÎªÒÀÀµ£¬È¥ÎªÄ£¿é´´½¨¿Õ¶ÔÏó¡£ÔÚÑ­»·ÒÀÀµÁ½²à¶¼×öÕâĞ©£¬Äã¿ÉÒÔ°²È«µÄÔÚÆäËü²ÎÊıÖĞÊ¹ÓÃº¯Êı²ÎÊı¡£</p>
+<p>å¦‚æœä½ ç†Ÿæ‚‰CommonJSæ¨¡å—ï¼Œä½ å¯ä»¥ä½¿ç”¨<strong>exports</strong>ä½œä¸ºä¾èµ–ï¼Œå»ä¸ºæ¨¡å—åˆ›å»ºç©ºå¯¹è±¡ã€‚åœ¨å¾ªç¯ä¾èµ–ä¸¤ä¾§éƒ½åšè¿™äº›ï¼Œä½ å¯ä»¥å®‰å…¨çš„åœ¨å…¶å®ƒå‚æ•°ä¸­ä½¿ç”¨å‡½æ•°å‚æ•°ã€‚</p>
 </div>
 
 <h3><a name="i18n">Define an I18N Bundle</a><span class="sectionMark">&sect; 1.3</span></h3>
