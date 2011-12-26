@@ -2,61 +2,61 @@
 <h1>RequireJS API</h1>
 
 <ul class="index mono">
-    <li class="hbox"><a href="#usage">Usage</a><span class="spacer boxFlex"></span><span class="sect">&sect;&sect; 1-1.7</span></li>
+    <li class="hbox"><a href="#usage">用法</a><span class="spacer boxFlex"></span><span class="sect">&sect;&sect; 1-1.7</span></li>
         <ul>
-            <li class="hbox"><a href="#jsfiles">Load JavaScript Files</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.1</span></li>
-            <li class="hbox"><a href="#define">Define a Module</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2</span></li>
+            <li class="hbox"><a href="#jsfiles">加载JavaScript文件</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.1</span></li>
+            <li class="hbox"><a href="#define">定义一个模块</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2</span></li>
             <ul>
-                <li class="hbox"><a href="#defsimple">Simple Name/Value Pairs</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.1</span></li>
-                <li class="hbox"><a href="#deffunc">Definition Functions</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.2</span></li>
-                <li class="hbox"><a href="#defdep">Definition Functions with Dependencies</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.3</span></li>
-                <li class="hbox"><a href="#funcmodule">Define a Module as a Function</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.4</span></li>
-                <li class="hbox"><a href="#cjsmodule">Define a Module with Simplified CommonJS Wrapper</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.5</span></li>
-                <li class="hbox"><a href="#modulename">Define a Module with a name</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.6</span></li>
-                <li class="hbox"><a href="#modulenotes">Other Module Notes</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.7</span></li>
-                <li class="hbox"><a href="#circular">Circular Dependencies</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.8</span></li>
+                <li class="hbox"><a href="#defsimple">简单的Name/Value键值对</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.1</span></li>
+                <li class="hbox"><a href="#deffunc">函数定义</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.2</span></li>
+                <li class="hbox"><a href="#defdep">依赖函数定义</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.3</span></li>
+                <li class="hbox"><a href="#funcmodule">将模块定义成函数</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.4</span></li>
+                <li class="hbox"><a href="#cjsmodule">使用Simplified CommonJS Wrapper来定义模块</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.5</span></li>
+                <li class="hbox"><a href="#modulename">定义一个有名字的模块</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.6</span></li>
+                <li class="hbox"><a href="#modulenotes">其它有关模块的内容</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.7</span></li>
+                <li class="hbox"><a href="#circular">循环依赖</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.2.8</span></li>
             </ul>
-            <li class="hbox"><a href="#i18n">Define an I18N Bundle</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.3</span></li>
-            <li class="hbox"><a href="#text">Specify a Text File Dependency</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.4</span></li>
-            <li class="hbox"><a href="#jsonp">Specify a JSONP Service Dependency</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.5</span></li>
-            <li class="hbox"><a href="#order">Load Scripts in a Specific Order</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.6</span></li>
-            <li class="hbox"><a href="#pageload">Page Load Event Support/DOM Ready</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.7</span></li>
+            <li class="hbox"><a href="#i18n">定义一个I18N的包</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.3</span></li>
+            <li class="hbox"><a href="#text">使用文本文件作为依赖</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.4</span></li>
+            <li class="hbox"><a href="#jsonp">使用JSONP服务作为依赖</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.5</span></li>
+            <li class="hbox"><a href="#order">按指定顺序加载脚本文件</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.6</span></li>
+            <li class="hbox"><a href="#pageload">页面加载事件支持/DOM Ready</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1.7</span></li>
         </ul>
     <li class="hbox"><a href="#mechanics">Mechanics</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span></li>
-    <li class="hbox"><a href="#config">Configuration Options</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span></li>
-    <li class="hbox"><a href="#advanced">Advanced Usage</a><span class="spacer boxFlex"></span><span class="sect">&sect;&sect; 4-4.5</span></li>
+    <li class="hbox"><a href="#config">配置参数</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span></li>
+    <li class="hbox"><a href="#advanced">高级用法</a><span class="spacer boxFlex"></span><span class="sect">&sect;&sect; 4-4.5</span></li>
     <ul>
-        <li class="hbox"><a href="#packages">Loading Modules from Packages</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.1</span></li>
-        <li class="hbox"><a href="#multiversion">Multiversion Support</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.2</span></li>
-        <li class="hbox"><a href="#afterload">Loading Code After Page Load</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.3</span></li>
-        <li class="hbox"><a href="#webworker">Web Worker Support</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.4</span></li>
-        <li class="hbox"><a href="#rhino">Rhino Support</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.5</span></li>
+        <li class="hbox"><a href="#packages">从包中加载模块</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.1</span></li>
+        <li class="hbox"><a href="#multiversion">多版本支持</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.2</span></li>
+        <li class="hbox"><a href="#afterload">页面完成后加载代码</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.3</span></li>
+        <li class="hbox"><a href="#webworker">Web Worker支持</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.4</span></li>
+        <li class="hbox"><a href="#rhino">Rhino支持</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4.5</span></li>
     </ul>
 </ul>
 </div>
 
 <div class="section">
 <h2>
-<a name="usage">Usage</a>
+<a name="usage">用法</a>
 <span class="sectionMark">&sect; 1</span>
 </h2>
 
-<p>There are 5 basic ways to use require.js:</p>
+<p>下面是五种使用require.js的基本方式。</p>
 
 <ol>
-<li>Load JavaScript files.</li>
-<li>Define a module that has other dependencies.</li>
-<li>Define an internationalization (i18n) bundle.</li>
-<li>Specify a text file dependency.</li>
-<li>Specify a JSONP service dependency.</li>
+<li>加载Javascript文件。</li>
+<li>定义一个有着其它依赖项的模块。</li>
+<li>定义一个全球化 (i18n) 的包。</li>
+<li>指定一个文本依赖。</li>
+<li>指定一个JSONP服务依赖。</li>
 </ol>
 
 <h3>
-<a name="jsfiles">Load JavaScript Files</a>
+<a name="jsfiles">加载JavaScript文件</a>
 <span class="sectionMark">&sect; 1.1</span>
 </h3>
 
-<p>If you just want to load some JavaScript files, do the following inside the HEAD tag in an HTML document:</p>
+<p>如果你仅想加载一些JS文件，在HTML文档的头部加入以下代码：</p>
 
 <pre><code>&lt;script src="scripts/require.js"&gt;&lt;/script&gt;
 &lt;script&gt;
@@ -69,34 +69,34 @@
 &lt;/script&gt;
 </code></pre>
 
-<p>The dependencies above, ["some/module", "a.js", "b.js"], will be loaded via script tags that have the following src values:</p>
+<p>在上面的依赖中，["some/module", "a.js", "b.js"], 会通过下面的scr值在script标签中被加载：</p>
 
 <ul>
 <li>some/module.js</li>
-<li>a.js (in the same directory as the HTML page that has the above HTML snippet)</li>
-<li>b.js (in the same directory as the HTML page that has the above HTML snippet)</li>
+<li>a.js (在包含上面一段HTML代码的页面相同的路径下)</li>
+<li>b.js (在包含上面一段HTML代码的页面相同的路径下)</li>
 </ul>
 
-<p>RequireJS normally uses the <a href="#config-baseUrl">baseUrl</a> and <a href="#config-paths">paths</a> configuration to convert names like "some/module" into a file path.</p>
+<p>RequireJS通常使用<a href="#config-baseUrl">baseUrl</a> 和 <a href="#config-paths">paths</a> 配置来转换"some/module"这样的名字到一个真正的文件路径。</p>
 
-<p>However, if the dependency name has one of the following properties, it is treated as a regular file path, like something that was passed to a &lt;script src=""&gt; tag:</p>
+<p>但是，如果依赖名字中含有下面属性，将会被看作一般文件路径，就像使用<script src>标签一样： &lt;script src=""&gt; 标签一样：</p>
 
 <ul>
-<li>Ends in ".js".</li>
-<li>Starts with a "/".</li>
-<li>Contains an URL protocol, like "http:" or "https:".</li>
+<li>以".js"结尾。</li>
+<li>以"/"开头。</li>
+<li>包含一个URL协义，像http:, https:。</li>
 </ul>
 
-<p>See the <a href="#config">Configuration Options</a> section for information on changing the lookup paths used for dependencies.</p>
+<p>查看<a href="#config">配置参数</a>一节获得更多依赖查找路径的信息。</p>
 
-<p>While you can use require() inside a script tag in an HTML file, it is strongly encouraged to place the work in a file that is loaded by RequireJS. This allows for easier optimization via the optimization tool, and there is a shorthand that can be used in the HTML for this pattern. The above example would be structured like this:</p>
+<p>你可以在HTML文件中使用require() 作为一个标签，它很强大的可以被requirejs来加载。这允许优化工具很容易优化，并且这里有一个速记作为这种模式 被用在HTML中。这些救命可以像下面一样使用：</p>
 
 <pre><code>&lt;script data-main="scripts/main" src="scripts/require.js"&gt;&lt;/script&gt;
 </code></pre>
 
-<span class="note">The path rules used for data-main changed in RequireJS 0.23. Before that version, data-main="main" for the above example.</span>
+<span class="note">data-main的路径规则在0.2.3中发生了发变。在这之前的版本，上面代码示例将变为：data-main="main"。</span>
 
-<p>The data-main attribute tells RequireJS to take the value of the data-main attribute and treat it like a require([]) call. So, in this case, it would load scripts/main.js, and that file should have the top-level require call:</p>
+<p>data-main属性告诉RequireJS去取data-main的属性值并且为为require([])调用。所以，在这个示例下，它将加载script/main.js，这个文件将包含一个顶级require调用：</p>
 
 <pre><code>//Inside scripts/main.js
 require(["some/module", "a.js", "b.js"], function(someModule) {
@@ -104,34 +104,34 @@ require(["some/module", "a.js", "b.js"], function(someModule) {
 });
 </code></pre>
 
-<p>The directory that contains the data-main script also then becomes the root URL value (or <strong>baseUrl</strong> in the RequireJS terms) to find other scripts that use the <strong>module naming scheme</strong>, the scheme that does not end a ".js" extension. In this example "some/module" is using the module naming scheme, where "a.js" and "b.js" are not.</p>
+<p>该包含data-main脚本的目录同时也是URL的根 (在RequireJS术语中称作<strong>baseUrl</strong>)去查找其它script that use the <strong>模块命名方案</strong>, 该方案中js不以.js结尾。the scheme that does not end a ".js" extension. In this example "some/module" is using the module naming scheme, where "a.js" and "b.js" are not.</p>
 
 <p>Since data-main was used, and main.js is in the scripts directory, the baseUrl for RequireJS becomes the <strong>scripts</strong> directory. The <strong>"some/module"</strong> script would map to a path relative to the scripts directory. So it would be found at <strong>scripts/some/module.js</strong>.</p>
 
-<p>Note how this is different from the first example where "some/module" was found at some/module.js. If data-main is not used and an explicit baseUrl value is not passed in the <a href="#config">RequireJS configuration</a>, then then the default baseUrl is the directory containing the HTML page that loads RequireJS.</p>
+<p>记得这与第一个示例中‘some/module’的目录;some/module.js;不同。如果data-main不再使用，并且一个指定的baseURL值未在<a href="#config">RequireJS配置</a>中被传入，然后默认的baseUrl就是加载RequireJS的HTML所在目录。</p>
 
-<p>Script names that are just regular paths ending in ".js", start with a "/" or have a protocol in them are always mapped relative to the HTML page instead of relative to baseUrl, just like HTML &lt;script&gt; src="" values. You can use the "module naming scheme" even if the script does not define a module, it is just means the path will be relative to baseUrl in that case.</p>
+<p>脚本名称则是一般的路径以.js结尾，以/开始，或以协义开头被替换为相对于HTML页面而非baseUrl, just like HTML &lt;script&gt; src="" values. You can use the "module naming scheme" even if the script does not define a module, it is just means the path will be relative to baseUrl in that case.</p>
 
 <h3>
-<a name="define">Define a Module</a>
+<a name="define">定义一个模块</a>
 <span class="sectionMark">&sect; 1.2</span>
 </h3>
 
-<p>A module is different from a traditional script file in that it defines a well-scoped object that avoids polluting the global namespace. It can explicitly list its dependencies and get a handle on those dependencies without needing to refer to global objects, but instead receive the dependencies as arguments to the function that defines the module. Modules in RequireJS are an extension of the <a href="http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth">Module Pattern</a>, with the benefit of not needing globals to refer to other modules.</p>
+<p>模块和传统的被定义为很好包装的对象从而避免污染全局命名空间的脚本文件有着很大不同。它能它能知道自己的依赖并且得到一个处理在这些依赖而不需要依赖全局对象，除了替换recive依赖作为参数。。。模块在requireJS中作为 <a href="http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth">Module Pattern</a>的扩展，有着不用其它全局依赖其它模块的优点。</p>
 
-<p>The RequireJS syntax for modules allows them to be loaded as fast as possible, even out of order, but evaluated in the correct dependency order, and since global variables are not created, it makes it possible to <a href="#multiversion">load multiple versions of a module in a page</a>.</p>
+<p>RequireJS语法允许他们尽可能快的被加载，尽管用作顺序，但是也会考虑正顺的依赖顺序，尽管全局变量未被创建，它使得<a href="#multiversion">加载多同一模块的多版本</a>成为可能。</p>
 
-<p>(If you are familiar with or are using CommonJS modules, then please also see <a href="commonjs.html">CommonJS Notes</a> for information on how the RequirejS module format maps to CommonJS modules).</p>
+<p>（如果你熟悉或正在使用CommonJS模块，请看下这一节<a href="commonjs.html">CommonJS Notes</a>，关于如何将RequireJS模块格式映射为CommonJS模块。）</p>
 
 <p>There should only be <strong>one</strong> module definition per file on disk. The modules can be grouped into optimized bundles by the <a href="optimization.html">optimization tool</a>.</p>
 
 <div class="subSection">
 <h4>
-<a name="defsimple">Simple Name/Value Pairs</a>
+<a name="defsimple">简单 Name/Value 键值对</a>
 <span class="sectionMark">&sect; 1.2.1</span>
 </h4>
 
-<p>If the module does not have any dependencies, and it is just a collection of name/value pairs, then just pass an object literal to define():</p>
+<p>如果模块没有其它任何依赖，并且只是一个name/value的键值对集合，就可以传一个对象到define()中：</p>
 
 <pre><code>//Inside file my/shirt.js:
 define({
@@ -143,11 +143,11 @@ define({
 
 <div class="subSection">
 <h4>
-<a name="deffunc">Definition Functions</a>
+<a name="deffunc">定义函数</a>
 <span class="sectionMark">&sect; 1.2.2</span>
 </h4>
 
-<p>If the module does not have dependencies, but needs to use a function to do some setup work, then define itself, pass a function to define():</p>
+<p>如果模块没有其它依赖，但需要使用一个函数来完成一些初始化工作，然后定义它自已，传一个函数到define()中：</p>
 
 <pre><code>//my/shirt.js now does setup work
 //before returning its module definition.
@@ -163,9 +163,9 @@ define(function () {
 </div>
 
 <div class="subSection">
-<h4><a name="defdep">Definition Functions with Dependencies</a><span class="sectionMark">&sect; 1.2.3</span></h4>
+<h4><a name="defdep">定义一个有依赖的函数</a><span class="sectionMark">&sect; 1.2.3</span></h4>
 
-<p>If the module has dependencies, the first argument should be an array of dependency names, and the second argument should be a definition function. The function will be called to define the module once all dependencies have loaded. The function should return an object that defines the module. The dependencies will be passed to the definition function as function arguments, listed in the same order as the order in the dependency array:</p>
+<p>如果该模块有其它依赖，第一个参数应该是一个依赖名称的数组，第二个参数应是一个定义函数。该耿耿数会调用该模块的define一次，当加载完成时。该函数会返回一个对像。。。。依赖会作为函数参数传给定义函数，和依赖数组有着相同的顺序。</p>
 
 <pre><code>//my/shirt.js now has some dependencies, a cart and inventory
 //module in the same directory as shirt.js
@@ -183,7 +183,7 @@ define(["./cart", "./inventory"], function(cart, inventory) {
 );
 </code></pre>
 
-<p>In this example, a my/shirt module is created. It depends on my/cart and my/inventory. On disk, the files are structured like this:</p>
+<p>在这个示例中，一个 my/shirt的模块被创建。它依赖于一个 car和 inventory。在硬盘上，这些文件有着下面的结构：</p>
 
 <ul>
 <li>my/cart.js</li>
@@ -191,19 +191,19 @@ define(["./cart", "./inventory"], function(cart, inventory) {
 <li>my/shirt.js</li>
 </ul>
 
-<p>The function call above specifies two arguments, "cart" and "inventory". These are the modules represented by the "./cart" and "./inventory" module names.</p>
+<p>这个方法调用上面定义的两个参数。 cart 和 inventory。 这两个模块用./ 的模块名。</p>
 
-<p>The function is not called until the my/cart and my/inventory modules have been loaded, and the function receives the modules as the "cart" and "inventory" arguments.</p>
+<p>这个函数直到cart…模块被加载完之后才会被调用，函数接收cart inventory参数作为模块。</p>
 
-<p>Modules that define globals are explicitly discouraged, so that multiple versions of a module can exist in a page at a time (see <strong>Advanced Usage</strong>). Also, the order of the function arguments should match the order of the dependencies.</p>
+<p>模块定义全局是不被推荐的，所以一个模块的多个版本能同时存在一个页面。所以，函数参数和配依赖顺序应一致。</p>
 
-<p>The return object from the function call defines the "my/shirt" module. By defining modules in this way, "my/shirt" does not exist as a global object.</p>
+<p>return对应调用shirt 模块定义。通过这种方式的模块定义，shirt不以一种全局对象存在。</p>
 </div>
 
 <div class="subSection">
-<h4><a name="funcmodule">Define a Module as a Function</a><span class="sectionMark">&sect; 1.2.4</span></h4>
+<h4><a name="funcmodule">将模块定义成一个函数</a><span class="sectionMark">&sect; 1.2.4</span></h4>
 
-<p>Modules do not have to return objects. Any valid return value from a function is allowed. Here is a module that returns a function as its module definition:</p>
+<p>模块不是必须要有一个return对象。函数中任意有效的返回值都有效。这里有一个模块返回一个函数作为模块定义：</p>
 
 <pre><code>//A module definition inside foo/title.js. It uses
 //my/cart and my/inventory modules from before,
@@ -227,20 +227,20 @@ define(["my/cart", "my/inventory"],
 
 
 <div class="subSection">
-<h4><a name="cjsmodule">Define a Module with Simplified CommonJS Wrapper</a><span class="sectionMark">&sect; 1.2.5</span></h4>
+<h4><a name="cjsmodule">以Simplified CommonJS Wrapper的方式定义模块</a><span class="sectionMark">&sect; 1.2.5</span></h4>
 
-<p>If you wish to reuse some code that was written in the traditional <a href="http://wiki.commonjs.org/wiki/Modules/1.1.1">CommonJS module format</a> it may be difficult to re-work to the array of dependencies used above. Also, Node 0.5 will likely support a limited kind of define() function that provides a simple wrapper over CommonJS files. So if you are building a small utility and you wish it to be used in both Node (without using the <a href="node.html">RequireJS Node adapter</a>), and in the browser, you can use the <a href="commonjs.html">simplified CommonJS wrapper</a>.</p>
+<p>如果你想重用之前写过的一些代码<a href="http://wiki.commonjs.org/wiki/Modules/1.1.1">CommonJS module format</a>，在依赖数组方面将有很大麻烦。所以，Node0.5将支持一个有限的defin()函数支提供Commonjs的简单包装。所以你想构建一个小型的功能块并且你想让它即能工作在node，同时也能在浏览器上跑，你可以使用scw。If you wish to reuse some code that was written in the traditional <a href="http://wiki.commonjs.org/wiki/Modules/1.1.1">CommonJS module format</a> it may be difficult to re-work to the array of dependencies used above. Also, Node 0.5 will likely support a limited kind of define() function that provides a simple wrapper over CommonJS files. So if you are building a small utility and you wish it to be used in both Node (without using the <a href="node.html">RequireJS Node adapter</a>), and in the browser, you can use the <a href="commonjs.html">simplified CommonJS wrapper</a>.</p>
 
-<p>It can also be useful if you have many dependencies, and keeping dependency array positioning in sync with the function argument positioning is undesirable.</p>
+<p>如果你有很多依赖，它会非常有用，保持依赖数据位置同步，如果function参数位置未被指定。</p>
 
-<p>This wrapper relies on Function.prototype.toString() to give a useful string value of the function contents. This does not work on some devices like the PS3 and some older Opera mobile browsers. Use the <a href="optimization.html">optimizer</a> to pull out the dependencies in the array format for use on those devices.</p>
+<p>这个包装器依赖于Function.prototype.toString()给出一个有效function内容字符值。这在一些设备如PS3和都的浏览器中不被技持。。其它设备中使用<a href="optimization.html">optimizer</a>去按数组格式去拉依赖。</p>
 </div>
 
 
 <div class="subSection">
-<h4><a name="modulename">Define a Module with a Name</a><span class="sectionMark">&sect; 1.2.6</span></h4>
+<h4><a name="modulename">定义一个有名字的模块</a><span class="sectionMark">&sect; 1.2.6</span></h4>
 
-<p>You may encounter some define() calls that include a name for the module as the first argument to define():</p>
+<p>你或许遇到一些define()中包含一个名字作为模块在第一个define参数中：</p>
 
 <pre><code>    //Explicitly defines the "foo/title" module:
     define("foo/title",
@@ -251,7 +251,7 @@ define(["my/cart", "my/inventory"],
     );
 </code></pre>
 
-<p>These are normally generated by the <a href="optimization.html">optimization tool</a>. You can explicitly name modules yourself, but it makes the modules less portable -- if you move the file to another directory you will need to change the name. It is normally best to avoid coding in a name for the module and just let the optimization tool burn in the module names. The optimization tool needs to add the names so that more than one module can be bundled in a file, to allow for faster loading in the browser.</p>
+<p>这是<a href="optimization.html">optimization tool</a>中所生成的。你可以指定模块名，但它使得模块弱。。。如果你移动这个模块从一个目录到另一个目录，你不得不发它的名字。这里最好避免为模块起名，就让op tool生成模块名字好了。op tool需要添加名字从而不只一个模块在一个文件中，让浏览器更快的加载。</p>
 </div>
 
 <div class="subSection">
@@ -292,9 +292,9 @@ define(["my/cart", "my/inventory"],
 </div>
 
 <div class="subSection">
-<h4><a name="circular">Circular Dependencies</a><span class="sectionMark">&sect; 1.2.8</span></h4>
+<h4><a name="circular">循环依赖</a><span class="sectionMark">&sect; 1.2.8</span></h4>
 
-<p>If you define a circular dependency (A needs B and B needs A), then in this case when B's module function is called, it will get an undefined value for A. B can fetch A later after modules have been defined by using the require() method (be sure to specify require as a dependency so the right context is used to look up A):</p>
+<p>如果你定义了一个循环依赖（A依赖B然后B回过来依赖A），这种场景下，当B的模块函数被调用，它将得到一个未定义的A。B能取得A晚一会通过使用require()方法（确保指定require作为依赖，正确的上下文被用作于找到A）：</p>
 
 <pre><code>//Inside B.js:
 define(["require", "A"],
@@ -308,9 +308,9 @@ define(["require", "A"],
 );
 </code></pre>
 
-<p>Normally you should not need to use require() to fetch a module, but instead rely on the module being passed in to the function as an argument. Circular dependencies are rare, and usually a sign that you might want to rethink the design. However, sometimes they are needed, and in that case, use require() as specified above.</p>
+<p>一般情况下，你不需要使用require去获取模块，但是依赖于模块传入一个参数，循环依赖是一个特例，这种情况下require()则可以解决问题。</p>
 
-<p>If you are familiar with CommonJS modules, you could instead declare <strong>exports</strong> as a dependency to create an empty object for the module. By doing this on both sides of a circular dependency, you can then safely hold on to the the other module via a function argument.</p>
+<p>如果你熟悉CommonJS模块，你可以使用<strong>exports</strong>作为依赖，去为模块创建空对象。在循环依赖两侧都做这些，你可以安全的在其它参数中使用函数参数。</p>
 </div>
 
 <h3><a name="i18n">Define an I18N Bundle</a><span class="sectionMark">&sect; 1.3</span></h3>
