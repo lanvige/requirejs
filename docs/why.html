@@ -1,92 +1,88 @@
 <div id="directory" class="section">
-<h1>Why Web Modules?</h1>
+<h1>为什么需要web模块化?</h1>
 
 <ul class="index mono">
     <li class="hbox">
-        <a href="#1">The Problem</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
+        <a href="#1">问题</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
     </li>
     <li class="hbox">
-        <a href="#2">Solution</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
+        <a href="#2">解决方案</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
     </li>
     <li class="hbox">
-        <a href="#3">Script loading APIs</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
+        <a href="#3">脚本加载 APIs</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
     </li>
     <li class="hbox">
-        <a href="#4">Async vs Sync</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4</span>
+        <a href="#4">异步 vs 同步</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4</span>
     </li>
     <li class="hbox">
-        <a href="#5">Script loading: XHR</a><span class="spacer boxFlex"></span><span class="sect">&sect; 5</span>
+        <a href="#5">脚本加载: XHR</a><span class="spacer boxFlex"></span><span class="sect">&sect; 5</span>
     </li>
     <li class="hbox">
-        <a href="#6">Script loading: Web Workers</a><span class="spacer boxFlex"></span><span class="sect">&sect; 6</span>
+        <a href="#6">脚本加载: Web Workers</a><span class="spacer boxFlex"></span><span class="sect">&sect; 6</span>
     </li>
     <li class="hbox">
-        <a href="#7">Script loading: document.write()</a><span class="spacer boxFlex"></span><span class="sect">&sect; 7</span>
+        <a href="#7">脚本加载: document.write()</a><span class="spacer boxFlex"></span><span class="sect">&sect; 7</span>
     </li>
     <li class="hbox">
-        <a href="#8">Script loading: head.appendchild(script)</a><span class="spacer boxFlex"></span><span class="sect">&sect; 8</span>
+        <a href="#8">脚本加载: head.appendchild(script)</a><span class="spacer boxFlex"></span><span class="sect">&sect; 8</span>
     </li>
     <li class="hbox">
-        <a href="#9">Function wrapping</a><span class="spacer boxFlex"></span><span class="sect">&sect; 9</span>
+        <a href="#9">函数包装</a><span class="spacer boxFlex"></span><span class="sect">&sect; 9</span>
     </li>
 </ul>
 
-<p>This page discusses why modules on the web are useful and the mechanisms that can be used on the web today to enable them.
-There is a separate page that talks about <a href="whyamd.html">the design forces</a> for the particular function wrapped format
-used by RequireJS.</p>
+<p>这个页面讨论的是为什么使用web模块化是有用的和如何在当今的web环境下只用这种机制。这里有一个独立的页面讨论关于requirejs中特别的函数包装格式<a href="whyamd.html">设计的力量</a> </p>
 
 </div>
 
 <div class="section">
 <h2>
-<a name="1">The Problem</a>
+<a name="1">问题</a>
 <span class="sectionMark">&sect; 1</span>
 </h2>
 <ul>
-<li>Web sites are turning into Web apps</li>
-<li>Code complexity grows as the site gets bigger</li>
-<li>Assembly gets harder</li>
-<li>Developer wants discrete JS files/modules</li>
-<li>Deployment wants optimized code in just one or a few HTTP calls</li>
+<li>Web站点已经变成了Web应用程序</li>
+<li>网站规模化使得代码非常复杂</li>
+<li>程序整合变得越来越困难</li>
+<li>开发者重复创建js/模块</li>
+<li>开发者想要优化代码并且只使用一个或少数http请求</li>
 </ul>
 </div>
 
 <div class="section">
-<h2><a name="2">Solution</a><span class="sectionMark">&sect; 2</span></h2>
+<h2><a name="2">解决方案</a><span class="sectionMark">&sect; 2</span></h2>
 
-<p>Front-end developers need a solution with:</p>
+<p>前端开发者需要这样一个方案:</p>
 
 <ul>
-<li>Some sort of #include/import/require</li>
-<li>ability to load nested dependencies</li>
-<li>ease of use for developer but then backed by an optimization tool that helps deployment</li>
+<li>一些有序的 #include/import/require</li>
+<li>加载嵌套的多重依赖</li>
+<li>易用并且在后端有一个优化工具可以帮助开发</li>
 </ul>
 </div>
 
 <div class="section">
-<h2><a name="3">Script Loading APIs</a><span class="sectionMark">&sect; 3</span></h2>
+<h2><a name="3">脚本加载 APIs</a><span class="sectionMark">&sect; 3</span></h2>
 
-<p>First thing to sort out is a script loading API. Here are some candidates:</p>
+<p>第一步需要挑选出脚本加载api。有以下几种选择：</p>
 
 <ul>
 <li>Dojo: dojo.require("some.module")</li>
 <li>LABjs: $LAB.script("some/module.js")</li>
 <li>CommonJS: require("some/module")</li>
 </ul>
-
-<p>All of them map to loading some/path/some/module.js. Ideally we could choose the CommonJS syntax, since it is likely to get more common over time, and we want to reuse code.</p>
-
-<p>We also want some sort of syntax that will allow loading plain JavaScript files that exist today -- a developer should not have to rewrite all of their JavaScript to get the benefits of script loading.</p>
-
-<p>However, we need something that works well in the browser. The CommonJS require() is a synchronous call, it is expected to return the module immediately. This does not work well in the browser.</p>
+<p>他们都使用映射来加载some/path/some/module.js. 理想状态下我们可以选择CommonJS语法，因为它随着时间的推移会变得更加通用，并且可以促进代码重用。</p>
+<p>除此之外，我们需要一种可以用来加载目前流行的js库 -- 一个开发者不应该重写所有的js代码而应该使用以上方法来加载脚本</p>
+<p>不管怎样，我们需要一些事情在浏览器中也可以正常执行。 CommonJS require() 是一个异步的调用, 用来立即返回模块. 但是这种特性在浏览器中不能实现。</p>
 </div>
 
 <div class="section">
-<h2><a name="4">Async vs Sync</a><span class="sectionMark">&sect; 4</span></h2>
+<h2><a name="4">异步 vs 同步</a><span class="sectionMark">&sect; 4</span></h2>
 
-<p>This example should illustrate the basic problem for the browser. Suppose we have an Employee object and we want a Manager object to derive from the Employee object. <a href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Guide%3aThe_Employee_Example%3aCreating_the_Hierarchy">Taking this example</a>, we might code it up like this using our script loading API:</p>
+<p>以下的例子可以解释浏览器中基本的问题。 假定我们有一个Employee对象，并且想要一个继承自Employee对象的Manager对象. <a href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Guide%3aThe_Employee_Example%3aCreating_the_Hierarchy">查看示例</a>, 我们可以通过以下方式实现继承:</p>
 
-<pre><code>var Employee = require("types/Employee");
+<pre><code>
+var Employee = require("types/Employee");
 
 function Manager () {
     this.reports = [];
@@ -95,123 +91,122 @@ function Manager () {
 //Error if require call is async
 Manager.prototype = new Employee();
 </code></pre>
-
-<p>As the comment indicates above, if require() is async, this code will not work. However, loading scripts synchronously in the browser kills performance. So, what to do?</p>
+<p>正如注释中所提到的, 如果 require() 是异步的, 这些代码将不会工作. 然而，同步的加载脚本将会损耗浏览器性能。那么，该怎么做?</p>
 </div>
 
 <div class="section">
-<h2><a name="5">Script Loading: XHR</a><span class="sectionMark">&sect; 5</span></h2>
+<h2><a name="5">脚本加载: XHR</a><span class="sectionMark">&sect; 5</span></h2>
+<p>使用XMLHttpRequest (XHR)加载脚本是非常诱人的. 如果使用 XHR , 我们可以操作以上代码的文本内容 -- 我们可以使用正则来找到所有的‘require()’调用, 确保加载所有的脚本, 然后可以使用 eval() or script 元素体去包含所有的XHR请求的脚本内容</p>
 
-<p>It is tempting to use XMLHttpRequest (XHR) to load the scripts. If XHR is used, then we can massage the text above -- we can do a regexp to find require() calls, make sure we load those scripts, then use eval() or script elements that have their body text set to the text of the script loaded via XHR.</p>
-
-<p>Using eval() to evaluate the modules is bad:</p>
-
-<ul>
-<li>Developers have been taught that eval() is bad.</li>
-<li>Some environments do not allow eval().</li>
-<li>It is harder to debug. Firebug and WebKit's inspector have an //@ sourceURL= convention, which helps give a name to evaled text, but this support is not universal across browsers.</li>
-<li>eval context is different across browsers. You might be able to use execScript in IE to help this, but it means more moving parts.</li>
-</ul>
-
-<p>Using script tags with body text set to file text is bad:</p>
+<p>使用 eval() 去解析代码是非常不明智的:</p>
 
 <ul>
-<li>While debugging, the line number you get for an error does not map to the original source file.</li>
+<li>开发者们已经被告知使用eval()是不好的.</li>
+<li>一些环境不允许使用eval().</li>
+<li>很难调试。 Firebug 和 WebKit 的 控制台可以使用 '//@sourceURL= convention'来为eval指定一个名字, 但是这种支持并不能跨浏览器.</li>
+<li>eval上下文对于不同的浏览器不同. 当然你可以在IE中使用‘execScript’来解决, 但是这意味着你需要花费更多的精力.</li>
 </ul>
 
-<p>XHR also has issues with cross-domain requests. Some browsers now have cross-domain XHR support, but it is not universal, and IE decided to create a different API object for cross-domain calls, XDomainRequest. More moving parts and more things to get wrong. In particular, you need to be sure to not send any non-standard HTTP headers or there may be another "preflight" request done to make sure the cross-domain access is allowed.</p>
+<p>使用脚本标签体加载文件文本是不好的:</p>
 
-<p>Dojo has used and XHR-based loader with eval(), and while it works, it has been a source of frustration for developers. Dojo has an xdomain loader but it requires the modules to be modified via a build step to use a function wrapper, so that script src="" tags can be used to load the modules. There are many edge cases and moving parts that create a tax on the developer.</p>
+<ul>
+<li>当调试时, 你所得到的行号将不会映射到原始的文件行号.</li>
+</ul>
 
-<p>If we are creating a new script loader, we can do better.</p>
+<p>XHR也有跨域请求的问题. 一些浏览器现在可以支持跨域的请求,但不能跨浏览器支持, 并且IE有自己特有的跨域对象, XDomainRequest.情况越多错误的机会也会越多. 特别的, 你需要确保不发送非标准的http头或者任何请求之前已完成的资源来确保跨域是允许的</p>
+
+<p>Dojo已经使用了基于 XHR 和 eval()的加载器, 并且工作的很好, 但这已经成为了开发者的头疼的源泉. Dojo有一个跨域的加载器，但是必须使用一个函数包装器,那样 script src="" 才可以用来加载模块.有很多案例和moving parts加重了程序员的负担。</p>
+
+<p>如果我们创建一个加载器，那么我们可以做的更好！</p>
 </div>
 
 <div class="section">
-<h2><a name="6">Script Loading: Web Workers</a><span class="sectionMark">&sect; 6</span></h2>
+<h2><a name="6">脚本加载: Web Workers</a><span class="sectionMark">&sect; 6</span></h2>
 
-<p>Web Workers might be another way to load scripts, but:</p>
+<p>Web Workers 也许是另外一种方式来加载脚本, 但是:</p>
 
 <ul>
-<li>It does not have strong cross browser support</li>
-<li>It is a message-passing API, and the scripts likely want to interact with the DOM, so it means just using the worker to fetch the script text, but pass the text back to the main window then use eval/script with text body to execute the script. This has all of the problems as XHR mentioned above.</li>
+<li>不能跨浏览器支持</li>
+<li>它是一个基于事件的API, 并且脚本可能想要和dom交互, 那就意味着只要用web worker记载的脚本, 就要返回要执行的文本到主window，然后使用eval/script来执行脚本. 这就会带来以上提到的XHR的所有问题</li>
 </ul>
 </div>
 
 <div class="section">
-<h2><a name="7">Script Loading: document.write()</a><span class="sectionMark">&sect; 7</span></h2>
+<h2><a name="7">脚本加载: document.write()</a><span class="sectionMark">&sect; 7</span></h2>
 
-<p>document.write() can be used to load scripts -- it can load scripts from other domains and it maps to how browsers normally consume scripts, so it allows for easy debugging.</p>
+<p>document.write() 可以用来加载脚本 -- 这种方式可以跨域加载并且浏览器可以正确映射到原始的脚本, 所以很方便调试.</p>
 
-<p>However, in the <a href="#async">Async vs Sync example</a> we cannot just execute that script directly. Ideally we could know the require() dependencies before we execute the script, and make sure those dependencies are loaded first. But we do not have access to the script before it is executed.</p>
+<p>不管怎样, 在<a href="#async">异步和同步的例子中</a> 我们不能接执行脚本， 理想状态下我们可以在脚本执行前知道require()的依赖,并且确保那些依赖被事先加载. 但是在执行之前我们不会访问它。</p>
 
-<p>Also, document.write() does not work after page load. A great way to get perceived performance for your site is loading code on demand, as the user needs it for their next action.</p>
+<p>其次, document.write() 不能在页面load了之后工作. 当用户操作需要加载新的模块时，按需加载是一个极好的方式并且性能很明显提升.</p>
 
-<p>Finally, scripts loaded via document.write() will block page rendering. When looking at reaching the very best performance for your site, this is undesirable.</p>
+<p>最后,通过document.write()的方式加载脚本将会阻塞页面渲染.当你需要网站需要达到最佳的性能时，请不要使用这种方式！</p>
 </div>
 
 <div class="section">
-<h2><a name="8">Script Loading: head.appendChild(script)</a><span class="sectionMark">&sect; 8</span></h2>
+<h2><a name="8">脚本加载: head.appendChild(script)</a><span class="sectionMark">&sect; 8</span></h2>
 
-<p>We can create scripts on demand and add them to the head:</p>
+<p>我们按需创建脚本并且将它们加入到head中:</p>
 
-<pre><code>var head = document.getElementsByTagName('head')[0],
+<pre><code>
+var head = document.getElementsByTagName('head')[0],
     script = document.createElement('script');
 
 script.src = url;
 head.appendChild(script);
 </code></pre>
 
-<p>There is a bit more involved than just the above snippet, but that is the basic idea. This approach has the advantage over document.write in that it will not block page rendering and it works after page load.</p>
+<p>虽然这种方式会花费更多的精力，但这是最基本的主意. 这种方式既有document.write的优势并且不会阻塞页面的渲染，可以在页面load之后使用。</p>
 
-<p>However, it still has the <a href="#async">Async vs Sync example</a> problem: ideally we could know the require() dependencies before we execute the script, and make sure those dependencies are loaded first.</p>
+<p>然而, 他仍然有以上 <a href="#async">异步和同步</a>示例中提到的问题:理想状态下我们可以在脚本执行前知道require()的依赖,并且确保那些依赖被事先加载. </p>
 </div>
 
 <div class="section">
-<h2><a name="9">Function Wrapping</a><span class="sectionMark">&sect; 9</span></h2>
+<h2><a name="9">函数包装</a><span class="sectionMark">&sect; 9</span></h2>
 
-<p>So we need to know the dependencies and make sure we load them before executing our script. The best way to do that is construct our module loading API with function wrappers. Like so:</p>
+<p>所以我们需要知道依赖并且确保执行我们的脚本之前已经加载了这些依赖。最好的方式是使用函数包装器来构建我们的模块加载API. 像这样:</p>
 
 <pre><code>define(
-    //The name of this module
+    //模块名
     "types/Manager",
 
-    //The array of dependencies
+    //依赖数组
     ["types/Employee"],
 
-    //The function to execute when all dependencies have loaded. The arguments
-    //to this function are the array of dependencies mentioned above.
+    //当所有的依赖加载之后需要执行的函数。这个函数的参数和上述依赖数组一一对应
     function (Employee) {
         function Manager () {
             this.reports = [];
         }
 
-        //This will now work
+        //他现在就会执行
         Manager.prototype = new Employee();
 
-        //return the Manager constructor function so it can be used by other modules.
+        //返回Manager构造器函数，使其可以被其他的模块引用！
         return Manager;
     }
 );
 </code></pre>
 
-<p>And this is the syntax used by RequireJS. There is also a simplified syntax if you just want to load some plain JavaScript files that do not define modules:</p>
+<p>这是RequireJS的语法结构. 还有一种简单的语法你可以用来加载普通的不需要定义模块的js文件:</p>
 
 <pre><code>require(["some/script.js"], function() {
-    //This function is called after some/script.js has loaded.
+    //这个函数将会在 some/script.js 加载后执行
 });
 </code></pre>
 
-<p>This type of syntax was chosen because it is terse and allows the loader to use head.appendChild(script) type of loading.</p>
+<p>选择这种语法是因为简洁并且可以使用head.append(script)的方式加载.</p>
 
-<p>It differs from the normal CommonJS syntax out of necessity to work well in the browser. There have been suggestions that the normal CommonJS syntax could be used with head.appendChild(script) type of loading if a server process transforms the modules to a transport format that has a function wrapper.</p>
-
-<p>I believe it is important to not force the use of a runtime server process to transform code:</p>
+<p>他与正常的CommonJS的语法的不同之处在于：没有必要再浏览器端工作的很好.
+  有建议说正常的CommonJS的语法可以和head.appendChild(script)一起使用，如果服务器端进程可以为模块加上函数包装器。
+</p>
+<p>不强制使用服务端进程转换代码，我相信这非常重要:</p>
 
 <ul>
-<li>It makes debugging weird, line numbers will be off vs. the source file since the server is injecting a function wrapper.</li>
-<li>It requires more gear. Front-end development should be possible with static files.</li>
+<li>它使得debug很怪异,行号将会重新对齐. 因为源代码被服务器注入了函数包装器.</li>
+<li>它需要更多的磨合工作. 因此前端开发应保证是静态的.</li>
 </ul>
 
-<p>More details on the design forces and use cases for this function wrapping format, called Asynchronous Module Definition (AMD), can be found on the
-<a href="whyamd.html">Why AMD?</a> page.
+<p>更多关于设计力量的细节和使用函数包装器的示例, 被称为 Asynchronous Module Definition (AMD), 可以在
+<a href="whyamd.html">Why AMD?</a> 页面找到.
 </div>
