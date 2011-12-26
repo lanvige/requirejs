@@ -34,7 +34,7 @@
     </li>
 </ul>
 
-<p>这篇文中讨化有关这种设计影响和使用<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">异步模块定义AMD API</a>作为Javascript模块化，RequireJS支持模块API, 这是一篇讨论 <a href="why.html">Web上的模块化通用方案</a>的深度文章。</p>
+<p>这篇文中讨化有关这种设计影响和使用<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">异步模块定义AMD API</a>作为Javascript模块化，RequireJS中支持模块API, 这里还有另一篇文章关于 <a href="why.html">Web上的模块化通用方案</a>的文章。</p>
 
 </div>
 
@@ -68,16 +68,16 @@
 }());
 </code></pre>
 
-<p>现在的Js代码块是如何被定义的？</p>
+<p>现在的JavaScript代码块是如何被定义的？</p>
 
 <ul>
-    <li>通过立即执行的factory函数.</li>
+    <li>通过立即执行的factory函数。</li>
     <li>通过在HTML script标签中定义全局变量名，引用到依赖都完成。</li>
-    <li>依赖都非常的弱：开发者需要知道正确的依赖关系。举例来说，jQuery引用标签必须放在Backbone之前。</li>
+    <li>？？依赖都非常的弱：开发者需要知道正确的依赖关系。举例来说，Backbone依赖于jQuery，所以jQuery引用标签必须放在Backbone之前。</li>
     <li>为了优化性能，在部署时需要第三方工具来将一组script标签合并成一个。</li>
 </ul>
 
-<p>这对于一个大型项目来非常难以管理，特别是当依赖开始重复和嵌套时。手写script标签很不灵活，并且还没有将脚本的按需加载给考虑进来。</p>
+<p>这对于一个大型项目来非常难以管理，特别是当依赖开始重复和嵌套时。手写script标签很不灵活，？并且还没有将脚本的按需加载给考虑进来。</p>
 
 </div>
 
