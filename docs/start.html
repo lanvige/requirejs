@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>How to get started with RequireJS</title>
+    <title>如何使用RequireJS</title>
 
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    
     <link rel="stylesheet" type="text/css" href="../main.css">
     <link rel="icon" type="image/x-icon" href="/favicon.png">
     <!--[if IE]> <link rel="stylesheet" type="text/css" href="../ie.css" /> <![endif]-->
@@ -163,6 +164,11 @@
                 <span class="spacer boxFlex"></span>
                 <span class="icon fork"></span>
             </li>
+            <li class="hbox">
+                <a class="local" href="translate.html">中文翻译</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon fork"></span>
+            </li>
         </ul>
 
         <ul>
@@ -171,41 +177,41 @@
     </div>
 
     <div id="content"><div id="directory" class="section">
-    <h1>How to get started with RequireJS</h1>
+    <h1>如何使用RequireJS</h1>
 
     <ul class="index mono">
         <li class="hbox">
-            <a href="#get">Get RequireJS</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
+            <a href="#get">获取RequireJS</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
         </li>
         <li class="hbox">
-            <a href="#add">Add RequireJS</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
+            <a href="#add">添加RequireJS</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
         </li>
         <li class="hbox">
-            <a href="#optimize">Optimize</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
+            <a href="#optimize">优化</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
         </li>
     </ul>
 
-    <span class="note">Note: If you are using jQuery, there is a <a href="jquery.html">targeted jQuery tutorial</a></span>
+    <span class="note">备注：如果项目中已使用jQuery，这里有一份入门文档 <a href="jquery.html">如何在RqureireJS中使用jQuery</a></span>
 </div>
 
 <div class="section">
 <h2>
-    <a name="get">Get RequireJS</a>
+    <a name="get">获取RequireJS</a>
     <span class="sectionMark">&sect; 1</span>
 </h2>
 
-<p>Go to the <a href="download.html">download</a> page and get the file.</p>
+<p>请到<a href="download.html">下载</a>页面获取require.js文件。</p>
 </div>
 
 <div class="section">
 <h2>
-    <a name="add">Add RequireJS</a>
+    <a name="add">添加RequireJS</a>
     <span class="sectionMark">&sect; 2</span>
 </h2>
 
-<span class="note">Note: For jQuery-specific advice, see the <a href="jquery.html">jQuery integration page</a></span>
+<span class="note">备注：更多jQuery的使用建议请看这里<a href="jquery.html">jQuery整合页面</a></span>
 
-<p>This setup assumes you keep all your JavaScript files in a "scripts" directory in your project. For example, if you have a project that has an project.html page, with some scripts, the directory layout might look like so:</p>
+<p>本文假设你已经将所有的JavaScript文件放到项目中一个"scripts"的目录里。举例，如果你有一个项目，并有一个名叫project.html的页面，和一些Js脚本，这个项目的结构看起来应该是下面这样的：</p>
 
 <ul>
     <li>project-directory/
@@ -222,7 +228,7 @@
     </ul></li>
 </ul>
 
-<p>Add require.js to the scripts directory, so it looks like so:</p>
+<p>添加require.js到scripts目录, 现在看起来如下：</p>
 
 <ul>
     <li>project-directory/
@@ -240,7 +246,7 @@
     </ul></li>
 </ul>
 
-<p>To take full advantage of the optimization tool, it is suggested that you keep all inline script out of the HTML, and only reference require.js with a require call like so to load your script:</p>
+<p>为了更好的使用优化工具所带来的好处，这里不建议您使用内联脚本，并只保留require.js和一个require的调用去加载其它脚本：</p>
 
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -256,31 +262,32 @@
 &lt;/html&gt;
 </code></pre>
 
-<span class="note">The path rules used for data-main changed in RequireJS 0.23. Before that version, data-main="main" for the above example.</span>
+<span class="note">data-main的路径规则在0.23版本中发生了变化。这个版本之前，上面示例中代码应是：ata-main="main"</span>
 
-<p>Inside of main.js, you can use require() to load any other scripts you need to run:</p>
+<p>在main.js中，你可以使用require()来加载其它运行所需要的脚本：</p>
 
 <pre><code>require(["helper/util"], function() {
     //This function is called when scripts/helper/util.js is loaded.
 });
 </code></pre>
 
-<p>That is it! Check out the <a href="api.html">API docs</a> to learn more about require().</p>
+<p>入门就这么简单！查看<a href="api.html">API文档</a>来对require()的使用更多深入学习。</p>
 </div>
 
 <div class="section">
 <h2>
-    <a name="optimize">Optimize</a>
+    <a name="optimize">优化</a>
     <span class="sectionMark">&sect; 3</span>
 </h2>
 
-<p>Once you are finished doing development and want to deploy your code for your end users, you can use the <a href="optimization.html">optimizer</a> to combine the JavaScript files together and minify it. In the example above, it can combine main.js and helper/util.js into one file and minify the result.</p>
+<p>一旦您完成了代码开发希望部署最新的代码给用户，你可以使用<a href="optimization.html">optimizer</a> 来对多个JavaScript文件进行合并和压缩。在上面的示例中，在返回时会将main.js和helper/util.js合并成一个文件并进行压缩。</p>
 </div>
     </div>
     <div id="footer" class="mono">
-        <span class="line">Latest Release: <a href="http://requirejs.org/docs/download.html">1.0.3</a></span>
+        <span class="line">Latest Release: <a href="/docs/download.html">1.0.3</a></span>
         <span class="line">Open source: <a href="https://github.com/jrburke/requirejs/blob/master/LICENSE">new BSD or MIT licensed</a></span>
         <span class="line">web design by <a href="http://andychung.ca">Andy Chung</a> &copy; 2011</span>
+        <span class="line">中文翻译<a href="http://lanvige.com">ET Team</a> &copy; 2012</span>
     </div>
 </div>
 
