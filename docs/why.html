@@ -1,85 +1,263 @@
-<div id="directory" class="section">
-<h1>Ϊʲô��Ҫwebģ�黯?</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>为什么需要web模块化?</title>
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <!--[if IE]> <link rel="stylesheet" type="text/css" href="../ie.css" /> <![endif]-->
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.4/dojox/highlight/resources/highlight.css">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../init.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.4/dojo/dojo.xd.js"></script>
+    <script type="text/javascript">
+        dojo.require("dojox.highlight");
+        dojo.require("dojox.highlight.languages.javascript");
+        dojo.require("dojox.highlight.languages.html");
+        dojo.ready(function() {
+            dojo.query("pre > code")
+                .forEach(function(node) {
+                    if (node.innerHTML.indexOf("DOCTYPE") !== -1 || node.innerHTML.indexOf('&lt;script') !== -1) {
+                        dojo.addClass(node, "html");
+                    } else {
+                        dojo.addClass(node, "javascript");
+                    }
+                })
+                .forEach(dojox.highlight.init);
+        });
+    </script>
+</head>
+<body>
+<div id="grid"></div>
+<div id="wrapper">
+
+    <div id="navBg"></div>
+    <div id="nav" class="mono">
+        <a class="homeImageLink" href="../"></a>
+        <h1>a javascript module loader</h1>
+
+        <ul>
+            <li class="hbox">
+                <a href="../">主页</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon home"></span>
+            </li>
+        </ul>
+
+        <ul>
+            <li class="hbox">
+                <a class="local" href="start.html">开始</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon start"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="download.html">下载</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon download"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="api.html">API</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon api"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="optimization.html">优化</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon optimize"></span>
+            </li>
+        </ul>
+
+        <ul>
+            <li class="hbox">
+                <a class="local" href="jquery.html">和jQuery一起使用</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon script"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="node.html">和Node一起使用</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon script"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="dojo.html">和Dojo一起使用</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon script"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="commonjs.html">CommonJS备注</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon script"></span>
+            </li>
+        </ul>
+
+        <ul>
+            <li class="hbox">
+                <a class="local" href="faq.html">FAQs</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon question"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="errors.html">常见错误</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon question"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="plugins.html">写一个插件</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon api"></span>
+            </li>
+        </ul>
+
+        <ul>
+            <li class="hbox">
+                <a class="local" href="why.html">为什么要有Web的模块化</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon question"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="whyamd.html">为什么需要AMD</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon question"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="requirements.html">需求</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon requirement"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="history.html">历史版本</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon history"></span>
+            </li>
+        </ul>
+
+        <ul>
+            <li class="hbox">
+                <a href="http://groups.google.com/group/requirejs">需要帮助</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon help"></span>
+            </li>
+            <li class="hbox">
+                <a href="http://tagneto.blogspot.com">作者博客</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon blog"></span>
+            </li>
+            <li class="hbox">
+                <a href="http://twitter.com/jrburke">Twitter</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon twitter"></span>
+            </li>
+        </ul>
+
+        <ul>
+            <li class="hbox">
+                <a href="http://github.com/jrburke/requirejs">GitHub</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon git"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="contributing.html">贡献</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon fork"></span>
+            </li>
+            <li class="hbox">
+                <a class="local" href="translate.html">中文翻译</a>
+                <span class="spacer boxFlex"></span>
+                <span class="icon fork"></span>
+            </li>
+        </ul>
+
+        <ul>
+            <li class="version">1.0.3 文档</li>
+        </ul>
+    </div>
+
+    <div id="content"><div id="directory" class="section">
+<h1>为什么需要web模块化?</h1>
 
 <ul class="index mono">
     <li class="hbox">
-        <a href="#1">����</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
+        <a href="#1">问题</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
     </li>
     <li class="hbox">
-        <a href="#2">�������</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
+        <a href="#2">解决方案</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
     </li>
     <li class="hbox">
-        <a href="#3">�ű����� APIs</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
+        <a href="#3">脚本加载 APIs</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
     </li>
     <li class="hbox">
-        <a href="#4">�첽 vs ͬ��</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4</span>
+        <a href="#4">异步 vs 同步</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4</span>
     </li>
     <li class="hbox">
-        <a href="#5">�ű�����: XHR</a><span class="spacer boxFlex"></span><span class="sect">&sect; 5</span>
+        <a href="#5">脚本加载: XHR</a><span class="spacer boxFlex"></span><span class="sect">&sect; 5</span>
     </li>
     <li class="hbox">
-        <a href="#6">�ű�����: Web Workers</a><span class="spacer boxFlex"></span><span class="sect">&sect; 6</span>
+        <a href="#6">脚本加载: Web Workers</a><span class="spacer boxFlex"></span><span class="sect">&sect; 6</span>
     </li>
     <li class="hbox">
-        <a href="#7">�ű�����: document.write()</a><span class="spacer boxFlex"></span><span class="sect">&sect; 7</span>
+        <a href="#7">脚本加载: document.write()</a><span class="spacer boxFlex"></span><span class="sect">&sect; 7</span>
     </li>
     <li class="hbox">
-        <a href="#8">�ű�����: head.appendchild(script)</a><span class="spacer boxFlex"></span><span class="sect">&sect; 8</span>
+        <a href="#8">脚本加载: head.appendchild(script)</a><span class="spacer boxFlex"></span><span class="sect">&sect; 8</span>
     </li>
     <li class="hbox">
-        <a href="#9">������װ</a><span class="spacer boxFlex"></span><span class="sect">&sect; 9</span>
+        <a href="#9">函数包装</a><span class="spacer boxFlex"></span><span class="sect">&sect; 9</span>
     </li>
 </ul>
 
-<p>���ҳ�����۵���Ϊʲôʹ��webģ�黯�����õĺ�����ڵ����web������ֻ�����ֻ��ơ�������һ��������ҳ�����۹���requirejs���ر�ĺ�����װ��ʽ<a href="whyamd.html">��Ƶ�����</a> </p>
+<p>这个页面讨论的是为什么使用web模块化是有用的和如何在当今的web环境下只用这种机制。这里有一个独立的页面讨论关于requirejs中特别的函数包装格式<a href="whyamd.html">设计的力量</a> </p>
 
 </div>
 
 <div class="section">
 <h2>
-<a name="1">����</a>
+<a name="1">问题</a>
 <span class="sectionMark">&sect; 1</span>
 </h2>
 <ul>
-<li>Webվ���Ѿ������WebӦ�ó���</li>
-<li>��վ��ģ��ʹ�ô���ǳ�����</li>
-<li>�������ϱ��Խ��Խ����</li>
-<li>�������ظ�����js/ģ��</li>
-<li>��������Ҫ�Ż����벢��ֻʹ��һ��������http����</li>
+<li>Web站点已经变成了Web应用程序</li>
+<li>网站规模化使得代码非常复杂</li>
+<li>程序整合变得越来越困难</li>
+<li>开发者重复创建js/模块</li>
+<li>开发者想要优化代码并且只使用一个或少数http请求</li>
 </ul>
 </div>
 
 <div class="section">
-<h2><a name="2">�������</a><span class="sectionMark">&sect; 2</span></h2>
+<h2><a name="2">解决方案</a><span class="sectionMark">&sect; 2</span></h2>
 
-<p>ǰ�˿�������Ҫ����һ������:</p>
+<p>前端开发者需要这样一个方案:</p>
 
 <ul>
-<li>һЩ����� #include/import/require</li>
-<li>����Ƕ�׵Ķ�������</li>
-<li>���ò����ں����һ���Ż����߿��԰�������</li>
+<li>一些有序的 #include/import/require</li>
+<li>加载嵌套的多重依赖</li>
+<li>易用并且在后端有一个优化工具可以帮助开发</li>
 </ul>
 </div>
 
 <div class="section">
-<h2><a name="3">�ű����� APIs</a><span class="sectionMark">&sect; 3</span></h2>
+<h2><a name="3">脚本加载 APIs</a><span class="sectionMark">&sect; 3</span></h2>
 
-<p>��һ����Ҫ��ѡ���ű�����api�������¼���ѡ��</p>
+<p>第一步需要挑选出脚本加载api。有以下几种选择：</p>
 
 <ul>
 <li>Dojo: dojo.require("some.module")</li>
 <li>LABjs: $LAB.script("some/module.js")</li>
 <li>CommonJS: require("some/module")</li>
 </ul>
-<p>���Ƕ�ʹ��ӳ��������some/path/some/module.js. ����״̬�����ǿ���ѡ��CommonJS�﷨����Ϊ������ʱ������ƻ��ø���ͨ�ã����ҿ��Դٽ��������á�</p>
-<p>����֮�⣬������Ҫһ�ֿ�����������Ŀǰ���е�js�� -- һ�������߲�Ӧ����д���е�js�����Ӧ��ʹ�����Ϸ��������ؽű�</p>
-<p>����������������ҪһЩ�������������Ҳ��������ִ�С� CommonJS require() ��һ���첽�ĵ���, ������������ģ��. ��������������������в���ʵ�֡�</p>
+<p>他们都使用映射来加载some/path/some/module.js. 理想状态下我们可以选择CommonJS语法，因为它随着时间的推移会变得更加通用，并且可以促进代码重用。</p>
+<p>除此之外，我们需要一种可以用来加载目前流行的js库 -- 一个开发者不应该重写所有的js代码而应该使用以上方法来加载脚本</p>
+<p>不管怎样，我们需要一些事情在浏览器中也可以正常执行。 CommonJS require() 是一个异步的调用, 用来立即返回模块. 但是这种特性在浏览器中不能实现。</p>
 </div>
 
 <div class="section">
-<h2><a name="4">�첽 vs ͬ��</a><span class="sectionMark">&sect; 4</span></h2>
+<h2><a name="4">异步 vs 同步</a><span class="sectionMark">&sect; 4</span></h2>
 
-<p>���µ����ӿ��Խ���������л��������⡣ �ٶ�������һ��Employee���󣬲�����Ҫһ���̳���Employee�����Manager����. <a href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Guide%3aThe_Employee_Example%3aCreating_the_Hierarchy">�鿴ʾ��</a>, ���ǿ���ͨ�����·�ʽʵ�ּ̳�:</p>
+<p>以下的例子可以解释浏览器中基本的问题。 假定我们有一个Employee对象，并且想要一个继承自Employee对象的Manager对象. <a href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Guide%3aThe_Employee_Example%3aCreating_the_Hierarchy">查看示例</a>, 我们可以通过以下方式实现继承:</p>
 
 <pre><code>
 var Employee = require("types/Employee");
@@ -91,62 +269,62 @@ function Manager () {
 //Error if require call is async
 Manager.prototype = new Employee();
 </code></pre>
-<p>����ע�������ᵽ��, ��� require() ���첽��, ��Щ���뽫���Ṥ��. Ȼ����ͬ���ļ��ؽű����������������ܡ���ô������ô��?</p>
+<p>正如注释中所提到的, 如果 require() 是异步的, 这些代码将不会工作. 然而，同步的加载脚本将会损耗浏览器性能。那么，该怎么做?</p>
 </div>
 
 <div class="section">
-<h2><a name="5">�ű�����: XHR</a><span class="sectionMark">&sect; 5</span></h2>
-<p>ʹ��XMLHttpRequest (XHR)���ؽű��Ƿǳ����˵�. ���ʹ�� XHR , ���ǿ��Բ������ϴ�����ı����� -- ���ǿ���ʹ���������ҵ����еġ�require()������, ȷ���������еĽű�, Ȼ�����ʹ�� eval() or script Ԫ����ȥ�������е�XHR����Ľű�����</p>
+<h2><a name="5">脚本加载: XHR</a><span class="sectionMark">&sect; 5</span></h2>
+<p>使用XMLHttpRequest (XHR)加载脚本是非常诱人的. 如果使用 XHR , 我们可以操作以上代码的文本内容 -- 我们可以使用正则来找到所有的‘require()’调用, 确保加载所有的脚本, 然后可以使用 eval() or script 元素体去包含所有的XHR请求的脚本内容</p>
 
-<p>ʹ�� eval() ȥ���������Ƿǳ������ǵ�:</p>
+<p>使用 eval() 去解析代码是非常不明智的:</p>
 
 <ul>
-<li>���������Ѿ�����֪ʹ��eval()�ǲ��õ�.</li>
-<li>һЩ����������ʹ��eval().</li>
-<li>���ѵ��ԡ� Firebug �� WebKit �� ����̨����ʹ�� '//@sourceURL= convention'��Ϊevalָ��һ������, ��������֧�ֲ����ܿ������.</li>
-<li>eval�����Ķ��ڲ�ͬ���������ͬ. ��Ȼ�������IE��ʹ�á�execScript�������, ��������ζ������Ҫ���Ѹ���ľ���.</li>
+<li>开发者们已经被告知使用eval()是不好的.</li>
+<li>一些环境不允许使用eval().</li>
+<li>很难调试。 Firebug 和 WebKit 的 控制台可以使用 '//@sourceURL= convention'来为eval指定一个名字, 但是这种支持并不能跨浏览器.</li>
+<li>eval上下文对于不同的浏览器不同. 当然你可以在IE中使用‘execScript’来解决, 但是这意味着你需要花费更多的精力.</li>
 </ul>
 
-<p>ʹ�ýű���ǩ������ļ��ı��ǲ��õ�:</p>
+<p>使用脚本标签体加载文件文本是不好的:</p>
 
 <ul>
-<li>������ʱ, �����õ����кŽ�����ӳ�䵽ԭʼ���ļ��к�.</li>
+<li>当调试时, 你所得到的行号将不会映射到原始的文件行号.</li>
 </ul>
 
-<p>XHRҲ�п������������. һЩ��������ڿ���֧�ֿ��������,�����ܿ������֧��, ����IE���Լ����еĿ������, XDomainRequest.���Խ�����Ļ���Ҳ��Խ��. �ر��, ����Ҫȷ�������ͷǱ�׼��httpͷ�����κ�����֮ǰ����ɵ���Դ��ȷ��������������</p>
+<p>XHR也有跨域请求的问题. 一些浏览器现在可以支持跨域的请求,但不能跨浏览器支持, 并且IE有自己特有的跨域对象, XDomainRequest.情况越多错误的机会也会越多. 特别的, 你需要确保不发送非标准的http头或者任何请求之前已完成的资源来确保跨域是允许的</p>
 
-<p>Dojo�Ѿ�ʹ���˻��� XHR �� eval()�ļ�����, ���ҹ����ĺܺ�, �����Ѿ���Ϊ�˿����ߵ�ͷ�۵�ԴȪ. Dojo��һ������ļ����������Ǳ���ʹ��һ��������װ��,���� script src="" �ſ�����������ģ��.�кܶస����moving parts�����˳���Ա�ĸ�����</p>
+<p>Dojo已经使用了基于 XHR 和 eval()的加载器, 并且工作的很好, 但这已经成为了开发者的头疼的源泉. Dojo有一个跨域的加载器，但是必须使用一个函数包装器,那样 script src="" 才可以用来加载模块.有很多案例和moving parts加重了程序员的负担。</p>
 
-<p>������Ǵ���һ������������ô���ǿ������ĸ��ã�</p>
+<p>如果我们创建一个加载器，那么我们可以做的更好！</p>
 </div>
 
 <div class="section">
-<h2><a name="6">�ű�����: Web Workers</a><span class="sectionMark">&sect; 6</span></h2>
+<h2><a name="6">脚本加载: Web Workers</a><span class="sectionMark">&sect; 6</span></h2>
 
-<p>Web Workers Ҳ��������һ�ַ�ʽ�����ؽű�, ����:</p>
+<p>Web Workers 也许是另外一种方式来加载脚本, 但是:</p>
 
 <ul>
-<li>���ܿ������֧��</li>
-<li>����һ�������¼���API, ���ҽű�������Ҫ��dom����, �Ǿ���ζ��ֻҪ��web worker���صĽű�, ��Ҫ����Ҫִ�е��ı�����window��Ȼ��ʹ��eval/script��ִ�нű�. ��ͻ���������ᵽ��XHR����������</li>
+<li>不能跨浏览器支持</li>
+<li>它是一个基于事件的API, 并且脚本可能想要和dom交互, 那就意味着只要用web worker记载的脚本, 就要返回要执行的文本到主window，然后使用eval/script来执行脚本. 这就会带来以上提到的XHR的所有问题</li>
 </ul>
 </div>
 
 <div class="section">
-<h2><a name="7">�ű�����: document.write()</a><span class="sectionMark">&sect; 7</span></h2>
+<h2><a name="7">脚本加载: document.write()</a><span class="sectionMark">&sect; 7</span></h2>
 
-<p>document.write() �����������ؽű� -- ���ַ�ʽ���Կ�����ز��������������ȷӳ�䵽ԭʼ�Ľű�, ���Ժܷ������.</p>
+<p>document.write() 可以用来加载脚本 -- 这种方式可以跨域加载并且浏览器可以正确映射到原始的脚本, 所以很方便调试.</p>
 
-<p>��������, ��<a href="#async">�첽��ͬ����������</a> ���ǲ��ܽ�ִ�нű��� ����״̬�����ǿ����ڽű�ִ��ǰ֪��require()������,����ȷ����Щ���������ȼ���. ������ִ��֮ǰ���ǲ����������</p>
+<p>不管怎样, 在<a href="#async">异步和同步的例子中</a> 我们不能接执行脚本， 理想状态下我们可以在脚本执行前知道require()的依赖,并且确保那些依赖被事先加载. 但是在执行之前我们不会访问它。</p>
 
-<p>���, document.write() ������ҳ��load��֮����. ���û�������Ҫ�����µ�ģ��ʱ�����������һ�����õķ�ʽ�������ܺ���������.</p>
+<p>其次, document.write() 不能在页面load了之后工作. 当用户操作需要加载新的模块时，按需加载是一个极好的方式并且性能很明显提升.</p>
 
-<p>���,ͨ��document.write()�ķ�ʽ���ؽű���������ҳ����Ⱦ.������Ҫ��վ��Ҫ�ﵽ��ѵ�����ʱ���벻Ҫʹ�����ַ�ʽ��</p>
+<p>最后,通过document.write()的方式加载脚本将会阻塞页面渲染.当你需要网站需要达到最佳的性能时，请不要使用这种方式！</p>
 </div>
 
 <div class="section">
-<h2><a name="8">�ű�����: head.appendChild(script)</a><span class="sectionMark">&sect; 8</span></h2>
+<h2><a name="8">脚本加载: head.appendChild(script)</a><span class="sectionMark">&sect; 8</span></h2>
 
-<p>���ǰ��贴���ű����ҽ����Ǽ��뵽head��:</p>
+<p>我们按需创建脚本并且将它们加入到head中:</p>
 
 <pre><code>
 var head = document.getElementsByTagName('head')[0],
@@ -156,57 +334,68 @@ script.src = url;
 head.appendChild(script);
 </code></pre>
 
-<p>��Ȼ���ַ�ʽ�Ứ�Ѹ���ľ����������������������. ���ַ�ʽ����document.write�����Ʋ��Ҳ�������ҳ�����Ⱦ��������ҳ��load֮��ʹ�á�</p>
+<p>虽然这种方式会花费更多的精力，但这是最基本的主意. 这种方式既有document.write的优势并且不会阻塞页面的渲染，可以在页面load之后使用。</p>
 
-<p>Ȼ��, ����Ȼ������ <a href="#async">�첽��ͬ��</a>ʾ�����ᵽ������:����״̬�����ǿ����ڽű�ִ��ǰ֪��require()������,����ȷ����Щ���������ȼ���. </p>
+<p>然而, 他仍然有以上 <a href="#async">异步和同步</a>示例中提到的问题:理想状态下我们可以在脚本执行前知道require()的依赖,并且确保那些依赖被事先加载. </p>
 </div>
 
 <div class="section">
-<h2><a name="9">������װ</a><span class="sectionMark">&sect; 9</span></h2>
+<h2><a name="9">函数包装</a><span class="sectionMark">&sect; 9</span></h2>
 
-<p>����������Ҫ֪����������ȷ��ִ�����ǵĽű�֮ǰ�Ѿ���������Щ��������õķ�ʽ��ʹ�ú�����װ�����������ǵ�ģ�����API. ������:</p>
+<p>所以我们需要知道依赖并且确保执行我们的脚本之前已经加载了这些依赖。最好的方式是使用函数包装器来构建我们的模块加载API. 像这样:</p>
 
 <pre><code>define(
-    //ģ����
+    //模块名
     "types/Manager",
 
-    //��������
+    //依赖数组
     ["types/Employee"],
 
-    //�����е���������֮����Ҫִ�еĺ�������������Ĳ�����������������һһ��Ӧ
+    //当所有的依赖加载之后需要执行的函数。这个函数的参数和上述依赖数组一一对应
     function (Employee) {
         function Manager () {
             this.reports = [];
         }
 
-        //�����ھͻ�ִ��
+        //他现在就会执行
         Manager.prototype = new Employee();
 
-        //����Manager������������ʹ����Ա�������ģ�����ã�
+        //返回Manager构造器函数，使其可以被其他的模块引用！
         return Manager;
     }
 );
 </code></pre>
 
-<p>����RequireJS���﷨�ṹ. ����һ�ּ򵥵��﷨���������������ͨ�Ĳ���Ҫ����ģ���js�ļ�:</p>
+<p>这是RequireJS的语法结构. 还有一种简单的语法你可以用来加载普通的不需要定义模块的js文件:</p>
 
 <pre><code>require(["some/script.js"], function() {
-    //������������� some/script.js ���غ�ִ��
+    //这个函数将会在 some/script.js 加载后执行
 });
 </code></pre>
 
-<p>ѡ�������﷨����Ϊ��ಢ�ҿ���ʹ��head.append(script)�ķ�ʽ����.</p>
+<p>选择这种语法是因为简洁并且可以使用head.append(script)的方式加载.</p>
 
-<p>����������CommonJS���﷨�Ĳ�֮ͬ�����ڣ�û�б�Ҫ��������˹����ĺܺ�.
-  �н���˵������CommonJS���﷨���Ժ�head.appendChild(script)һ��ʹ�ã�����������˽��̿���Ϊģ����Ϻ�����װ����
+<p>他与正常的CommonJS的语法的不同之处在于：没有必要再浏览器端工作的很好.
+  有建议说正常的CommonJS的语法可以和head.appendChild(script)一起使用，如果服务器端进程可以为模块加上函数包装器。
 </p>
-<p>��ǿ��ʹ�÷���˽���ת�����룬��������ǳ���Ҫ:</p>
+<p>不强制使用服务端进程转换代码，我相信这非常重要:</p>
 
 <ul>
-<li>��ʹ��debug�ܹ���,�кŽ������¶���. ��ΪԴ���뱻������ע���˺�����װ��.</li>
-<li>����Ҫ�����ĥ�Ϲ���. ���ǰ�˿���Ӧ��֤�Ǿ�̬��.</li>
+<li>它使得debug很怪异,行号将会重新对齐. 因为源代码被服务器注入了函数包装器.</li>
+<li>它需要更多的磨合工作. 因此前端开发应保证是静态的.</li>
 </ul>
 
-<p>����������������ϸ�ں�ʹ�ú�����װ����ʾ��, ����Ϊ Asynchronous Module Definition (AMD), ������
-<a href="whyamd.html">Why AMD?</a> ҳ���ҵ�.
+<p>更多关于设计力量的细节和使用函数包装器的示例, 被称为 Asynchronous Module Definition (AMD), 可以在
+<a href="whyamd.html">Why AMD?</a> 页面找到.
 </div>
+    </div>
+    <div id="footer" class="mono">
+        <span class="line">Latest Release: <a href="/docs/download.html">1.0.3</a></span>
+        <span class="line">Open source: <a href="https://github.com/jrburke/requirejs/blob/master/LICENSE">new BSD or MIT licensed</a></span>
+        <span class="line">web design by <a href="http://andychung.ca">Andy Chung</a> &copy; 2011</span>
+        <span class="line">中文翻译<a href="http://lanvige.com">ET Team</a> &copy; 2012</span>
+    </div>
+</div>
+
+</body>
+</html>
