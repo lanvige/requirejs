@@ -73,17 +73,17 @@
 
         <ul>
             <li class="hbox">
-                <a class="local" href="jquery.html">和jQuery一起使用</a>
+                <a class="local" href="jquery.html">结合jQuery一起使用</a>
                 <span class="spacer boxFlex"></span>
                 <span class="icon script"></span>
             </li>
             <li class="hbox">
-                <a class="local" href="node.html">和Node一起使用</a>
+                <a class="local" href="node.html">结合Node一起使用</a>
                 <span class="spacer boxFlex"></span>
                 <span class="icon script"></span>
             </li>
             <li class="hbox">
-                <a class="local" href="dojo.html">和Dojo一起使用</a>
+                <a class="local" href="dojo.html">结合Dojo一起使用</a>
                 <span class="spacer boxFlex"></span>
                 <span class="icon script"></span>
             </li>
@@ -212,7 +212,7 @@
     </li>
 </ul>
 
-<p>这篇文中讨化有关这种设计影响和使用<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">异步模块定义AMD API</a>作为Javascript模块化，RequireJS支持模块API, 这是一篇讨论 <a href="why.html">Web上的模块化通用方案</a>的深度文章。</p>
+<p>这篇文中讨化有关这种设计影响和使用<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">异步模块定义AMD API</a>作为Javascript模块化，RequireJS中支持模块API, 这里还有另一篇文章关于 <a href="why.html">Web上的模块化通用方案</a>的文章。</p>
 
 </div>
 
@@ -222,7 +222,7 @@
 <span class="sectionMark">&sect; 1</span>
 </h2>
 
-<p>什么是JavaScript模块？它们是用来干什么的？</p>
+<p>什么是JavaScript模块？是用来干什么的？</p>
 
 <ul>
 <li><strong>定义</strong>：如何压缩一段代码到一个可用的单元，并且如何为模块注册功能/导出一个值。</li>
@@ -244,16 +244,16 @@
 }());
 </code></pre>
 
-<p>现在的Js代码块是如何被定义的？</p>
+<p>现在的JavaScript代码块是如何被定义的？</p>
 
 <ul>
-    <li>通过立即执行的factory函数.</li>
+    <li>通过立即执行的factory函数。</li>
     <li>通过在HTML script标签中定义全局变量名，引用到依赖都完成。</li>
-    <li>依赖都非常的弱：开发者需要知道正确的依赖关系。举例来说，jQuery引用标签必须放在Backbone之前。</li>
+    <li>？？依赖都非常的弱：开发者需要知道正确的依赖关系。举例来说，Backbone依赖于jQuery，所以jQuery引用标签必须放在Backbone之前。</li>
     <li>为了优化性能，在部署时需要第三方工具来将一组script标签合并成一个。</li>
 </ul>
 
-<p>这对于一个大型项目来非常难以管理，特别是当依赖开始重复和嵌套时。手写script标签很不灵活，并且还没有将脚本的按需加载给考虑进来。</p>
+<p>这对于一个大型项目来非常难以管理，特别是当依赖开始重复和嵌套时。手写script标签很不灵活，？并且还没有将脚本的按需加载给考虑进来。</p>
 
 </div>
 
@@ -520,11 +520,11 @@ if (someCondition) {
 
 <div class="section">
 <h2>
-<a name="youcando">What You Can Do</a>
+<a name="youcando">你能做什么</a>
 <span class="sectionMark">&sect; 10</span>
 </h2>
 
-<p id="doapp"><strong>If you write applications:</strong></p>
+<p id="doapp"><strong>如果你要写一个应用程序：</strong></p>
 
 <ul>
 <li>Give an AMD loader a try. You have some choices:
@@ -545,7 +545,7 @@ if (someCondition) {
 <ul>
 <li><a href="https://gist.github.com/1262861">Optionally call define()</a> if it is available. The nice thing is you can still code your library without relying on AMD, just participate if it is available. This allows consumers of your modules to:
 <ul>
-<li>avoid dumping global variables in the page</li>
+<li>避免在页面中大量使用全局变量</li>
 <li>use more options for code loading, delayed loading</li>
 <li>use existing AMD tooling to optimize their project</li>
 <li>participate in a workable module system for JS in the browser today.</li>
@@ -555,8 +555,8 @@ if (someCondition) {
 <p id="doenv"><strong>If you write code loaders/engines/environments for JavaScript:</strong></p>
 
 <ul>
-<li>Implement <a href="https://github.com/amdjs/amdjs-api/wiki/AMD">the AMD API</a>. There is <a href="https://groups.google.com/group/amd-implement">a discussion list</a> and <a href="https://github.com/amdjs/amdjs-tests">compatibility tests</a>. By implementing AMD, you will reduce multi-module system boilerplate and help prove out a workable JavaScript module system on the web. This can be fed back into the ECMAScript process to build better native module support.</li>
-<li>Also support <a href="https://github.com/amdjs/amdjs-api/wiki/require">callback-require</a> and <a href="https://github.com/amdjs/amdjs-api/wiki/Loader-Plugins">loader plugins</a>. Loader plugins are a great way to reduce the nested callback syndrome that can be common in callback/async-style code.</li>
+<li>实现<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD API</a>。这里有一份<a href="https://groups.google.com/group/amd-implement">讨论列表</a>和<a href="https://github.com/amdjs/amdjs-tests">兼容性测试</a>。 By implementing AMD, you will reduce multi-module system boilerplate and help prove out a workable JavaScript module system on the web. This can be fed back into the ECMAScript process to build better native module support.</li>
+<li>同时也支持<a href="https://github.com/amdjs/amdjs-api/wiki/require">callback-require</a> and <a href="https://github.com/amdjs/amdjs-api/wiki/Loader-Plugins">loader plugins</a>. 插件加载是一个很Loader plugins are a great way to reduce the nested callback syndrome that can be common in callback/async-style code.</li>
 </ul>
 
 </div>
