@@ -1,40 +1,40 @@
 <div id="directory" class="section">
-<h1>How to use RequireJS with jQuery</h1>
+<h1>如何将JQuery和RequireJS整合在一起使用</h1>
 <ul class="index mono">
     <li class="hbox">
-        <a href="#get">Get RequireJS</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
+        <a href="#get">获取RequireJS</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
     </li>
     <li class="hbox">
-        <a href="#setup">Set up your HTML page</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
+        <a href="#setup">创建页面</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
     </li>
     <li class="hbox">
         <a href="#optimize">Feel the need for speed</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
     </li>
     <li class="hbox">
-        <a href="#advanced">Advanced use</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4</span>
+        <a href="#advanced">高级应用</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4</span>
     </li>
 </ul>
-<p>When a project reaches a certain size, managing the script modules for a project starts to get tricky. You need to be sure to sequence the scripts in the right order, and you need to start seriously thinking about combining scripts together into a bundle for deployment, so that only one or a very small number of requests are made to load the scripts.</p>
+<p>当一个项目上了一定规模后，管理里面的Script modules就会变得有些棘手了。你需要保证脚本按照正确的顺序加载，在步署上得开始考虑合并脚本，以便只用尽量少的请求来加载脚本。</p>
 
-<p>You may also want to load code on the fly, after page load.</p>
+<p>你可能也想要在页面加载后快速加载脚本。</p>
 
-<p>RequireJS can help you manage the script modules, load them in the right order, and make it easy to combine the scripts later via the RequireJS <a href="optimization.md">optimizer</a> without needing to change your markup. It also gives you an easy way to load scripts after the page has loaded, allowing you to spread out the download size over time.</p>
+<p>RequireJS可以帮助你管理script modules，按照正确的顺利加载它们，使用<a href="optimization.md">optimizer</a>你很容易合并它们而不需要改变markup。你也可以很容易的在页面加载完成后再加载脚本，以便减轻页面初始加载时的负荷。</p>
 
-<p>RequireJS has a module system that lets you define well-scoped modules, but you do not have to follow that system to get the benefits of dependency management and build-time optimizations. Over time, if you start to create more modular code that needs to be reused in a few places, the module format for RequireJS makes it easy to write encapsulated code that can be loaded on the fly. It can grow with you, particularly if you want to incorporate internationalization (i18n) string bundles, to localize your project for different languages, or load some HTML strings and make sure those strings are available before executing code, or even use JSONP services as dependencies.</p>
+<p>RequireJS有一个模块系统可以让你定义出结构良好的modules，而不需要你遵守让模块独立的规范。时间一长，如果你需要创建越来越多的可重用的模块，RequireJS 可以让你很容易写出便于封装和快速加载的代码。它可以伴随你成长，特别适合需要扩展国际化的地方，如项目里各种不同的语言版本，或者在代码执行前就加载好html，甚至使用JSONP services来管理。</p>
 </div>
 
 <div class="section">
 <h2>
-<a name="get">Get RequireJS</a>
+<a name="get">获取RequireJS</a>
 <span class="sectionMark">&sect; 1</span>
 </h2>
 
-<p>First step is to get RequireJS:</p>
+<p>第一步是获取RequireJS:</p>
 <ul>
-    <li><a href="download.html#samplejquery">download the sample project</a>.</li>
+    <li><a href="download.html#samplejquery">下载示例</a>.</li>
 </ul>
 
-<p>This sample project uses a combined jQuery+RequireJS file. If you prefer to not bundle jQuery with RequireJS, the <a href="https://github.com/jrburke/require-jquery">sample project's README</a> has an alternate way to use jQuery with RequireJS, but it requires consideration of more edge cases.</p>
+<p>例子使用的是一个合并过的jQuery+RequireJS。如果你不想把jQuery绑定到RequireJS上，  <a href="https://github.com/jrburke/require-jquery">例子的Readme</a>有一个交换的办法来让jQuery和RequireJS一起工作，但是需要考虑一些边缘case。</p>
 
 </div>
 
@@ -44,7 +44,7 @@
 <span class="sectionMark">&sect; 2</span>
 </h2>
 
-<p>A sample HTML page would look like this (assuming you put all your .js files in a "scripts" subdirectory):</p>
+<p>下面是例子里的html页面 (假设你已经把所有的js文件都加到scripts标签里了):</p>
 
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -58,14 +58,14 @@
 &lt;/html&gt;
 </code></pre>
 
-<span class="note">The path rules used for data-main changed in RequireJS 0.23. Before that version, data-main="main" for the above example.</span>
+<span class="note">data-main的规则在RequireJS 0.23版里有所改动。在之前的版本里，上面的例子里使用的是data-main="main"</span>
 
-<p>The data-main attribute on the script tag for require.js tells RequireJS to load the scripts/main.js file. RequireJS will load any dependency that is passed to require() without a ".js" file from the same directory as the one used for data-main. If you feel more comfortable specifying the whole path, you can also do the following:</p>
+<p>script标签里的data-main属性告诉RequireJS来加载scripts/main.js。RequireJS会读取data-main的值并且自动加上".js"，传递给require()方法，然后在同一个目录里从加载任何依项。如果你觉得指定整个路径看起来更舒服点，你也可以这么做： </p>
 
 <pre><code>&lt;script data-main="scripts/main.js" src="scripts/require-jquery.js"&gt;&lt;/script&gt;
 </code></pre>
 
-<p>What is in main.js? A call to require() to load all the scripts you need and any init work you want to do for the page. This example main.js script loads two plugins, jquery.alpha.js and jquery.beta.js (not the names of real plugins, just an example). The plugins should be in the same directory as require-jquery.js:</p>
+<p>main.js里有什么？调用require()来加载所有你需要的脚本及一些页面的初始化工作。例子里main.js加载两个插件，jquery.alpha.js和jquery.beta.js（并不是真的插件，只是个比方）。这两个插件需要和require-jquery.js在同一个目录里： </p>
 
 <p>main.js:</p>
 
@@ -77,9 +77,9 @@
 });
 </code></pre>
 
-<p>In the require() call, "jquery" was referenced as a dependency. The require-jquery.js file has special code in it to register jQuery as a RequireJS module, and since it is registered as a module, you can get a handle on that module as the first argument to the function callback passed to require. In the above example, $ is used to reference the jQuery module.</p>
+<p>在require()方法里，"jquery"作为一个依赖项来引用。require-jquery.js采用特殊的代码来将jQuery注册为RequireJS的模块，当它注册成为模块后，你就可以获得一个句柄并将它作为回调函数的第一个参数传给require。在上面的例子里，$代表着jQuery模块。</p>
 
-<p>Since jquery.alpha and jquery.beta are just plugins that augment jQuery, they do not return modules that you can reference as function arguments.</p>
+<p>而jquery.alpha和jquery.beta是jQuery的插件，所以他们不返回模块供函数参数所用。 </p>
 
 </div>
 
@@ -89,16 +89,16 @@
 <span class="sectionMark">&sect; 3</span>
 </h2>
 
-<p>Now your page is set up to be optimized very easily via the <a href="optimization.html">optimizer</a>.</p>
+<p>现在你的页面已经非常容易的使用 <a href="optimization.html">optimizer</a>来优化了。</p>
 
-<p>If you downloaded the jQuery sample project, then the optimizer that is part of the RequireJS source is already included.</p>
+<p>如果你下载了上面的例子，那么optimizer已经包含在里面了。</p>
 
-<p>If you are not using the jQuery sample project, get the optimizer by downloading the <a href="download.html#rjs">r.js file</a> and place it anywhere you like outside your web development area.</p>
+<p>如果你不用上面的例子，从这里下载<a href="download.html#rjs">r.js file</a>，你可以放在任何一个地方来使用它。</p>
 
-<p>For the purposes of this example, the RequireJS source is placed as a sibling to the <strong>webapp</strong> directory, which contains the HTML page and the scripts directory with all the scripts. Complete directory structure:</p>
+<p>在这个例子里，RequireJS的代码放在和<strong>webapp</strong>同一级的目录里，webapp里面有html文件和包括所有脚本的Scripts目录。完整的目录结构：</p>
 
 <ul>
-<li>r.js  (the file that includes the optimizer)</li>
+<li>r.js  (包括optimizer)</li>
 <li>webapp/app.html</li>
 <li>webapp/scripts/main.js</li>
 <li>webapp/scripts/require-jquery.js</li>
@@ -106,7 +106,7 @@
 <li>webapp/scripts/jquery.beta.js</li>
 </ul>
 
-<p>Then, in the scripts directory that has require-jquery.js and main.js, create a file called app.build.js with the following contents:</p>
+<p>在scripts目录里有require-jquery.js和main.js，创建一个app.build.js文件包含以下内容： </p>
 
 <pre><code>({
     appDir: "../",
@@ -129,53 +129,45 @@
 })
 </code></pre>
 
-<p>To use the optimizer, you need <a href="http://nodejs.org">Node</a> or Java 6 installed. These instructions assume Node is being used. See the <a href="optimization.html">Optimization page</a> for more information.</p>
+<p>要使用optimizer，你需要安装<a href="http://nodejs.org">Node</a> 或者java 6。我们假装你已安装过了Node。更多信息，查看<a href="optimization.html">Optimization page</a> for more information.</p>
 
-<p>To start the build, go to the <strong>webapp/scripts</strong> directory, execute the following command:</p>
+<p>编译也很简单，打开<strong>webapp/scripts</strong>目录，执行以下命令：</p>
 
 <pre><code>node ../../r.js -o app.build.js
 </code></pre>
 
-<p>Now, in the webapp-build directory, main.js will have the main.js contents, jquery.alpha.js and jquery.beta.js inlined. If you then load the app.html file in the webapp-build directory, you should not see any network requests for jquery.alpha.js and jquery.beta.js.</p>
+<p>现在，在webapp-build目录里，main.js里存放的是main.js的内容，以及jquery.alpha.js和jquery.beta.js的压缩版本。这时如果你请求webapp-build目录里的app.html，就不会再请求jquery.alpha.js和jquery.beta.js了。</p>
 </div>
 
 
 <div class="section">
 <h2>
-<a name="advanced">Advanced use</a>
+<a name="advanced">高级应用</a>
 <span class="sectionMark">&sect; 4</span>
 </h2>
 
-<p>The steps above make it easy start modular development with jQuery, particularly if you are using
-jQuery plugins that assume jQuery is already loaded in the page. The trade-off with the above approach
-is using a combined RequireJS and jQuery file.</p>
+<p>只需要按照上面的几步，你就可以很容易用jQuery进行模块开发了，特别是你正在使用jQuery和其插件。你只需要使用合并的RequireJS就可以了。</p>
 
-<p>Ideally you would not need to include jQuery with RequireJS, and just use RequireJS to load jQuery
-on demand. However, by default scripts can load out of order with RequireJS, and this does not work well
-with jQuery plugins.</p>
+<p>理想情况下，你不需要把jQuery放在RequireJS里，只需要使用RequireJS来加载jQuery。但是，默认情况下RequireJS不能保证加载顺序，并且也不能很好的和jQuery插件一同使用。</p>
 
-<p>Some options:</p>
+<p>一些设置：</p>
 
 <ul>
-    <li>Use the <a href="api.html#order">order plugin</a> to load jQuery and the plugins you
-    use in the correct order.</li>
-    <li>Use the priority config to load jQuery before other scripts load. See the
+    <li>使用<a href="api.html#order">order plugin</a>来保证正确加载jQuery和插件。</li>
+    <li>使用priority config在其它脚本加载前加载jQuery。查看
     <a href="https://github.com/jrburke/require-jquery">Alternate Integration section
-    in the require-jquery project</a> for more information.</li>
-    <li>Wrap the plugins in a define() call.</li>
+    in the require-jquery project</a>获取更多信息。</li>
+    <li>把插件封装在define（）方法里。</li>
 </ul>
 
-<p>Ideally all the jQuery plugins you use would optionally call define() to register
-as a module. Some of the plugins you use may already call define() to register as an
-AMD module. If they do not, then you can wrap the code yourself with this wrapper:
+<p>理想情况下，所有的jQuery插件都可以随意调用define()来注册模块。一些插件里可能已经调用define()来注册AMD模块。如果没有，你自己可以按照如下的方式来封装：
 
 <pre><code>define(['jquery'], function ($) {
     //Plugin code goes here.
 });
 </code></pre>
 
-<p>In addition, you can ask the plugin author to optionally calling define()
-in their code. The <a href="https://github.com/umdjs/umd">umdjs project</a>
-has some resources and examples to help them.</p>
+<p>此外，你可以让插件的作者在代码里调用define()方法。 <a href="https://github.com/umdjs/umd">umdjs project</a>
+有一些资源和例子可以参考。</p>
 
 </div>

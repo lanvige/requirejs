@@ -45,7 +45,7 @@
 <span class="sectionMark">&sect; 1</span>
 </h2>
 
-<p>什么是JavaScript模块？它们是用来干什么的？</p>
+<p>什么是JavaScript模块？是用来干什么的？</p>
 
 <ul>
 <li><strong>定义</strong>：如何压缩一段代码到一个可用的单元，并且如何为模块注册功能/导出一个值。</li>
@@ -344,11 +344,11 @@ if (someCondition) {
 
 <div class="section">
 <h2>
-<a name="youcando">What You Can Do</a>
+<a name="youcando">你能做什么</a>
 <span class="sectionMark">&sect; 10</span>
 </h2>
 
-<p id="doapp"><strong>If you write applications:</strong></p>
+<p id="doapp"><strong>如果你要写一个应用程序：</strong></p>
 
 <ul>
 <li>Give an AMD loader a try. You have some choices:
@@ -369,7 +369,7 @@ if (someCondition) {
 <ul>
 <li><a href="https://gist.github.com/1262861">Optionally call define()</a> if it is available. The nice thing is you can still code your library without relying on AMD, just participate if it is available. This allows consumers of your modules to:
 <ul>
-<li>avoid dumping global variables in the page</li>
+<li>避免在页面中大量使用全局变量</li>
 <li>use more options for code loading, delayed loading</li>
 <li>use existing AMD tooling to optimize their project</li>
 <li>participate in a workable module system for JS in the browser today.</li>
@@ -379,8 +379,8 @@ if (someCondition) {
 <p id="doenv"><strong>If you write code loaders/engines/environments for JavaScript:</strong></p>
 
 <ul>
-<li>Implement <a href="https://github.com/amdjs/amdjs-api/wiki/AMD">the AMD API</a>. There is <a href="https://groups.google.com/group/amd-implement">a discussion list</a> and <a href="https://github.com/amdjs/amdjs-tests">compatibility tests</a>. By implementing AMD, you will reduce multi-module system boilerplate and help prove out a workable JavaScript module system on the web. This can be fed back into the ECMAScript process to build better native module support.</li>
-<li>Also support <a href="https://github.com/amdjs/amdjs-api/wiki/require">callback-require</a> and <a href="https://github.com/amdjs/amdjs-api/wiki/Loader-Plugins">loader plugins</a>. Loader plugins are a great way to reduce the nested callback syndrome that can be common in callback/async-style code.</li>
+<li>实现<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD API</a>。这里有一份<a href="https://groups.google.com/group/amd-implement">讨论列表</a>和<a href="https://github.com/amdjs/amdjs-tests">兼容性测试</a>。 By implementing AMD, you will reduce multi-module system boilerplate and help prove out a workable JavaScript module system on the web. This can be fed back into the ECMAScript process to build better native module support.</li>
+<li>同时也支持<a href="https://github.com/amdjs/amdjs-api/wiki/require">callback-require</a> and <a href="https://github.com/amdjs/amdjs-api/wiki/Loader-Plugins">loader plugins</a>. 插件加载是一个很Loader plugins are a great way to reduce the nested callback syndrome that can be common in callback/async-style code.</li>
 </ul>
 
 </div>
