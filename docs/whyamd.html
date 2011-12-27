@@ -91,11 +91,11 @@
 exports.myExample = function () {};
 </code></pre>
 
-<p>最初的The original <a href="http://groups.google.com/group/commonjs">CommonJS (CJS) list</a> 决定为现在的JavaScript语言制定一个模块的格式，但是不仅限于浏览器端的JS环境。这个权宜之计包括： </p>
+<p>最初的<a href="http://groups.google.com/group/commonjs">CommonJS (CJS) list</a> 决定为现在的JavaScript语言制定一个模块的格式，但是不仅限于浏览器端的JS环境。这个权宜之计包括： </p>
 
 <ul>
-<li>Either use a server to translate CJS modules to something usable in the browser.</li>
-<li>Or use XMLHttpRequest (XHR) to load the text of modules and do text transforms/parsing in browser.</li>
+<li>Either 使用一个服务器去转换CJS模块use a server to translate CJS modules to something usable in the browser.</li>
+<li>或者使用XMLHttpRequest (XHR)去加载文本模块然后在浏览器中做文本的转义和解析。</li>
 </ul>
 
 <p>CJS模块格式仅允许一个文件包括一个模块，所以一个“传输格式”将被使用成不止一个模块为性能和。。用途。</p>
@@ -103,8 +103,8 @@ exports.myExample = function () {};
 <p>为了这个目的，CommonJS组开始致力于解决依赖引用和如何处理循环引用的问题，并且如何为当前模块获取更多属性。无论如何，它们没有完全解决一点在浏览器环境下的问题，而这些问题一直影响着模块的设计：</p>
 
 <ul>
-<li>网络加载 </li>
-<li>inherent asynchronicity</li>
+<li>网络加载</li>
+<li>天然异步</li>
 </ul>
 
 <p>这意味着他们让放任前端开发人员支实现自己的格式，并且这种方案让调试变得更加麻烦。？？调试多个文件合并成一个文件有难度。这些难题也许有一天会被写入浏览器工具，但最终的结论是：使用CommonJS 模块在大多数的JS环境，也就是浏览器中，还不适合。</p>
@@ -136,8 +136,8 @@ exports.myExample = function () {};
 <p>这对CommonJS模块来说是一种改进：</p>
 
 <ul>
-<li>在浏览器上工作的更好， it has the least amount of gotchas. Other approaches have problems with debugging, cross-domain/CDN usage, file:// usage and the need for server-specific tooling.</li>
-<li>Defines a way to include multiple modules in one file. In CommonJS terms, the term for this is a "transport format", and that group has not agreed on a transport format.</li>
+<li>在浏览器上工作的更好，它有着最少的了解。其它方式在调试、跨域及CDN等方面都有问题，如果想使用file://则需要特别的服务器端工具。</li>
+<li>定义一种一个文件中含多个模块的用法。在CommonJS规定中，这种规定叫名“传输格式”（"transport format"），但CommonJS组还不允许这种格式。</li>
 <li>允许设置一个功能作为返回值。这对构造函数非常有用。在CommonJS中不大好，总是不得不支设置属性在Export对象上。 Node支持module.exports = function() {}，但这不属于CommonJS spec中的一部分。</li>
 </ul>
 
@@ -145,20 +145,20 @@ exports.myExample = function () {};
 
 <div class="section">
 <h2>
-<a name="definition">Module Definition</a>
+<a name="definition">模块定义</a>
 <span class="sectionMark">&sect; 5</span>
 </h2>
 
-<p>AMD的基本核心，功能，作为单元的包装已经被理解了，也被文当化在module pattern:中, the function, is already well understood as a unit of encapsulation. It has also been documented as the <a href="http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth">module pattern</a>:</p>
+<p>AMD的基本核心，功能，作为单元的包装已经被理解了，也被文当化在模块模式中, 函数，作为一个代码单元已经能被很好的理解。在<a href="http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth">module pattern</a>有更多描述：</p>
 
 <pre><code>(function () {
    this.myGlobal = function () {};
 }());
 </code></pre>
 
-<p>That type of module relies on attaching properties to the global object to export the module value, and it is difficult to declare dependencies with this model. The dependencies are assumed to be immediately available when this function executes. This limits the loading strategies for the dependencies.</p>
+<p>这种类型的模块依赖于附加属性到全局对象上从而导出模块钱，然后这样很难声明模块的依赖。假设将代码被执行时依赖能立即使用。这限制了依赖的加载策略。</p>
 
-<p>AMD addresses these issues by:</p>
+<p>AMD通过以下方式解决这些问题：</p>
 
 <ul>
 <li>通过调用define()来注册factory方法，而不是直接调用它。</li>
@@ -195,7 +195,7 @@ define('myModule', ['dep1', 'dep2'], function (dep1, dep2) {
 
 <p>如果你仅在一个文件中定义一个模块，则可以很灵活的使用匿名模块。这样可以很方便的移动文件，或者改文件名。</p>
 
-<p>However, for some popular JS libraries in use on the web now, defining an anonymous module might be hazardous since they could be loaded on a page, without using an AMD loader. If there happens to be an AMD loader on the page, the AMD loader will not have enough information to give the module a name. jQuery and underscore are examples of scripts that fall in this category.</p>
+<p>无论如何，对于一些现在Web上常用的JavaScript库，定义一个匿名模块是很危险的，因为它们可能会被加载到页面上，而不是使用AMD加载器。如果发生了这种情况，AMD加载器就没有足够的信息去给这个模块命名。jQuery和undersocre就属于这种类型。</p>
 
 <p>使用这些Web端流行的JS库，使用命名的define() 调用是最好的避免错误的方式，当网页上使用大量的第三方脚本。</p>
 
@@ -277,57 +277,58 @@ if (someCondition) {
 
 <p>AMD 执行model更适合。CommonJS模块不支持AMD wrapper同时也不支持和谐模块。AMD的代码执行方式与未来更加容。</p>
 
-<h2>Verbosity vs. Usefulness</h2>
+<h2>冗余度和可用性</h2>
 
-<p>One of the criticisms of AMD, at least compared to CJS modules, is that it requires a level of indent and a function wrapping.</p>
+<p>对AMD提出的第一个批评是，最少相对于CJS模块来说，就是它需要一组缩进和要用一个函数来包装一下。</p>
 
-<p>But here is the plain truth: the perceived extra typing and a level of indent to use AMD does not matter. Here is where your time goes when coding:</p>
+<p>这是一个不争的事实：这个额外的函数的多一级的缩进对于AMD的使用来说不是什么问题。 当你编程时，你的主要时间是花在：</p>
 
 <ul>
-<li>Thinking about the problem.</li>
-<li>Reading code.</li>
+<li>思考问题。</li>
+<li>阅读代码。</li>
 </ul>
 
-<p>Your time coding is mostly spent thinking, not typing. While fewer words are generally preferable, there is a limit to that approach paying off, and the extra typing in AMD is not that much more.</p>
+<p>你编程时大多数的时间是花在思考上，而不是输入。虽然代码更少让人觉得很爽，there is a limit to that approach paying off，更何况使用AMD时需要的额外的代码并不多。</p>
 
-<p>Most web developers are use a function wrapper anyway, to avoid polluting the page with globals. Seeing a function wrapped around functionality is a very common sight and does not add to the reading cost of a module.</p>
+<p>大多数的Web开发者都会使用一个包装函数去避免页面的全局污染。找一个写好的包装函数来看一下，你会发现这种作法很常见，而且不会对模块的阅读带来任何负担。</p>
 
-<p>There are also hidden costs with the CommonJS format:</p>
+<p>使用CommonJS格式还会有以下的潜在成本：</p>
 
 <ul>
-    <li>the tooling dependency cost</li>
-    <li>edge cases that break in browsers, like cross domain access</li>
-    <li>worse debugging, a cost that continues to add up over time</li>
+    <li>使用这些依赖工具的成本</li>
+    <li>一些特殊情况会使浏览器崩溃，像跨域访问</li>
+    <li>很差的调试支持，这会持续增加你的使用成本</li>
 </ul>
 
-<p>AMD modules require less tooling, there are fewer edge case issues, and better debugging support.</p>
+<p>AMD模块不需要太多的工具，只有少数的边界问题和更好的调试支持。</p>
 
-<p>What is important: being able to actually share code with others. AMD is the lowest energy pathway to that goal.</p>
+<p>什么是最重要的: 能真正的重用代码。AMD则能以最小的花费来实现这一目的。</p>
 
-<p>Having a working, easy to debug module system that works in today's browsers means getting real world experience in making the best module system for JavaScript in the future.</p>
+<p>还在做另一件事，做一个最好的JavaScript模块化系统，使得在现代浏览器中调试有着很好的真实体验。
+</p>
 
-<p>AMD and its related APIs, have helped show the following for any future JS module system:</p>
+<p>AMD还有其相关的APIs，来帮助构建未来JS模块系统： have helped show the following for any future JS module system:</p>
 
 <ul>
-<li><strong>Returning a function as the module value</strong>, particularly a constructor function, leads to better API design. Node has module.exports to allow this, but being able to use "return function (){}" is much cleaner. It means not having to get a handle on "module" to do module.exports, and it is a clearer code expression.</li>
-<li><strong>Dynamic code loading</strong> (done in AMD systems via <a href="https://github.com/amdjs/amdjs-api/wiki/require">require([], function (){}))</a> is a basic requirement. CJS talked about it, had some proposals, but it was not fully embraced. Node does not have any support for this need, instead relying on the synchronous behavior of require(''), which is not portable to the web.</li>
+<li><strong>返回一个函数来作为模块值</strong>, 就像一个构造函数，带来更好的API设计。Node有 module.exports来做这件事，但使用"return function (){}"会显得代码更加的整洁。这意味着不必为了得到一个"module"的句柄而去做module.exports，同时语义也更加的清晰。</li>
+<li><strong>动态代码加载</strong> (done in AMD systems via <a href="https://github.com/amdjs/amdjs-api/wiki/require">require([], function (){}))</a> is a basic requirement. CJS talked about it, had some proposals, but it was not fully embraced. Node does not have any support for this need, instead relying on the synchronous behavior of require(''), which is not portable to the web.</li>
 <li><strong><a href="http://requirejs.org/docs/plugins.html">Loader plugins</a></strong> are incredibly useful. It helps avoid the nested brace indenting common in callback-based programming.</li>
-<li><strong>Selectively mapping one module</strong> to load from another location makes it easy to provide mock objects for testing.</li>
-<li>There should only be at most <strong>one IO action for each module</strong>, and it should be straightforward. Web browsers are not tolerant of multiple IO lookups to find a module. This argues against the multiple path lookups that Node does now, and avoiding the use of a package.json "main" property. Just use module names that map easily to one location based on the project's location, using a reasonable default convention that does not require verbose configuration, but allow for simple configuration when needed.</li>
-<li>It is best if there is an <strong>"opt-in" call</strong> that can be done so that older JS code can partcipate in the new system.</li>
+<li><strong>可以选择映射一个模块</strong>去加载另一个地址从而很方便的为测试创建模拟对象。</li>
+<li>There should only be at most <strong>对于每个模块的IO操作</strong>，而且它应该是简单的。浏览器不能容忍为了找一个模块进行多次的IO操作。这个假设违反了Node的多次路径查找，为了避免使用package.json "main"属性。就用模块名称以项目路径来查找其它模块，一个好的约定可以减少很多冗余的配置，但也提供了一个简单的配置，如果真的需要。</li>
+<li>最好有一个<strong>"opt-in" call</strong>，这样老的JavaScript代码在新的系统里也能很好的工作。</li>
 </ul>
 
-<p>If a JS module system cannot deliver on the above features, it is at a significant disadvantage when compared to AMD and its related APIs around <a href="https://github.com/amdjs/amdjs-api/wiki/require">callback-require</a>, <a href="https://github.com/amdjs/amdjs-api/wiki/Loader-Plugins">loader plugins</a>, and paths-based module IDs.</p>
+<p>如果一个JavaScript模块系统不能提供上述功能，那对比AMD和其相关API<a href="https://github.com/amdjs/amdjs-api/wiki/require">callback-require</a>，<a href="https://github.com/amdjs/amdjs-api/wiki/Loader-Plugins">加载插件</a>，和基于路径的模块ID</p>则有着重大不足。
 
 </div>
 
 <div class="section">
 <h2>
-<a name="amdtoday">AMD Used Today</a>
+<a name="amdtoday">AMD使用现况</a>
 <span class="sectionMark">&sect; 9</span>
 </h2>
 
-<p>As of mid October 2011, AMD already has good adoption on the web:</p>
+<p>在2011年10月中旬，AMD在Web上已经有了不错的表现：</p>
 
 <ul>
 <li><a href="http://jquery.com/">jQuery</a> 1.7</li>
@@ -336,8 +337,8 @@ if (someCondition) {
 <li><a href="http://uxebu.github.com/embedjs/">EmbedJS</a></li>
 <li><a href="http://ender.no.de/">Ender</a>-associated modules like <a href="https://github.com/ded/bonzo">bonzo</a>, <a href="https://github.com/ded/qwery">qwery</a>, <a href="https://github.com/fat/bean">bean</a> and <a href="https://github.com/ded/domready">domready</a></li>
 <li>Used by <a href="http://getfirebug.com/">Firebug</a> 1.8+</li>
-<li>The simplified CommonJS wrapper can be used in <a href="https://addons.mozilla.org/en-US/developers/docs/sdk/1.1/">Jetpack/Add-on SDK</a> for Firefox</li>
-<li>Used for parts of sites on <a href="http://www.bbc.co.uk/">the BBC</a> (observed by looking at the source, not an official recommendation of AMD/RequireJS)</li>
+<li>Simplified CommonJS wrapper能被用在<a href="https://addons.mozilla.org/en-US/developers/docs/sdk/1.1/">Jetpack/Add-on SDK</a> for Firefox</li>
+<li>被部分使用在了<a href="http://www.bbc.co.uk/">the BBC</a> (仅用来查找资源，不是AMD/RequireJS官方最推荐的部分</li>
 </ul>
 
 </div>
@@ -351,36 +352,36 @@ if (someCondition) {
 <p id="doapp"><strong>如果你要写一个应用程序：</strong></p>
 
 <ul>
-<li>Give an AMD loader a try. You have some choices:
+<li>如果想体验下AMD加载器，你有以下几个选择：
 <ul>
 <li><a href="http://requirejs.org">RequireJS</a></li>
 <li><a href="https://github.com/unscriptable/curl">curl</a></li>
 <li><a href="https://github.com/zazl/lsjs">lsjs</a></li>
 <li><a href="http://dojotoolkit.org/">Dojo</a> 1.7 and <a href="http://mootools.net/">MooTools</a> 2.0 each have their own</li>
 </ul></li>
-<li>If you want to use AMD but still use the <strong>load one script at the bottom of the HTML page</strong> approach:
+<li>如果你想使用AMD，但页面中还是使用<strong>尾部写script标签加载</strong>的方式：
 <ul>
 <li>Use the <a href="http://requirejs.org/docs/optimization.html">RequireJS optimizer</a> either in command line mode or as an <a href="https://github.com/jrburke/r.js/blob/master/build/tests/http/httpBuild.js">HTTP service</a> with the <a href="https://github.com/jrburke/almond">almond AMD shim</a>.</li>
 </ul></li>
 </ul>
 
-<p id="dolib"><strong>If you are a script/library author</strong>:</p>
+<p id="dolib"><strong>如果你是一个脚本/库的作者</strong>:</p>
 
 <ul>
-<li><a href="https://gist.github.com/1262861">Optionally call define()</a> if it is available. The nice thing is you can still code your library without relying on AMD, just participate if it is available. This allows consumers of your modules to:
+<li><a href="https://gist.github.com/1262861">选择性调用define()</a>如果这个可行。好消息就是你的代码就可以不用依赖于AMD了，这将允许你模块的使用者：
 <ul>
 <li>避免在页面中大量使用全局变量</li>
-<li>use more options for code loading, delayed loading</li>
-<li>use existing AMD tooling to optimize their project</li>
-<li>participate in a workable module system for JS in the browser today.</li>
+<li>为代码加载、延迟加载提供更多选项</li>
+<li>使用现有的AMD工具来优化他们的项目</li>
+<li>为现在浏览器端的JS提供一个可行的模块系统</li>
 </ul></li>
 </ul>
 
-<p id="doenv"><strong>If you write code loaders/engines/environments for JavaScript:</strong></p>
+<p id="doenv"><strong>如果你为JavaScript写代码加载器/引擎/环境：</strong></p>
 
 <ul>
-<li>实现<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD API</a>。这里有一份<a href="https://groups.google.com/group/amd-implement">讨论列表</a>和<a href="https://github.com/amdjs/amdjs-tests">兼容性测试</a>。 By implementing AMD, you will reduce multi-module system boilerplate and help prove out a workable JavaScript module system on the web. This can be fed back into the ECMAScript process to build better native module support.</li>
-<li>同时也支持<a href="https://github.com/amdjs/amdjs-api/wiki/require">callback-require</a> and <a href="https://github.com/amdjs/amdjs-api/wiki/Loader-Plugins">loader plugins</a>. 插件加载是一个很Loader plugins are a great way to reduce the nested callback syndrome that can be common in callback/async-style code.</li>
+<li>实现<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD API</a>。这里有一份<a href="https://groups.google.com/group/amd-implement">讨论列表</a>和<a href="https://github.com/amdjs/amdjs-tests">兼容性测试</a>。通过实现AMD，你将减少多模块系统间的引用，打造一个可行的Web JavaScript模块系统。这将反馈给ECMAScript去打造更好的原生的模块支持。</li>
+<li>同时也支持<a href="https://github.com/amdjs/amdjs-api/wiki/require">callback-require</a>和<a href="https://github.com/amdjs/amdjs-api/wiki/Loader-Plugins">插件加载</a>. 插件加载看起来和callback/async-style代码没什么区别，但却是减少嵌套调用很好的方式。</li>
 </ul>
 
 </div>

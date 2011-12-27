@@ -14,13 +14,13 @@
         <a href="#advanced">高级应用</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4</span>
     </li>
 </ul>
-<p>当一个项目上了一定规模后，管理里面的Script modules就会变得有些棘手了。你需要保证脚本按照正确的顺序加载，在步署上得开始考虑合并脚本，以便只用尽量少的请求来加载脚本。</p>
+<p>当一个项目上了一定规模，管理Script的模块就会变得很棘手。你需要保证脚本按照正确的顺序加载，在部署上得开始考虑合并脚本，使得以最少的请求来加载脚本。</p>
 
 <p>你可能也想要在页面加载后快速加载脚本。</p>
 
-<p>RequireJS可以帮助你管理script modules，按照正确的顺利加载它们，使用<a href="optimization.md">optimizer</a>你很容易合并它们而不需要改变markup。你也可以很容易的在页面加载完成后再加载脚本，以便减轻页面初始加载时的负荷。</p>
+<p>RequireJS可以帮助你管理script模块，并按正确的顺利加载它们，使用<a href="optimization.md">optimizer</a>你很容易合并它们而不需要改变标记。你也可以很容易的在页面加载完成后再加载脚本，以便减轻页面初始加载时的负荷。</p>
 
-<p>RequireJS有一个模块系统可以让你定义出结构良好的modules，而不需要你遵守让模块独立的规范。时间一长，如果你需要创建越来越多的可重用的模块，RequireJS 可以让你很容易写出便于封装和快速加载的代码。它可以伴随你成长，特别适合需要扩展国际化的地方，如项目里各种不同的语言版本，或者在代码执行前就加载好html，甚至使用JSONP services来管理。</p>
+<p>RequireJS有一个模块系统可以让你定义出结构良好的模块，而不需要你遵守让模块独立的规范。时间一长，如果你需要创建越来越多的可重用的模块，RequireJS 可以让你很容易写出便于封装和快速加载的代码。它可以伴随你成长，特别适合需要扩展国际化的地方，如项目里各种不同的语言版本，或者在代码执行前就加载好HTML，甚至使用JSONP服务来管理。</p>
 </div>
 
 <div class="section">
@@ -31,20 +31,20 @@
 
 <p>第一步是获取RequireJS:</p>
 <ul>
-    <li><a href="download.html#samplejquery">下载示例</a>.</li>
+    <li><a href="download.html#samplejquery">下载示例</a></li>
 </ul>
 
-<p>例子使用的是一个合并过的jQuery+RequireJS。如果你不想把jQuery绑定到RequireJS上，  <a href="https://github.com/jrburke/require-jquery">例子的Readme</a>有一个交换的办法来让jQuery和RequireJS一起工作，但是需要考虑一些边缘case。</p>
+<p>示例中使用的是合并过的jQuery+RequireJS。如果你不想把jQuery绑定到RequireJS上，<a href="https://github.com/jrburke/require-jquery">例子中的Readme</a>中提供一个交换办法来让jQuery和RequireJS一起工作，但是需要考虑一些边缘case。</p>
 
 </div>
 
 <div class="section">
 <h2>
-<a name="setup">Set up your HTML page</a>
+<a name="setup">创建HTML页面</a>
 <span class="sectionMark">&sect; 2</span>
 </h2>
 
-<p>下面是例子里的html页面 (假设你已经把所有的js文件都加到scripts标签里了):</p>
+<p>下面是示例中的HTML页面 (假设你已经把所有的js文件都加到scripts标签里了):</p>
 
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -60,12 +60,12 @@
 
 <span class="note">data-main的规则在RequireJS 0.23版里有所改动。在之前的版本里，上面的例子里使用的是data-main="main"</span>
 
-<p>script标签里的data-main属性告诉RequireJS来加载scripts/main.js。RequireJS会读取data-main的值并且自动加上".js"，传递给require()方法，然后在同一个目录里从加载任何依项。如果你觉得指定整个路径看起来更舒服点，你也可以这么做： </p>
+<p>script标签里的data-main属性告诉RequireJS来加载scripts/main.js。RequireJS会读取data-main的值并且自动加上".js"，传递给require()方法，然后在同一个目录里加载所有依赖项。如果你觉得使用全路径看起来更舒服点，你也可以这么写： </p>
 
 <pre><code>&lt;script data-main="scripts/main.js" src="scripts/require-jquery.js"&gt;&lt;/script&gt;
 </code></pre>
 
-<p>main.js里有什么？调用require()来加载所有你需要的脚本及一些页面的初始化工作。例子里main.js加载两个插件，jquery.alpha.js和jquery.beta.js（并不是真的插件，只是个比方）。这两个插件需要和require-jquery.js在同一个目录里： </p>
+<p>main.js里有什么？调用require()来加载所有需要的脚本及一些页面的初始化工作。例子里main.js加载两个插件，jquery.alpha.js和jquery.beta.js（并不是真的插件，只是个比方）。这两个插件需要和require-jquery.js在同一个目录下：</p>
 
 <p>main.js:</p>
 
@@ -89,13 +89,13 @@
 <span class="sectionMark">&sect; 3</span>
 </h2>
 
-<p>现在你的页面已经非常容易的使用 <a href="optimization.html">optimizer</a>来优化了。</p>
+<p>现在你的页面可以很方便的使用<a href="optimization.html">optimizer</a>来优化了。</p>
 
 <p>如果你下载了上面的例子，那么optimizer已经包含在里面了。</p>
 
-<p>如果你不用上面的例子，从这里下载<a href="download.html#rjs">r.js file</a>，你可以放在任何一个地方来使用它。</p>
+<p>如果你不用上面的例子，从这里下载<a href="download.html#rjs">r.js文件</a>，你可以放在任何一个地方来使用它。</p>
 
-<p>在这个例子里，RequireJS的代码放在和<strong>webapp</strong>同一级的目录里，webapp里面有html文件和包括所有脚本的Scripts目录。完整的目录结构：</p>
+<p>在这个例子里，RequireJS的代码放在和<strong>webapp</strong>同一级的目录里，webapp里面有html文件和包括所有脚本的scripts目录。完整的目录结构如下：</p>
 
 <ul>
 <li>r.js  (包括optimizer)</li>
@@ -129,7 +129,7 @@
 })
 </code></pre>
 
-<p>要使用optimizer，你需要安装<a href="http://nodejs.org">Node</a> 或者java 6。我们假装你已安装过了Node。更多信息，查看<a href="optimization.html">Optimization page</a> for more information.</p>
+<p>要使用optimizer，你需要安装<a href="http://nodejs.org">Node</a> 或者java 6。我们假装你已安装过了Node。更多信息可以查看<a href="optimization.html">Optimization page</a>。</p>
 
 <p>编译也很简单，打开<strong>webapp/scripts</strong>目录，执行以下命令：</p>
 
@@ -153,11 +153,11 @@
 <p>一些设置：</p>
 
 <ul>
-    <li>使用<a href="api.html#order">order plugin</a>来保证正确加载jQuery和插件。</li>
-    <li>使用priority config在其它脚本加载前加载jQuery。查看
+    <li>使用<a href="api.html#order">order插件</a>来保证正确加载jQuery和插件。</li>
+    <li>使用优先级配置来在其它脚本加载前加载jQuery。查看
     <a href="https://github.com/jrburke/require-jquery">Alternate Integration section
     in the require-jquery project</a>获取更多信息。</li>
-    <li>把插件封装在define（）方法里。</li>
+    <li>把插件封装在define()方法里。</li>
 </ul>
 
 <p>理想情况下，所有的jQuery插件都可以随意调用define()来注册模块。一些插件里可能已经调用define()来注册AMD模块。如果没有，你自己可以按照如下的方式来封装：
@@ -169,5 +169,4 @@
 
 <p>此外，你可以让插件的作者在代码里调用define()方法。 <a href="https://github.com/umdjs/umd">umdjs project</a>
 有一些资源和例子可以参考。</p>
-
 </div>
