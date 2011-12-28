@@ -1,15 +1,15 @@
 <div id="directory" class="section">
-<h1>RequireJS in Node</h1>
+<h1>在Node中使用RequireJS</h1>
 
     <ul class="index mono">
         <li class="hbox">
-            <a href="#1">Doesn't Node already have a module loader?</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
+            <a href="#1">Node不是已经有了自己的模块加载器了吗?</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
         </li>
         <li class="hbox">
-            <a href="#2">Can I use server modules written in the CommonJS module format?</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
+            <a href="#2">我可以使用CommonJS的格式来写服务器端模块吗?</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
         </li>
         <li class="hbox">
-            <a href="#3">How do I use it?</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
+            <a href="#3">我该怎样使用?</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
         </li>
     </ul>
 
@@ -17,24 +17,29 @@
 
 <div class="section">
 <h2>
-<a name="1">Doesn't Node already have a module loader?</a>
+<a name="1">Node不是已经有了自己的模块加载器了吗?</a>
 <span class="sectionMark">&sect; 1</span>
 </h2>
 
-<p>Yes <a href="http://nodejs.org">Node</a> does. That loader uses the CommonJS module format. The CommonJS module format is <a href="why.html">non-optimal for the browser</a>, and I do not agree with <a href="http://tagneto.blogspot.com/2010/03/commonjs-module-trade-offs.html">some of the trade-offs made in the CommonJS module format</a>. By using RequireJS on the server, you can use one format for all your modules, whether they are running server side or in the browser. That way you can preserve the speed benefits and easy debugging you get with RequireJS in the browser, and not have to worry about extra translation costs for moving between two formats.</p>
+<p>是的， <a href="http://nodejs.org">Node</a> 有. 那个加载器使用CommonJS的模块格式。CommonJS 的模块格式是 <a href="why.html">对于浏览器端是不合适的</a>, 但我不同意 <a href="http://tagneto.blogspot.com/2010/03/commonjs-module-trade-offs.html">
+一些CommonJS模块格式中所作出的权衡。
+</a>. 
+通过在服务端使用RequireJS,你可以在客户端和服务端使用相同的模块格式。那样的话，你就可以在浏览器端快速的开发并且易于调试，而不用担心要花费为外的时间来处理两种不同格式的代码。 </p>
 
-<p>The situation has improved a bit in Node 0.5.0 and later, which supports the <a href="commonjs.html#manualconversion">"simplified CommonJS wrapper" version of define()</a>. While this is helpful for some base library purposes, it does not include support for <a href="api.html#defdep">dependency arrays in define()</a> or <a href="plugins.html">loader plugins</a>. So using the r.js RequireJS adapter is useful for making sure your code will run as you expect across browser and Node environments.</p>
+<p>在Node 0.5.0 和之后的版本情况有所改变, 他将会支持 <a href="commonjs.html#manualconversion">"simplified CommonJS wrapper" 版本的 define()</a>. 
+这对于一些基本的基于CommonJS的库非常有用,但它不包含对<a href="api.html#defdep">define()中依赖数组的支持</a> 和 <a href="plugins.html">RequireJS中的相关插件支持</a>.所以使用RequireJS的r.js适配器将会确保你的代码正确的运行于浏览器和Node环境中.</p>
 
 </div>
 
 <div class="section">
 <h2>
-<a name="2">Can I use Node modules already written in the CommonJS module format?</a>
+<a name="2">我可以使用已经用CommonJS的格式写好的NODE模块吗?</a>
 <span class="sectionMark">&sect; 2</span></h2>
 
-<p>Yes! The Node adapter for RequireJS, called r.js, will use Node's implementation of require and Node's search paths if the module is not found with the configuration used by RequireJS, so you can continue to use your existing Node-based modules without having to do changes to them.</p>
+<p>是的，RequireJS有一个Node的适配器，名叫r.js, 他会使用Node实现的require和搜索路径来查找那些RequireJS配置文件中没有配置的模块，所以你无需任何改动就可以使用基于Node的模块。</p>
 
-<p>RequireJS will use its <a href="api.html#config">Configuration Options</a> first to find modules. If RequireJS cannot find the module with its configuration, it is assumed to be a module that uses Node's type of modules and configuration. So, only configure module locations with RequireJS if they use the RequireJS API. For modules that expect Node's APIs and configuration/paths, just install them with a Node package manager, like <a href="http://npmjs.org/">npm</a>, and do not configure their locations with RequireJS.</p>
+<p>RequireJS 首先会使用它的 <a href="api.html#config">配置选项</a> 来查找模块. 如果RequireJS没有找到对应的模块，那么他会假设使用Node类型的模块和配置。
+If RequireJS cannot find the module with its configuration, it is assumed to be a module that uses Node's type of modules and configuration. So, only configure module locations with RequireJS if they use the RequireJS API. For modules that expect Node's APIs and configuration/paths, just install them with a Node package manager, like <a href="http://npmjs.org/">npm</a>, and do not configure their locations with RequireJS.</p>
 
 <p><strong>Best practice</strong>: Use npm to install Node-only packages/modules into the projects <strong>node_modules</strong> directory, but do not configure RequireJS to look inside the node_modules directory. Also avoid using relative module IDs to reference modules that are Node-only modules. So, <strong>do not</strong> do something like <strong>require("./node_modules/foo/foo")</strong>.</p>
 
