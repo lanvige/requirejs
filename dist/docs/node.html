@@ -1,0 +1,186 @@
+﻿<div id="directory" class="section">
+<h1>在Node中使用RequireJS</h1>
+
+    <ul class="index mono">
+        <li class="hbox">
+            <a href="#1">Node不是已经有了自己的模块加载器了吗?</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
+        </li>
+        <li class="hbox">
+            <a href="#2">我可以使用CommonJS的格式来写服务器端模块吗?</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
+        </li>
+        <li class="hbox">
+            <a href="#3">我该怎样使用?</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
+        </li>
+    </ul>
+
+</div>
+
+<div class="section">
+<h2>
+<a name="1">Node不是已经有了自己的模块加载器了吗?</a>
+<span class="sectionMark">&sect; 1</span>
+</h2>
+
+<p>是的， <a href="http://nodejs.org">Node</a> 有. 那个加载器使用CommonJS的模块格式。CommonJS 的模块格式是 <a href="why.html">对于浏览器端是不合适的</a>, 但我不同意 <a href="http://tagneto.blogspot.com/2010/03/commonjs-module-trade-offs.html">
+一些CommonJS模块格式中所作出的权衡。
+</a>. 
+通过在服务端使用RequireJS,你可以在客户端和服务端使用相同的模块格式。那样的话，你就可以在浏览器端快速的开发并且易于调试，而不用担心要花费为外的时间来处理两种不同格式的代码。 </p>
+
+<p>在Node 0.5.0 和之后的版本情况有所改变, 他将会支持 <a href="commonjs.html#manualconversion">"simplified CommonJS wrapper" 版本的 define()</a>. 
+这对于一些基本的基于CommonJS的库非常有用,但它不包含对<a href="api.html#defdep">define()中依赖数组的支持</a> 和 <a href="plugins.html">RequireJS中的相关插件支持</a>.所以使用RequireJS的r.js适配器将会确保你的代码正确的运行于浏览器和Node环境中.</p>
+
+</div>
+
+<div class="section">
+<h2>
+<a name="2">我可以使用已经用CommonJS的格式写好的NODE模块吗?</a>
+<span class="sectionMark">&sect; 2</span></h2>
+
+<p>是的，RequireJS有一个Node的适配器，名叫r.js, 他会使用Node实现的require和搜索路径来查找那些RequireJS配置文件中没有配置的模块，所以你无需任何改动就可以使用基于Node的模块。</p>
+
+<p>RequireJS 首先会使用它的 <a href="api.html#config">配置选项</a> 来查找模块. 如果RequireJS没有找到对应的模块，那么他会假设使用Node类型的模块和配置。所以仅仅需要配置使用requirejs编写的模块路径。
+对于那些需要Node的API和配置路径的模块，你可以通过Node包管理工具，如 <a href="http://npmjs.org/">npm</a>, 而不需要再Requirejs中配置他们的路径.</p>
+
+<p><strong>最佳实践</strong>:使用npm来安装和node相关的包或者模块到项目中
+<strong>node_modules</strong> 目录, 但不需要配置Requirejs来寻找node_modules目录.同时避免使用相对的模块IDs来引用那些Node中模块. 所以, <strong>不要做</strong>像一些 <strong>require("./node_modules/foo/foo")</strong>的事情.</p>
+
+<p>尽管Requirejs在浏览器中是一个异步的模块加载器，Requirejs的node适配器会在Node环境中匹配其默认的Node加载行为来加载模块.</p>
+
+<p>最后, Requirejs在Node环境中仅仅加载在本地磁盘上的模块--通过http获取模块现在还不支持.</p>
+
+</div>
+
+<div class="section">
+<h2>
+<a name="3">我该怎么使用?</a>
+<span class="sectionMark">&sect; 3</span>
+</h2>
+
+<p>有两种方式使用node适配器:</p>
+
+<h3 id="npm">npm</h3>
+<p>使用 <a href="http://npmjs.org">npm</a> 来安装requirejs:</p>
+
+<pre><code>npm install requirejs
+</code></pre>
+
+<p>这个选项将会安装最新的版本.</p>
+
+<h3 id="rjs">下载 r.js</h3>
+
+<p>如果你不喜欢使用npm，你可以直接下载r.js:</p>
+
+<ul>
+    <li>从<a href="download.html#rjs">这个页面</a>下载r.js 并把它放到你的项目中.</li>
+    <li>从 <a href="https://github.com/jrburke/r.js">r.js repo</a>获取源码 然后通过运行"node dist.js"生成r.js, 或者从<strong>dist</strong> 目录中抓取一个快照.</li>
+</ul>
+
+<h3 id="usage">用途<h3>
+
+<p>一下简介假设你使用npm安装了requirejs。如果你直接使用r.js文件，用require('./path/to/r.js')来替换 require('requirejs') 。基本的用法是：</p>
+
+<ul>
+    <li>require('requirejs')</li>
+    <li>在main js文件中的require的函数中配置requirejs.</li>
+</ul>
+
+<p>示例:</p>
+
+<pre><code>var requirejs = require('requirejs');
+
+requirejs.config({
+    //传递顶级的main.js/index.js require
+    //函数给 requirejs ，那么node的模块将会相对于顶级的js文件来加载
+    nodeRequire: require
+});
+
+requirejs(['foo', 'bar'],
+function   (foo,   bar) {
+    //foo and bar are loaded according to requirejs
+    //config, but if not found, then node's require
+    //is used to load the module.
+});
+</code></pre>
+
+<p>关于配置requirejs的章节，请阅读 <a href="#2">section 2中的备注</a> ，只有那样才可以使用npm来加载基于node的模块.</p>
+
+<p>查看完整的加载一个基于node的模块示例请看r.js 代码仓库中的 <a href="https://github.com/jrburke/r.js/tree/master/tests/node/embedded">embedded test</a> .</p>
+
+<h3 id="nodeModules">使用AMD 或 RequireJS来加载node 模块</h3>
+
+<p>如果你想要编写一个模块同时运行于requirejs和node中，并且不强求你的用户在node环境中使用requirejs，那么你需要配置<a href="https://github.com/jrburke/amdefine">amdefine</a> 包，像这样:</p>
+
+<pre><code>if (typeof define !== 'function') {
+    var define = (require('amdefine'))(module);
+}
+
+define(function(require) {
+    var dep = require('dependency');
+
+    //The value returned from the function is
+    //used as the module export visible to Node.
+    return function () {};
+});
+</code></pre>
+
+<p>1.0.3版本的RequireJS的优化器, 将会移除以上 'amdefine' 的定义, 所以在基于web的项目中使用这个模块也是安全的。
+只需要确保 <strong>'amdefine' if() 和以上展示的内容被确切的测试</strong>. 不同的空格和换行都是被允许的。查看<a href="https://github.com/jrburke/amdefine">amdefine项目</a> 来获取更详细的信息.</p>
+
+<p>如果你想要直接使用requirejs编写的模块，然后导出一个模块的值传给那些不强求和requirejs一起使用的node模块，你可以参考以上代码中提到的<a href="#usage">基本的用途</a>来改动很少的代码就可以 .</p>
+
+<p>最好设定baseUrl来指定包含模块的目录，那样当需要加载一个嵌套的node_modules继承时也可以正确的工作。使用module.exports来导出你的模块值:</p>
+
+<pre><code>var requirejs = require('requirejs');
+
+requirejs.config({
+    //使用node的特别变量 __dirname 来找到包含模块的目录
+    //如果只需要在node环境中使用时，这非常有用
+    baseUrl: __dirname,
+
+    //Pass the top-level main.js/index.js require
+    //function to requirejs so that node modules
+    //are loaded relative to the top-level JS file.
+    nodeRequire: require
+});
+
+requirejs(['foo', 'bar'],
+function   (foo,   bar) {
+    //foo and bar are loaded according to requirejs
+    //config, but if not found, then node's require
+    //is used to load the module.
+
+    //Now export a value visible to Node.
+    module.exports = function () {};
+});
+</code></pre>
+
+<h3 id="optimizer">将优化器用作node的模块</h3>
+
+<p>requirejs的node模块暴露出了一个用于优化的<strong>optimize</strong> 方法，这使得你可以使用 <a href="optimization.html">RequireJS 优化器</a>的优化函数来进行优化，而不需要使用命令行:</p>
+
+<pre><code>var requirejs = require('requirejs');
+
+var config = {
+    baseUrl: '../appDir/scripts',
+    name: 'main',
+    out: '../build/main-built.js'
+};
+
+requirejs.optimize(config, function (buildResponse) {
+    //buildResponse 只是一个包含模块的文本输出
+    //加载被构建的文件中的内容
+    //使用config.out 来获取优化后的文件内容.
+    var contents = fs.readFileSync(config.out, 'utf8');
+});
+</code></pre>
+
+<p>这允许你构建另一个优化工作流，像<a href="https://github.com/jrburke/r.js/tree/master/build/tests/http">a web builder</a> 可以满足你总是喜欢开发"一个置于 &lt;/body&gt; tag之前的脚本"的工作需求.优化器在node环境中运行非常快，但是大的项目并不像对于每个浏览器请求都进行一次合并，而是仅仅已经构建好的脚本中一部分内容。这种情况下，你可以使用Node的fs.watchFile()来观察文件，然后当文件都改变时在进行构建。
+</p>
+
+<h3 id="feedback">反馈</h3>
+
+<p>如果你有一个问题，并且想要报告它，请使用 <a href="http://github.com/jrburke/r.js/issues">r.js GitHub Issues 页面</a>.</p>
+
+<p>如果你想要讨论Requirejs-Node的集成相关话题，请使用<a href="http://groups.google.com/group/requirejs">RequireJS Google组</a>.</p>
+</div>
+  

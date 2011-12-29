@@ -1,0 +1,291 @@
+﻿<div id="directory" class="section">
+<h1>插件</h1>
+
+<ul class="index mono">
+    <li class="hbox"><a href="#intro">简介</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span></li>
+    <li class="hbox"><a href="#names">插件名</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span></li>
+    <li class="hbox"><a href="#api">API</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span></li>
+    <ul>
+        <li class="hbox"><a href="#apiload">load</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3.1</span></li>
+        <li class="hbox"><a href="#apinormalize">normalize</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3.2</span></li>
+        <li class="hbox"><a href="#apiwrite">write</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3.3</span></li>
+        <li class="hbox"><a href="#apiwritefile">writeFile</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3.4</span></li>
+        <li class="hbox"><a href="#apipluginbuilder">pluginBuilder</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3.5</span></li>
+    </ul>
+</ul>
+</div>
+
+<div class="section">
+<h2 id="intro">
+简介
+<span class="sectionMark">&sect; 1</span>
+</h2>
+
+<p>RequireJS允许你为加载器写一些插件用来加载不同类型的依赖的资源，甚至可以将依赖项加到被优化的build环境中。</p>
+
+<p>已经存在的示例插件有 <a href="api.html#text">text!</a> 和 <a href="api.html#i18n">i18n!</a> 插件. text!插件用来处理文本，i18n插件用来处理一个从一些不同模块生成的javascript对象。这个对象包含本地化的字符串</p>
+</div>
+
+<div class="section">
+<h2 id="names">
+插件名
+<span class="sectionMark">&sect; 2</span>
+</h2>
+
+<p>Loader插件是另一种插件，一种实现了特定api的插件。Loader插件也可以参与优化器优化工作，允许他们加载的资源包含在一个优化的进程中。</p>
+
+<p><b>注意</b>: 插件和其依赖需要能够同时运行在非浏览器的环境中，像Node和Rhino。如果不能做到，你需要一个可替换的 <a href="#apipluginbuilder">pluginBuilder</a> 创建一个可运行于那些环境的模块！</p>
+
+<p>你可以通过在依赖名前加一个！来引用你的插件。例如，如果你要创建一个名为"foo.js"的插件，你需要像这样来使用:</p>
+
+<pre><code>
+require(['foo!something/for/foo'], function (something) {
+    //something 是一个资源的引用
+    //'something/for/foo' 是通过foo.js加载的
+});
+</code></pre>
+
+<p>所以，插件名后需要紧跟一个'!'分隔符。在分隔符后面的部分被称为<b>资源名</b>. 插件名可能看起来像普通的模块名。插件的模块名可以使任何有效的模块名，例如，你可以使用一个相对的标示符：</p>
+<pre><code>
+require(['./foo!something/for/foo'], function (something) {
+});
+</code></pre>
+
+<p>或者，如果它是在一个包或者目录的内部，如： bar/foo.js:</p>
+
+<pre><code>
+require(['bar/foo!something/for/foo'], function (something) {
+});
+</code></pre>
+
+<p>注意在0.24.0版本以前，text!，i18n和order!插件是'特别'的，因为你仅仅需要使用一个名字如‘text’来引用，但实际上模块名是'require/text'.在Plugin API被完全确定前所有的老的代码需要被默认支持。这个充满魔力的模块名的变换将不会在0.24.0和之后的版本中支持。</p>
+
+</div>
+
+<div class="section">
+<h2 id="api">
+API
+<span class="sectionMark">&sect; 3</span>
+</h2>
+
+<p>RequireJS将会先加载插件模块，然后将剩下的依赖名传给插件中的load方法。有一些方法可以使模块名变得正规化和作为<a href="optimization.html">优化器</a>的一部分来使用.</p>
+
+<p>完整的插件API:</p>
+
+<ul>
+    <li><b><a href="#apiload">load</a></b>:一个用来加载资源的函数。这是唯一的一个强制实现的函数，因为只有它实现的了插件才会变得有用。</li>
+    <li><b><a href="#apinormalize">normalize</a></b>: 一个用来标准化资源的函数.这个方法是可选的用来缓存和优化的，但是仅在资源名不是一个模块名的时候才用到。</li>
+    <li><b><a href="#apiwrite">write</a></b>:优化器用来判断何时对资源进行优化.</li>
+    <li><b><a href="#apipluginbuilder">pluginBuilder</a></b>:一个用来为模块优化做优化工作的模块名称字符串。当优化器运行时将会使用那个模块取代插件模块。 </li>
+</ul>
+
+<h3>
+<a name="apiload">load: function (name, parentRequire, load, config)</a>
+<span class="sectionMark">&sect; 3.1</span>
+</h3>
+
+<p>load是一个函数，他将会有以下参数:</p>
+
+<ul>
+    <li><b>name</b>: String. 需要加载的资源名. 这是在整个名字中'!'分隔符之后的名称！ 所以，当一个模块寻找 'foo!something/for/foo'时, foo模块的load函数将会使用'something/for/foo'作为name.</li>
+    <li><b>parentRequire</b>: 函数. 一个用来加载其他模块的本地的"require"函数. 这个require函数有以下有用的方法:
+    <ul>
+        <li><b>parentRequire.toUrl(moduleResource)</b>:扩展moduleResource到完整的url路径. 如 "view/templates/main.html". 他将会返回完整的路径, 遵从任何RequireJS的配置.</li>
+        <li><b>parentRequire.defined(moduleName)</b>: 返回 true 如果模块已经加载或者定义了. 在RequireJS 0.25.0之前是调用了require.isDefined.</li>
+        <li><b>parentRequire.specified(moduleName)</b>:返回 true 如果模块已经被请求了或者正在请求并且将在某个时刻可用的.</li>
+    </ul></li>
+    <li><b>load</b>: 函数. 一个回调的入口函数. 他会告诉加载器插件已经完成加载了资源文件.</li>
+    <li><b>config</b>: 对象.一个配置对象. 这是一种让优化器和web应用程序传递配置信息到插件中。i18n插件使用这个对象来获取当前的区域信息，如果web应用程序强制指定了一个区域信息。优化器将会设置一个<b>isBuild</b> 属性到config对象中，优化器创建的时候会将插件（或pluginBuilder）作为优化的一部分</li>
+</ul>
+
+<p>一个没有做任何事情的插件,仅仅使用普通的require来加载一个js模块:</p>
+
+<pre><code>
+define({
+    load: function (name, req, load, config) {
+        //req 有和require()相同的API.
+        req([name], function (value) {
+            load(value);
+        });
+    }
+});
+</code></pre>
+
+<p>一些插件可能需要取得的一些JavaScript作为文本来解析.为了正确的解析javascript, 特别是包含require()和define()的调用，在load方法体中有一个函数，<strong>load.fromText()</strong>, 可以用来解析javascript. eval() 被requirejs用来解析那些javascript.</p>
+
+<p>load.fromText()的参数:</p>
+
+<ul>
+    <li><b>name</b>: String. 已经被加载的模块名。对于匿名调用很有用。总是会传递一个值。如果文本中没有匹配的模块名，你可以使用一个文件路径来检索文本</li>
+    <li><b>text</b>: String. 用来解析javascript的字符串..</li>
+</ul>
+
+<p>一个使用load.fromText()的load 函数:</p>
+
+<pre><code>
+define({
+    load: function (name, req, load, config) {
+        var url = req.toUrl(name + '.customFileExtension'),
+            text;
+
+        //使用一个方法来加载文本（在插件的其他地方提供）
+        fetchText(url, function (text) {
+            //通过使用方法transform()适当的为插件转换文本,这个方法在插件的其他地方提供
+            text = transform(text);
+
+            //有requirejs正确的执行上下文环境
+            load.fromText(name, text);
+
+            //现在获取一个解析模块的句柄，返回插件加载的资源的值
+            req([name], function (value) {
+                load(value);
+            });
+        });
+    }
+});
+</code></pre>
+
+<h3>
+<a name="apinormalize">normalize: function (name, normalize)</a>
+<span class="sectionMark">&sect; 3.2</span>
+</h3>
+
+<p><b>normalize</b> 规范化name，用来辨别一个资源。 一些资源可以使用相对路径，并且需要规范化到完整的路径. normalize 有以下参数可以使用:</p>
+
+<ul>
+    <li><b>name</b>: String. 需要规范化的资源.</li>
+    <li><b>normalize</b>: Function. 一个可以用来规范化一个规则的模块名</li>
+</ul>
+
+<p>一个实例: 假定这里有一个 <b>index!</b>插件，它将会通过指定的index来加载模块. 这是一个考虑不周的插件, 仅仅是为了说明这个概念. 一个模块可以像这样来引用index！:</p>
+
+<pre><code>
+define(['index!2?./a:./b:./c'], function (indexResource) {
+    //indexResource 将会是绑定 './c' 的模块.
+});
+</code></pre>
+
+<p>在这种情况下, 规范化的 './a', './b', 和 './c' 将会被用来联系加载的资源模块.因为Requirejs不知道如何验证'index!2?./a:./b:./c'到 './a', './b', 和 './c',它需要询问插件。这是调用normalize的原因。</p>
+
+<p>通过正确的规范化资源名，它允许加载器高效的缓存资源， 并且在优化其中恰当的构建一个被优化了的构建层.</p>
+
+<p> <b>index!</b> 插件不能这样写:</p>
+
+<pre><code>
+(function () {
+
+    //辅助函数用来解析 'N?value:value:value'
+    //format used in the resource name.
+    function parse(name) {
+        var parts = name.split('?'),
+            index = parseInt(parts[0], 10),
+            choices = parts[1].split(':'),
+            choice = choices[index];
+
+        return {
+            index: index,
+            choices: choices,
+            choice: choice
+        };
+    }
+
+    //主模块定义.
+    define({
+        normalize: function (name, normalize) {
+            var parsed = parse(name),
+                choices = parsed.choices;
+
+            //规范化每个choice.
+            for (i = 0; i < choices.length; i++) {
+                //Call the normalize() method passed in
+                //to this function to normalize each
+                //module name.
+                choices[i] = normalize(choices[i]);
+            }
+
+            return parsed.index + '?' + choices.join(':');
+        },
+
+        load: function (name, req, load, config) {
+            req([parse(name).choice], function (value) {
+                load(value);
+            });
+        }
+    });
+
+}());
+</code></pre>
+
+<p>你不需要实现normalize，如果你的资源名是一个规则的模块名。例如：text!插件不会实现normalize，因为它的依赖名形如 'text!./some/path.html'.</p>
+
+<p>如果一个模块不实现normalize，那么加载器将会尝试使用普通的模块名规则来规范化资源名。</p>
+
+<h3>
+<a name="apiwrite">write: function (pluginName, moduleName, write)</a>
+<span class="sectionMark">&sect; 3.3</span>
+</h3>
+
+<p><b>write</b> 仅仅被优化器使用,并且仅在插件可以输出一些属于优化层的内容时才需要实现。它在调用时有以下参数：</p>
+
+<ul>
+    <li><b>pluginName</b>: String.  <b>规范化的</b> 插件命名.因为大部分插件不是通过名称（它将是匿名插件）来验证的，所以在使用优化了的文件时，当你知道了规范化的命名，那将会非常有用。</li>
+    <li><b>name</b>: String.  <b>规范化的</b> 资源名.</li>
+    <li><b>write</b>: Function. 一个带有优化了的字符串参数的函数。这个函数也带有一个特别的函数，<b>write.asModule(moduleName, text)</b>. asModule 可以用来写了一个模块,假如有一个匿名define调用,并且需要插入插入一个模块名字或者包含隐式的依赖需要输出到优化了的文件中，这时就非常有用。asModule是一个非常有用的文本转换插件，例如转换coffee script。</li>
+</ul>
+
+<p>text! 插件实现了write, 它会为加载的文本文件输出字符串值. 那个插件中的小片段:</p>
+
+<pre><code>
+write: function (pluginName, moduleName, write) {
+    //文本插件保持一个在构建过程中取来的映射字符串，
+	//所有的映射都保存在buildMap 对象中
+    if (moduleName in buildMap) {
+        //jsEscape 是文本插件内部的函数
+        //用于确保字符串是安全的嵌入到js字符串中
+        var text = jsEscape(buildMap[moduleName]);
+        write("define('" + pluginName + "!" + moduleName  +
+              "', function () { return '" + text + "';});\n");
+    }
+}
+</code></pre>
+
+<h3>
+<a name="apiwritefile">writeFile: function (pluginName, moduleName, write)</a>
+<span class="sectionMark">&sect; 3.4</span>
+</h3>
+
+<p><b>writeFile</b>仅仅用于优化器中, 并且只有插件需要输出另一个版本的插件自身处理的依赖时才需要实现。扫描一个项目中所有的插件依赖的操作时昂贵的，所以writeFile方法将只会在优化器配置了<b>optimizeAllPluginResources: true</b>时才会被调用。writeFile在调用时有以下参数:</p>
+
+<ul>
+    <li><b>pluginName</b>: String.  <b>规范化的</b> 插件命名.因为大部分插件不是通过名称（它将是匿名插件）来验证的，所以在使用优化了的文件时，当你知道了规范化的命名，那将会非常有用。</li>
+    <li><b>name</b>: String.  <b>规范化的</b> 资源名.</li>
+    <li><b>parentRequire</b>: Function.一个本地的"require" 函数.这个函数在这里主要是为了使用parentRequire.toUrl()来实现构建目录中的文件路径。 </li>
+    <li><b>write</b>: Function. 一个在调用时可以有以下参数的函数:
+        <ul>
+            <li><b>fileName</b>: String. 需要输出的文件名. 你可以使用 parentRequire.toUrl() 转换一个相对路径来实现文件名，这个文件将会输出到构建的输出目录中。</li>
+            <li><b>text</b>: String. 文件的内容. 必须是UTF-8编码的。</li>
+        </ul>
+		这个函数也带有一个特别的函数，<b>write.asModule(moduleName, text)</b>. asModule 可以用来写了一个模块,假如有一个匿名define调用,并且需要插入插入一个模块名字或者包含隐式的依赖需要输出到优化了的文件中，这时就非常有用。
+	</li>
+        <li><b>config</b>: Object. 一个配置对象. 这是一种优化器传递配置参数信息的一种方式.</li>
+</ul> 
+ 
+<p>查看 <a href="https://github.com/jrburke/requirejs/blob/master/text.js">text! 插件</a> 的 writeFile 的一个实例.</p>
+
+<h3>
+<a name="apipluginbuilder">pluginBuilder</a>
+<span class="sectionMark">&sect; 3.5</span>
+</h3>
+
+<p><b>pluginBuilder</b> 当插件用作优化器的一部分时，可以指定另一个模块来取代当前的插件。</p>
+
+<p>一个插件可能有特别的依赖与特定环境的逻辑，如浏览器。然而，当在优化器中运行时，环境是非常不同的，插件可能有一个<b>write</b> 插件API的实现但不想发布到浏览器中。在那种情况下，指定一个pluginBuilder 是非常有用的。</p>
+
+<p>一些关于使用pluginBuilder的技巧:</p>
+
+<ul>
+    <li>不要在plugin 或 pluginBuilder中使用已经命名的模块。pluginBuilder构建的文本内容是用来替换插件文件的内容的，但那仅仅在插件文件中没有使用带有name参数的define()。</li>
+    <li>Plugins 和 pluginBuilders作为构建进程的一部分运行时会有环境的限制。 现在优化器运行于Rhino的顶层，但它在将来也会运行在Node中。如果你想要模块作为优化器的一部分运行，请小心各种不同的环境。</li>
+</ul>
+
+</div>

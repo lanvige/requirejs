@@ -1,0 +1,106 @@
+<div id="directory" class="section">
+    <h1>如何使用RequireJS</h1>
+
+    <ul class="index mono">
+        <li class="hbox">
+            <a href="#get">获取RequireJS</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
+        </li>
+        <li class="hbox">
+            <a href="#add">添加RequireJS</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
+        </li>
+        <li class="hbox">
+            <a href="#optimize">优化</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
+        </li>
+    </ul>
+
+    <span class="note">备注：如果项目中已使用jQuery，这里有一份入门文档 <a href="jquery.md">如何在RqureireJS中使用jQuery</a></span>
+</div>
+
+<div class="section">
+<h2>
+    <a name="get">获取RequireJS</a>
+    <span class="sectionMark">&sect; 1</span>
+</h2>
+
+<p>请到<a href="download.md">下载</a>页面获取require.js文件。</p>
+</div>
+
+<div class="section">
+<h2>
+    <a name="add">添加RequireJS</a>
+    <span class="sectionMark">&sect; 2</span>
+</h2>
+
+<span class="note">备注：更多jQuery的使用建议请看这里<a href="jquery.html">jQuery整合页面</a></span>
+
+<p>本文假设你已经将所有的JavaScript文件放到项目中一个"scripts"的目录里。举例，如果你有一个项目，并有一个名叫project.html的页面，和一些Js脚本，这个项目的结构看起来应该是下面这样的：</p>
+
+<ul>
+    <li>project-directory/
+    <ul>
+        <li>project.html</li>
+        <li>scripts/
+        <ul>
+            <li>main.js</li>
+            <li>helper/
+            <ul>
+                <li>util.js</li>
+            </ul></li>
+        </ul></li>
+    </ul></li>
+</ul>
+
+<p>添加require.js到scripts目录, 现在看起来如下：</p>
+
+<ul>
+    <li>project-directory/
+    <ul>
+        <li>project.html</li>
+        <li>scripts/
+        <ul>
+            <li>main.js</li>
+            <li>require.js</li>
+            <li>helper/
+            <ul>
+                <li>util.js</li>
+            </ul></li>
+        </ul></li>
+    </ul></li>
+</ul>
+
+<p>为了更好的使用优化工具所带来的好处，这里不建议您使用内联脚本，并只保留require.js和一个require的调用去加载其它脚本：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My Sample Project&lt;/title&gt;
+        &lt;!-- data-main attribute tells require.js to load
+             scripts/main.js after require.js loads. --&gt;
+        &lt;script data-main="scripts/main" src="scripts/require.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;My Sample Project&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<span class="note">data-main的路径规则在0.23版本中发生了变化。这个版本之前，上面示例中代码应是：ata-main="main"</span>
+
+<p>在main.js中，你可以使用require()来加载其它运行所需要的脚本：</p>
+
+<pre><code>require(["helper/util"], function() {
+    //This function is called when scripts/helper/util.js is loaded.
+});
+</code></pre>
+
+<p>入门就这么简单！查看<a href="api.html">API文档</a>来对require()的使用更多深入学习。</p>
+</div>
+
+<div class="section">
+<h2>
+    <a name="optimize">优化</a>
+    <span class="sectionMark">&sect; 3</span>
+</h2>
+
+<p>一旦您完成了代码开发希望部署最新的代码给用户，你可以使用<a href="optimization.md">optimizer</a> 来对多个JavaScript文件进行合并和压缩。在上面的示例中，在返回时会将main.js和helper/util.js合并成一个文件并进行压缩。</p>
+</div>
