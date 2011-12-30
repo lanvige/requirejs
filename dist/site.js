@@ -25,20 +25,22 @@ var files, htmlFile, transFile, fileContents,
 
 //Copy all the text files to a dist directory
 //file.deleteFile("./dist-site/");
-file.copyFile("./index.html", "../../index.html");
-file.copyDir("./docs/", "../docs", /\w/);
+file.copyFile("./index.html", "./site/index.html");
+file.copyDir("docs/", "./site/docs/");
 
 preContents = file.readFile("pre.html");
 postContents = file.readFile("post.html");
 
 //Convert each .html file to a full HTML file
-files = file.getFilteredFileList("./dist-site", /\.html$/, true);
+files = file.getFilteredFileList("./site", /\.html$/, true);
 
 function processFile() {
     htmlFile = files[fileIndex];
     fileIndex += 1;
     if (!htmlFile) {
         //Done processing files.
+        file.copyFile("site/index.html","../index.html");
+        file.copyDir("site/docs/","../docs/",/\w/);
         return;
     }
 
@@ -82,8 +84,8 @@ function processFile() {
                            .replace(/href="([^"]+)\.md/g, 'href="$1.html');
 
             //Adjust the path the home and main.css
-            homePath = htmlFile.replace(/\/[^\/]+$/, "").replace(/^\.\/dist-site\//, "");
-            if (!homePath || homePath === "dist-site") {
+            homePath = htmlFile.replace(/\/[^\/]+$/, "").replace(/^\.\/site\//, "");
+            if (!homePath || homePath === "site") {
                 isTopPage = true;
                 homePath = "./";
                 cssPath = "main.css";

@@ -6,6 +6,8 @@
 # Windows
 Thumbs.db
 
+dist/site
+
 # Mac finder artifacts
 .DS_Store
 
