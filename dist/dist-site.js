@@ -25,8 +25,8 @@ var files, htmlFile, transFile, fileContents,
 
 //Copy all the text files to a dist directory
 //file.deleteFile("./dist-site/");
-file.copyFile("../index.html", "./dist-site/index.html");
-file.copyDir("./docs/", "../", /\w/);
+file.copyFile("./index.html", "../../index.html");
+file.copyDir("./docs/", "../docs", /\w/);
 
 preContents = file.readFile("pre.html");
 postContents = file.readFile("post.html");
