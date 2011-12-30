@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>RequireJS Requirements</title>
+    <title>
+        RequireJS Requirements</title>
 
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
@@ -177,120 +178,111 @@
     </div>
 
     <div id="content"><div id="directory" class="section">
-<h1>RequireJS Requirements</h1>
-
-<ul class="index mono">
-    <li class="hbox">
-        <a href="#1">Get RequireJS</a><span class="spacer boxFlex"></span><span class="sect">&sect; 1</span>
-    </li>
-    <li class="hbox">
-        <a href="#2">Go with the grain of the browser</a><span class="spacer boxFlex"></span><span class="sect">&sect; 2</span>
-    </li>
-    <li class="hbox">
-        <a href="#3">Load code before and after page load</a><span class="spacer boxFlex"></span><span class="sect">&sect; 3</span>
-    </li>
-    <li class="hbox">
-        <a href="#4">The loader should be able to load nested dependencies</a><span class="spacer boxFlex"></span><span class="sect">&sect; 4</span>
-    </li>
-    <li class="hbox">
-        <a href="#5">Modules need to be evaluated according to dependencies</a><span class="spacer boxFlex"></span><span class="sect">&sect; 5</span>
-    </li>
-    <li class="hbox">
-        <a href="#6">The module format should be compact</a><span class="spacer boxFlex"></span><span class="sect">&sect; 6</span>
-    </li>
-    <li class="hbox">
-        <a href="#7">Have a streamlined core loader, but allow for the future</a><span class="spacer boxFlex"></span><span class="sect">&sect; 7</span>
-    </li>
-    <li class="hbox">
-        <a href="#8">Allow modules to keep a clean global namespace</a><span class="spacer boxFlex"></span><span class="sect">&sect; 8</span>
-    </li>
-    <li class="hbox">
-        <a href="#9">Load any script</a><span class="spacer boxFlex"></span><span class="sect">&sect; 9</span>
-    </li>
-    <li class="hbox">
-        <a href="#10">Allow for performance upgrades</a><span class="spacer boxFlex"></span><span class="sect">&sect; 10</span>
-    </li>
-</ul>
-
-<span class="note">Note: RequireJS is designed to meet the following requirements:</span>
+    <h1>
+        RequireJS Requirements</h1>
+    <ul class="index mono">
+        <li class="hbox"><a href="#1">获取RequireJS</a><span class="spacer boxFlex"></span><span
+            class="sect">§ 1</span> </li>
+        <li class="hbox"><a href="#2">浏览器资源加载的常用方法</a><span class="spacer boxFlex"></span><span
+            class="sect">§ 2</span> </li>
+        <li class="hbox"><a href="#3">页面加载前后载入代码</a><span class="spacer boxFlex"></span><span
+            class="sect">§ 3</span> </li>
+        <li class="hbox"><a href="#4">脚本应该能够指定依赖</a><span class="spacer boxFlex"></span><span
+            class="sect">§ 4</span> </li>
+        <li class="hbox"><a href="#5">加载器必须能够加载嵌套依赖项</a><span class="spacer boxFlex"></span><span
+            class="sect">§ 5</span> </li>
+        <li class="hbox"><a href="#6">模块应该紧凑</a><span class="spacer boxFlex"></span><span
+            class="sect">§ 6</span> </li>
+        <li class="hbox"><a href="#7">构建一个可以应对变化的，简洁的核心加载器</a><span class="spacer boxFlex"></span><span
+            class="sect">§ 7</span> </li>
+        <li class="hbox"><a href="#8">让模块有一个干净的全局的命名空间</a><span class="spacer boxFlex"></span><span
+            class="sect">§ 8</span> </li>
+        <li class="hbox"><a href="#9">加载任一脚本</a><span class="spacer boxFlex"></span><span
+            class="sect">§ 9</span> </li>
+        <li class="hbox"><a href="#10">Allow for performance upgrades</a><span class="spacer boxFlex"></span><span
+            class="sect">§ 10</span> </li>
+    </ul>
+    <span class="note">备注：RequireJS是为如下目标而设计的:</span>
 </div>
 
 <div class="section">
-<h2><a name="1">Go with the grain of the browser</a><span class="sectionMark">&sect; 1</span></h2>
-
-<p>XMLHttpRequest(XHR) loaders are limited to the same domain as the page, and make debugging harder. Certain browsers allow cross-domain XHR calls and better conventions for debugging when eval is used, but support is inconsistent across browsers.</p>
-
-<p>Eval-based loaders should be avoided since eval is not a JavaScript best practice and it is not allowed in some environments. There is a time and place for eval, but a module loader can do better than to use it.</p>
-
-<p>A server process that transforms scripts on the fly should also not be needed. Getting everyone to use the same server process or even making specs for a common format they can all emit is more overhead, more stuff to write. Front-end developers have a long established practice of being able to author plain text files and having them load in the browser without a bunch of server hardware.</p>
-
-<p>Scripts loaded via script tags work everywhere and work across domains. It is a much simpler loading style that uses the natural way browsers load scripts.</p>
+    <h2>
+        <a name="1">浏览器资源加载的常用方法</a><span class="sectionMark">§ 1</span></h2>
+    <p>
+        XMLHttpRequest(XHR)只能实现同域加载，并且很难调试。 在一些浏览器中使用eval实现XHR的跨域调用并支持脚本调试，但是并非所有览器都支持。</p>
+    <p>
+        应该规避基于Eval的加载的应用，因为他并非javascript的最佳实践且即使在相同的环境下也并非总被允许使用。有时在一些地方我们会用eval加载的方式，但模块儿化加载会比这种方式更好。</p>
+    <p>
+        不需要用一个服务端进程去返回请求所需要的脚本。但共用一个服务端进程又或是通过通用的格式约定来实现的方式不仅开销大而且有很臃肿。前端工程师对于如何摆脱对服务端资源开销又能在客户端加载静态文件有着相当丰富的实践经验。</p>
+    <p>
+        通过script标签加载脚本文件是一种通用的跨域解决方案，它用最原生的浏览器支持的脚本加载方法来实现。</p>
 </div>
 
 <div class="section">
-<h2><a name="2">Load code before and after page load</a><span class="sectionMark">&sect; 2</span></h2>
-
-<p>The same system should be usable before and after page load. Delaying loading of code until a later page action is a key performance benefit.</p>
+    <h2>
+        <a name="2">页面加载前后载入代码</a><span class="sectionMark">§ 2</span></h2>
+    <p>
+        无论页面载入前还是后再加载脚本，系统都应该具备可用性。延迟加载能有效提高后续操作的用户体验.</p>
 </div>
 
 <div class="section">
-<h2><a name="3">Scripts should be able to specify dependencies</a><span class="sectionMark">&sect; 3</span></h2>
-
-<p>It is very easy for a project to beyond needing a couple of scripts. It is hard to manually track all the dependencies and the correct loading order. A script should be able to specify its immediate dependencies. The developer should not have to worry about what those dependencies need to load and work out the correct loading order.</p>
+    <h2>
+        <a name="3">脚本应该能够指定依赖</a><span class="sectionMark">§ 3</span></h2>
+    <p>
+        项目很容易依赖于多个脚本资源。追踪所有的依赖和判断加载顺序正确与否是很困难的。脚本应该可以指定依赖。这样开发人员就可以不用关心脚本相互依赖和加载顺序的问题而提高工作效率。</p>
 </div>
 
 <div class="section">
-<h2><a name="4">The loader should be able to load nested dependencies</a><span class="sectionMark">&sect; 4</span></h2>
-
-<p>If each module specifies its own direct dependencies, the loader should be able to work out the correct dependencies across the whole system, even nested dependencies, for dependencies of dependencies.</p>
+    <h2>
+        <a name="4">加载器必须能够加载嵌套依赖项</a><span class="sectionMark">§ 4</span></h2>
+    <p>
+        如果每个模块而都有其各自的依赖项，加载器就必须能按照正确的依赖顺序加载整个系统，包括那些具有相互依赖的包含关系的嵌套依赖。</p>
 </div>
 
 <div class="section">
-<h2><a name="5">Scripts can be evaluated out of order, but modules need to be evaluated according to dependencies</a><span class="sectionMark">&sect; 5</span></h2>
-
-<p>Using the browser-native script loading that has nested dependency resolution and works after page load means that scripts will need to be loaded at least part of the time via using appendChild for script elements.</p>
-
-<p>IE and WebKit will execute scripts added via appendChild out of DOM order, they
-execute them in network receive order. Even if they executed scripts in the order
-they were added to the DOM, dependencies for a module are discovered after
-the module script has been loaded, so scripts for the dependencies will always be added
-after the script that needs them.</p>
-
-<p>This leads to constructing a module format for a script, one that puts the bulk of the script in a function, with its dependencies specified outside of that function wrapper. This allows scripts to be evaluated out of order by the browser, but gives the chance to properly work out the dependencies, then call the function wrappers in the right sequence to bring the scripts into being.</p>
+    <h2>
+        <a name="5">脚本的加载可以是无序的，但模块须根据依赖关系来加载</a><span class="sectionMark">§ 5</span></h2>
+    <p>
+        使用浏览器支持的脚本加载会有嵌套依赖而在页面加载之后进行意味着脚本通过使用appendChild在之后来加载script元素</p>
+    <p>
+        IE and WebKit 使用appendChild来加载脚本而不依赖于文档顺序，他们是基于网络接受顺序来执行的。即使看似这些脚本的执行顺序与其在DOM中的顺序相同，但模块的依赖关系是在其模块加载之后才确定的，因此具有依赖关系的脚本总是在需要时才被添加进来。</p>
+    <p>
+        这将导致为一个脚本文件而构造一个模块儿，将脚本放入一个函数，但其依赖关系仍在函数包装之外。浙江允许脚本的加载游离于浏览器之外，但这样就能获取正确的依赖关系，然后通过包装函数用正确的顺序加载函数。</p>
 </div>
 
 <div class="section">
-<h2><a name="6">The module format should be compact</a><span class="sectionMark">&sect; 6</span></h2>
-
-<p>Boilerplate code is a pain. However a function wrapper is needed as part of the boilerplate. Prefer making the boilerplate as terse as possible, to allow easy hand-coding by developers. Avoid overly-explicit module formats that use a name/value pair for each property, since developer will have to code these by hand.</p>
+    <h2>
+        <a name="6">模块应该紧凑</a><span class="sectionMark">§ 6</span></h2>
+    <p>
+        模板很关键，一个功能函数的包装需要模板。 最好时期尽可能简洁，以便于开发人员使用。避免过于明确的使用件事匹配每个属性的模块儿格式，因为开发人员会自己来编写。</p>
 </div>
 
 <div class="section">
-<h2><a name="7">Have a streamlined core loader, but allow for the future</a><span class="sectionMark">&sect; 7</span></h2>
-
-<p>The core of the loader, module format support with nested dependency resolution, should be compact, but allow for plugins to expand the concept of dependencies and what it means to load them.</p>
-
-<p>In Dojo, it is common to need i18n string bundles and text strings of HTML for widget constructions. Allow the loader to be able to load these things, but as plugins, so the core stays lightweight.</p>
+    <h2>
+        <a name="7">构建一个可以应对变化的，简洁的核心加载器</a><span class="sectionMark">§ 7</span></h2>
+    <p>
+        加载器，模块嵌套依赖解析的格式支持的核心，应紧凑，但允许插件来扩展依赖关系和加载依赖关系。</p>
 </div>
 
 <div class="section">
-<h2><a name="8">Allow modules to keep a clean global namespace</a><span class="sectionMark">&sect; 8</span></h2>
-
-<p>As projects get bigger, it is more common to need to load two versions of a module in a page. This should be possible by allowing a module system that does not define modules in the globale namespace.</p>
-
-<p>If a module wants to work with the global namespace, but that is normally easy to allow in a module spec. The harder part is constructing a format that works well to avoid the global namespace.</p>
+    <h2>
+        <a name="8">让模块有一个干净的全局的命名空间</a><span class="sectionMark">§ 8</span></h2>
+    <p>
+        当项目膨胀时，在一个页面加载一个模块儿的两个不同版本是很常见的。这个在一个不在全局命名空间里定义模块儿的模块儿化系统里应该被支持。</p>
 </div>
 
 <div class="section">
-<h2><a name="9">Load any script</a><span class="sectionMark">&sect; 9</span></h2>
-
-<p>Not all scripts will be using the module format. Allow existing scripts to be loaded and treated as a dependency.</p>
+    <h2>
+        <a name="9">加载任一脚本</a><span class="sectionMark">§ 9</span></h2>
+    <p>
+        不是所有脚本都会使用模块儿化格式。要支持现有脚本能够按照依赖关系加载。</p>
 </div>
 
 <div class="section">
-<h2><a name="10">Allow for performance upgrades</a><span class="sectionMark">&sect; 10</span></h2>
-
-<p>This mainly means have a build system that can combine and optimize modules. It also means the loader should allow loading a script with multiple modules defined in it, and only fetch dependencies that are not already included in that script file.</p>
+    <h2>
+        <a name="10">高性能</a><span class="sectionMark">§ 10</span></h2>
+    <p>
+        这里主要指的是具有整合和优化模块儿的构建系统。这也意味着加载机应该支持加载多个模块儿中定义的脚本，并只取尚未列入该脚本文件中的依赖关系。</p>
 </div>
     </div>
     <div id="footer" class="mono">
