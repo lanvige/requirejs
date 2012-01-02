@@ -556,9 +556,9 @@ define({
 
 <p><strong>注意</strong>RequireJS只会识别小写的locale，为避免大小写问题，所有bundles的目录和文个名都应使用小写。</p>
 
-<p>RequireJS is also smart enough to pick the right locale bundle, the one that most closely matches the ones provided by my/nls/colors. For instance, if the locale is "en-us", then the "root" bundle will be used. If the locale is "fr-fr-paris" then the "fr-fr" bundle will be used.</p>
+<p>RequireJS很聪明的能自动找到相对应的本地化包，该词在my/nls/colors下所对应的意思，如果locale是"en-us"，将会默认使用"root" bundle。如果locale为"fr-fr-paris"，那么"fr-fr"的bundle将会被使用。</p>
 
-<p>RequireJS also combines bundles together, so for instance, if the french bundle was defined like so (omitting a value for red):</p>
+<p>RequireJS也可以将bundles合并在一起，举例来说，如果法语包中定义如下（省略了red的值）：</p>
 
 <pre><code>//Contents of my/nls/fr-fr/colors.js
 define({
@@ -567,7 +567,7 @@ define({
 });
 </code></pre>
 
-<p>Then the value for red in "root" will be used. This works for all locale pieces. If all the bundles listed below were defined, then RequireJS will use the values in the following priority order (the one at the top takes the most precedence):</p>
+<p>这样将会使用red在"root"里的值。所有的local包都是这样工作的。Then the value for red in "root" will be used. This works for all locale pieces. If all the bundles listed below were defined, then RequireJS will use the values in the following priority order (the one at the top takes the most precedence):</p>
 
 <ul>
 <li>my/nls/fr-fr-paris/colors.js</li>
@@ -576,7 +576,7 @@ define({
 <li>my/nls/colors.js</li>
 </ul>
 
-<p>If you prefer to not include the root bundle in the top level module, you can define it like a normal locale bundle. In that case, the top level module would look like:</p>
+<p>如果你不喜欢将root bundle包含在奇级模块中，你可以将其定义为一个正常的locale bundle，这样的话，顶级模块看起来如下：</p>
 
 <pre><code>//my/nls/colors.js contents:
 define({
@@ -586,7 +586,7 @@ define({
 });
 </code></pre>
 
-<p>and the root bundle would look like:</p>
+<p>root bundle看起来如下：</p>
 
 <pre><code>//Contents of my/nls/root/colors.js
 define({
@@ -614,7 +614,7 @@ define({
 );
 </code></pre>
 
-<p>Notice the .html and .css suffixes to specify the extension of the file. The "some/module" part of the path will be resolved according to normal module name resolution: it will use the <strong>baseUrl</strong> and <strong>paths</strong> <a href="#config">configuration options</a> to map that name to a path.</p>
+<p>注意这里指定了.html和.css作为文件扩展名。文中"some/module"路径一切将 part of the path will be resolved according to normal module name resolution：使用<strong>baseUrl</strong>和<strong>paths</strong>作为<a href="#config">配置参数</a>来映射模块名称到具体路径。</p>
 
 <p>对于 HTML/XML/SVG 文件，这里有另一种方式。你可以使用!strip 前缀，它能去除XML声明，所以不用担心多余的SVG和XML文档被加到文 档中来。还有，如果这个字符串是一个HTML文档，仅会返回body标签中的部分。如下：</p>
 
@@ -629,7 +629,7 @@ define({
 
 <p>文本文件通过异步XMLHttpRequest (XHR)调用被加载，所以你只能在同一个域中来调用.</p>
 
-<p>However, the build system for RequireJS will inline any text! references with the actual text file contents into the modules, so after a build, the modules that have text! dependencies can be used from other domains.</p>
+<p>总之，RequireJS的构建系统会将所有的text!所引用的文本内容插入到当前模块中来，所以一旦构建完成之后，这个使用text!依赖的模块将能在其它域中使用。</p>
 
 <h3><a name="jsonp">指定JSONP服务作为依赖</a><span class="sectionMark">&sect; 1.5</span></h3>
 
@@ -830,8 +830,7 @@ This example specifies some dependencies to load as soon as require.js defines r
 
 <p>During development it can be useful to use this, however <strong>be sure</strong> to remove it before deploying your code.</p>
 
-<p id="config-jQuery"><strong>jQuery</strong>: (RequireJS 0.25.0+) specify an exact version match for the version of jQuery that should be allowed to register as the 'jquery' dependency. This is useful in environments where multiple jQuery files could be loaded but you want
-to be sure to get the right version of jQuery for your loading context. Normally you do not need to set this if you are only loading one version of jQuery in a page. However, if you use third party libraries that may also load jQuery, it is best to set this option.</p>
+<p id="config-jQuery"><strong>jQuery</strong>: (RequireJS 0.25.0+) 为jQuery的某个版本指定一个精确版本号，被充许使用"jQuery"作为依赖。这在使用多版本的jQuery环境下特别有用，你可以按自己的意愿使用指定的版本。一般来说，你不需要关心这些如果你在一个页面中仅使用一个版本的。但如果你所使用的第三方库也使用jQuery，你最好按上面所说的去设置这些参数。</p>
 
 <p id="config-catchError"><strong>catchError</strong>: (RequireJS 0.26.0+) Normally, errors evaluating define() factory functions are not caught, to allow easy debugging during development. However, for some scenarios and production deployments, it is useful to have the errors caught. By specifying catchError.define = true, the errors will be caught and passed to require.onError(). Normally require.onError() throws the error, but you can override the definition of require.onError() to do something different.</p>
 
@@ -848,12 +847,12 @@ to be sure to get the right version of jQuery for your loading context. Normally
 <p>RequireJS支持从<a href="http://wiki.commonjs.org/wiki/Packages/1.1">CommonJS Packages</a>目录结构中加载模块。但需要做一些额外的配置。. 特别指出，这里支持以下CommonJS Packages特性：</p>
 
 <ul>
-<li>A package can be associated with a module name/prefix.</li>
-<li>The package config can specify the following properties for a specific package:
+<li>一个package能被关联到一个模块名和前缀。</li>
+<li>可以通过配置以下属定来定制该package:
 <ul>
-<li><strong>name</strong>: The name of the package (used for the module name/prefix mapping)</li>
-<li><strong>location</strong>: The location on disk. Locations are relative to the baseUrl configuration value, unless they contain a protocol or start with a front slash (/).</li>
-<li><strong>main</strong>: The name of the module inside the package that should be used when someone does a require for "packageName". The default value is "main", so only specify it if it differs from the default. The value is relative to the package folder.</li>
+<li><strong>name</strong>: package的名称 (用作模块名/前缀映射)</li>
+<li><strong>location</strong>: 电脑上的位置。以baseUrl配置参数值作为相对路径，除非它使用协议或以(/)开头。</li>
+<li><strong>main</strong>: package中模块名在一些使用require "packageName"时将会被用到。默认值为"main"，所以仅当它和默认值不同的时候才去指定。这个值也是根据package目录来的。</li>
 </ul></li>
 </ul>
 
@@ -988,7 +987,7 @@ function (alpha,   omega,   cart,   store,   util) {
 </ul></li>
 </ul>
 
-<p>Then the RequireJS configuration would look like so:</p>
+<p>这时的RequireJS的配置应如下：</p>
 
 <pre><code>require.config({
     packagePaths: {
@@ -1034,7 +1033,7 @@ function (alpha,   omega,   cart,   store,   util) {
 
 <p>为了避免冗余，这里强烈推荐使用。。。。, it is strongly suggested to always use packages that use "main" convention in their structure, and use packagePaths for third party packages.</p>
 
-<p>To make fetching and configuring packages easier, there are designs for a command line package tool in the works.</p>
+<p>为了让获取和配置包更加容易，这里也计划设计一个命令行的打包工具。</p>
 
 <h3><a name="multiversion">多版本支持</a><span class="sectionMark">&sect; 4.2</span></h3>
 
